@@ -1,0 +1,6 @@
+= course-java-design
+
+This project is for the course "Java Design". It contains tasks and demo code for:
+
+* Design principles
+* Design patterns
