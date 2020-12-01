@@ -4,3 +4,8 @@ This project is for the course "Java Design". It contains tasks and demo code fo
 
 * Design principles
 * Design patterns
+
+== License
+
+The project is released under version 2.0 of the
+link:https://www.gnu.org/licenses/old-licenses/gpl-2.0.html[GNU General Public License].
