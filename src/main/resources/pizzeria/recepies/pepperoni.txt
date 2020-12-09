@@ -1,0 +1,5 @@
+dough=100
+oil=5
+sauce_tomato=10
+pepperoni=20
+cheese_mozzarella=15

@@ -1,0 +1,8 @@
+dough=100
+oil=5
+sausages_munich=20
+sauce_curry=5
+cheese_mozzarella=15
+pineapple=10
+ham=10
+chicken=20

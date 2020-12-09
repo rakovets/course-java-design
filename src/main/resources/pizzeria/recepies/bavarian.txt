@@ -1,0 +1,7 @@
+dough=100
+oil=5
+cheese_parmezan=10
+cheese_mozzarella=10
+jalapeno=3
+sausages_bavarian=20
+souse_barbeque=3

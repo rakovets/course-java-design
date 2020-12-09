@@ -1,0 +1,2 @@
+tuesday=20
+thursday=15

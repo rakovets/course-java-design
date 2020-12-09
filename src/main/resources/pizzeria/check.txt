@@ -1,0 +1,75 @@
+2020-12-09 20:33:46
+5_cheeses 28.89
+bavarian 22.89
+Total: 51.78
+
+2020-12-09 20:34:03
+carbonara 25.89
+chicken_curry 28.89
+Total: 54.78
+
+2020-12-09 20:34:25
+pepperoni 17.89
+Total: 17.89
+
+2020-12-09 21:46:43
+bavarian 22.89
+carbonara 25.89
+Total: 48.78
+
+2020-12-09 22:02:09
+bavarian 22.89
+carbonara 25.89
+Total: 48.78
+
+2020-12-09 22:03:52
+chicken_curry 28.89
+pepperoni 17.89
+Total: 46.78
+
+2020-12-09 23:07:10
+bavarian 22.89
+Total: 22.89
+
+2020-12-09 23:42:39
+chicken_curry 28.89
+Total: 28.89
+
+2020-12-10 00:40:28
+bavarian 22.89
+Subtotal: 22.89
+
+Discount: 10
+
+Total: 20.601
+
+2020-12-10 00:41:29
+carbonara 25.89
+Subtotal: 25.89
+Discount: 10%
+Total: 23.301000000000002
+
+2020-12-10 00:42:44
+pepperoni 17.89
+chicken_curry 28.89
+bavarian 22.89
+Subtotal: 92.56
+Discount: 10%
+Total: 83.304
+
+2020-12-10 00:48:24
+5_cheeses 28.89
+Subtotal: 28.89
+Discount: 15%
+Total: 24.5565
+
+2020-12-10 00:49:47
+carbonara 25.89
+pepperoni 17.89
+pepperoni 17.89
+pepperoni 17.89
+pepperoni 17.89
+Subtotal: 97.45
+Discount: 15%
+Total: 82.83250000000001
+

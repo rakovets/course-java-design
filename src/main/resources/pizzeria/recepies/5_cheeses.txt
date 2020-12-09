@@ -1,0 +1,8 @@
+dough=100
+oil=5
+cheese_feta=15
+cheese_parmesan=15
+cheese_blue=10
+cheese_mozzarella=15
+cheese_cheddar=15
+cream_fresh=5

@@ -1,0 +1,8 @@
+dough=100
+oil=5
+champignons=20
+cream_fresh=3
+onion=10
+cheese_mazzarella=15
+ham=20
+bacon=20
