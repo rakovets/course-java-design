@@ -1,15 +1,21 @@
 package com.racovets.course.design.practice.pizzeria;
 
+import com.racovets.course.design.practice.pizzeria.model.Ingredients;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Recipe {
-    private Map<? extends Ingredients, Integer> recipe;
-    public Recipe (Map<? extends Ingredients, Integer> recipe) {
-        this.recipe = new HashMap<>();
+    private Map<Ingredients, Integer> recipeMap = new HashMap<>();
+    public Recipe (Map<Ingredients, Integer> recipeMap) {
+        this.recipeMap = recipeMap;
     }
-    public void createNewRecipe() {
 
+    public Map<Ingredients, Integer> getRecipeMap() {
+        return recipeMap;
+    }
 
+    public void setRecipeMap(Map<Ingredients, Integer> recipeMap) {
+        this.recipeMap = recipeMap;
     }
 }
