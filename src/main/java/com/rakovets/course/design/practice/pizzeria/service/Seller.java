@@ -12,5 +12,6 @@ public class Seller {
         cost -= cost * discount * 0.01;
         double newValue = account.get(payment) + cost;
         account.put(payment, newValue);
+        Counter.addPizzaCostToSellStory(cost);
     }
 }

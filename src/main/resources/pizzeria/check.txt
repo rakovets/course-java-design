@@ -73,3 +73,17 @@ Subtotal: 97.45
 Discount: 15%
 Total: 82.83250000000001
 
+2020-12-10 15:18:16
+5_cheeses 28.89
+bavarian 22.89
+Subtotal: 51.78
+Discount: 15%
+Total: 44.013
+
+2020-12-10 15:22:47
+5_cheeses 28.89
+bavarian 22.89
+Subtotal: 51.78
+Discount: 15%
+Total: 44.013
+

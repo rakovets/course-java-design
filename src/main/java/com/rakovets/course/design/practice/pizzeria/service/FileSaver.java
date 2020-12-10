@@ -15,7 +15,6 @@ public class FileSaver {
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 data.append(entry.getKey() + "=" + entry.getValue() + "\n");
             }
-            data.substring(0, data.length() - 1);
             writer.write(String.valueOf(data));
             writer.close();
         } catch (IOException e) {
@@ -33,7 +32,6 @@ public class FileSaver {
             }
             reader.close();
 
-            data.substring(0, data.length() - 1);
             data.append(text);
 
             FileWriter writer = new FileWriter(path);

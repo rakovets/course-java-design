@@ -1,16 +1,10 @@
 package com.rakovets.course.design.practice.pizzeria.repository;
 
-import com.rakovets.course.design.practice.pizzeria.service.Loader;
-
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Storage {
     private static Map<String, Integer> ingredients;
-
-    public static void start() {
-        ingredients = Loader.loadIngredients();
-    }
 
     public static Map<String, Integer> getIngredients() {
         return ingredients;

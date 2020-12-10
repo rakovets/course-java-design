@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.pizzeria.service;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,4 +58,11 @@ public class Loader {
         return map.entrySet().stream().
                 collect(Collectors.toMap(Map.Entry::getKey, e -> Integer.parseInt(e.getValue())));
     }
+
+    public static Map<LocalDateTime, Double> loadSellStoryOfPizzas() {
+        String path = directory + "sell_story_pizzas.txt";
+        return FileLoader.loadMap(path).entrySet().stream().
+                collect(Collectors.toMap(e -> LocalDateTime.parse(e.getKey()), e -> Double.parseDouble(e.getValue())));
+    }
+
 }

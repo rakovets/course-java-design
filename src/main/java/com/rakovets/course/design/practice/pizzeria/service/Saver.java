@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.pizzeria.service;
 
 import com.rakovets.course.design.practice.pizzeria.repository.Account;
+import com.rakovets.course.design.practice.pizzeria.repository.SellStory;
 import com.rakovets.course.design.practice.pizzeria.repository.Storage;
 
 import java.io.File;
@@ -28,5 +29,19 @@ public class Saver {
     public static void saveCheck(StringBuilder check) {
         String path = directory + "check.txt";
         FileSaver.addTextToFile(path, check);
+    }
+
+    public static void saveSellStoryOfPizzas() {
+        String path = directory + "sell_story_pizzas.txt";
+        Map<String, String> map = SellStory.getSellStoryOfPizzas().entrySet().stream()
+                .collect(Collectors.toMap(e -> e.getKey().toString(), e -> e.getValue().toString()));
+        FileSaver.saveMapToFile(path, map);
+    }
+
+    public static void autoSaveAll(StringBuilder check) {
+        saveIngredients();
+        saveAccount();
+        saveCheck(check);
+        saveSellStoryOfPizzas();
     }
 }

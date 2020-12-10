@@ -1,7 +1,5 @@
 package com.rakovets.course.design.practice.pizzeria.repository;
 
-import com.rakovets.course.design.practice.pizzeria.service.Loader;
-
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -9,17 +7,20 @@ public class Discounts {
     private static Map<String, Integer> byDay;
     private static Map<Integer, Integer> byAmountOfPizzas;
 
-    public static void start() {
-        byDay = Loader.loadDiscountsByDay();
-        byAmountOfPizzas = Loader.loadDiscountsByAmountOfPizzas();
-    }
-
     public static Map<String, Integer> getByDay() {
         return byDay;
     }
 
     public static Map<Integer, Integer> getByAmountOfPizzas() {
         return byAmountOfPizzas;
+    }
+
+    public static void setByDay(Map<String, Integer> byDay) {
+        Discounts.byDay = byDay;
+    }
+
+    public static void setByAmountOfPizzas(Map<Integer, Integer> byAmountOfPizzas) {
+        Discounts.byAmountOfPizzas = byAmountOfPizzas;
     }
 
     public static int getMaxDiscount(int amountOfPizzas) {
