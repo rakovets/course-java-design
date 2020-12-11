@@ -1,6 +1,7 @@
 package com.racovets.course.design.practice.pizzeria;
 
 import com.racovets.course.design.practice.pizzeria.model.Ingredients;
+import com.racovets.course.design.practice.pizzeria.model.Recipe;
 
 import java.util.Map;
 
@@ -16,16 +17,20 @@ public class Pizza {
         this.price = price;
     }
     public void setAvailableForOrder (IngredientsRepository ingredientsRepo, int countOfPizzas) {
+        int c = 0;
         for (Map.Entry<Ingredients, Integer> item : ingredientsRepo.ingredients.entrySet()) {
             for (Map.Entry<Ingredients, Integer> element : recipe.getRecipeMap().entrySet()) {
                 if (item.getKey().equals(element.getKey())) {
-                    if (item.getValue() > (element.getValue() * countOfPizzas)) {
-                        availableForOrder = true;
-                    } else {
-                        availableForOrder = false;
+                    if (item.getValue() < (element.getValue() * countOfPizzas)) {
+                        c++;
                     }
                 }
             }
+        }
+        if (c > 0) {
+            availableForOrder = false;
+        } else {
+            availableForOrder = true;
         }
     }
 

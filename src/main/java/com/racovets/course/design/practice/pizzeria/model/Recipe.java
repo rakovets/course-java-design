@@ -1,4 +1,4 @@
-package com.racovets.course.design.practice.pizzeria;
+package com.racovets.course.design.practice.pizzeria.model;
 
 import com.racovets.course.design.practice.pizzeria.model.Ingredients;
 

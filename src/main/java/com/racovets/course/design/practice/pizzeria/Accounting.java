@@ -1,47 +1,44 @@
 package com.racovets.course.design.practice.pizzeria;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.racovets.course.design.practice.pizzeria.model.Ingredients;
+import com.rakovets.course.design.example.pattern.strategy.example.order.Order;
+
+import java.util.*;
 
 public class Accounting {
-    private List<Integer> cost = new ArrayList<>();
-    private int numberOfSoldPizza;
-    private int profit;
-    private int proceeds;
-
-    public int getNumberOfSoldPizza() {
-        return numberOfSoldPizza;
-    }
-
-    public void setNumberOfSoldPizza(int numberOfSoldPizza) {
-        this.numberOfSoldPizza = numberOfSoldPizza;
-    }
-
-    public long getTotalCost(List<Integer> cost) {
-        return cost.stream().reduce(Integer::sum).get();
-    }
-
-    public List<Integer> getCost() {
-        return cost;
-    }
-
-    public void setCost(List<Integer> cost) {
-        this.cost = cost;
-    }
-
-    public int getProceeds() {
-        return proceeds;
-    }
-
-    public void setProceeds(int proceeds) {
-        this.proceeds = proceeds;
-    }
+    private Map<Integer, OrderPizza> orders = new HashMap<>();
+    private Map<Ingredients, Integer> receiptIngredients = new HashMap<>();
 
     public int getProfit() {
-        return profit;
+        int ingredientsCost = 0;
+        for (Map.Entry<Ingredients, Integer> item : receiptIngredients.entrySet()) {
+            ingredientsCost = ingredientsCost + (item.getValue() * item.getKey().getPrice());
+        }
+        return getProceeds() - ingredientsCost;
     }
 
-    public void setProfit(int profit) {
-        this.profit = profit;
+    public int getNumberOfSoldPizza() {
+        int numberOfSoldPizza = 0;
+        if (!orders.isEmpty()) {
+            for (Map.Entry<Integer, OrderPizza> item : orders.entrySet()) {
+                numberOfSoldPizza += item.getValue().getTotalPizzaCountInOrder();
+            }
+        } return numberOfSoldPizza;
+    }
+    public int getProceeds() {
+        int proceeds = 0;
+        if (!orders.isEmpty()) {
+            for (Map.Entry<Integer, OrderPizza> item : orders.entrySet()) {
+                proceeds += item.getValue().getTotalCostWithDiscount();
+            }
+        } return proceeds;
+    }
+
+    public Map<Integer, OrderPizza> getOrders() {
+        return orders;
+    }
+
+    public Map<Ingredients, Integer> getReceiptIngredients() {
+        return receiptIngredients;
     }
 }

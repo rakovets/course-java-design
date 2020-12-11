@@ -17,17 +17,23 @@ public class OrderPizza {
     private boolean isClosed = false;
     private Map<Pizza, Integer> orderMap = new HashMap<>();
     private LocalDateTime localDateTimeOfOrder;
-    private int totalCostWithDiscount = 4000;
+    private int totalCostWithDiscount;
     private boolean isDiscount;
-    private int discount = 20;
+    private final int discount = 20;
     private int dayOfWeekForDiscount = 4;
-    private int pizzaCountForDiscount;
-    private int totalPizzaCountInOrder;
+    private final int pizzaCountForDiscount = 4;
+
+    private int numberOfOrderPizza;
 
     public int getTotalPizzaCountInOrder () {
+        int totalPizzaCountInOrder = 0;
         for (Map.Entry<Pizza, Integer> item : orderMap.entrySet()) {
             totalPizzaCountInOrder += item.getValue();
         } return totalPizzaCountInOrder;
+    }
+
+    public void setNumberOfOrderPizza(int numberOfOrder) {
+        this.numberOfOrderPizza = numberOfOrder;
     }
 
     public int getTotalCostWithDiscount() {
@@ -39,7 +45,7 @@ public class OrderPizza {
     }
     public boolean isDiscount() {
         if ((localDateTimeOfOrder.get(ChronoField.DAY_OF_WEEK) == dayOfWeekForDiscount) ||
-                (totalPizzaCountInOrder >= pizzaCountForDiscount)) {
+                (getTotalPizzaCountInOrder() >= pizzaCountForDiscount)) {
             isDiscount = true;
         } else {
             isDiscount = false;
@@ -60,7 +66,7 @@ public class OrderPizza {
         System.out.println(orderText.toString() + "\n" + "Total cost: " + totalCost);
         System.out.println("Total cost with discount: " + totalCostWithDiscount);
         File newFile = new File("src" + File.separator +
-                "test" + File.separator + "resources" + File.separator + "check.txt");
+                "test" + File.separator + "resources" + File.separator + "check" + numberOfOrderPizza + ".txt");
         try {
             boolean created = newFile.createNewFile();
         } catch (IOException e) {
@@ -68,7 +74,7 @@ public class OrderPizza {
         }
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(newFile))) {
             bw.write(dateTimeOfOrder + "\n");
-            bw.write(orderText.toString() + "\n" + "Total cost: " + totalCost);
+            bw.write(orderText.toString() + "\n" + "Total cost: " + totalCost + "\n");
             bw.write("Total cost with discount: " + totalCostWithDiscount);
             bw.flush();
         } catch (IOException e) {
@@ -116,7 +122,4 @@ public class OrderPizza {
         return pizzaCountForDiscount;
     }
 
-    public void setPizzaCountForDiscount(int pizzaCountForDiscount) {
-        this.pizzaCountForDiscount = pizzaCountForDiscount;
-    }
 }
