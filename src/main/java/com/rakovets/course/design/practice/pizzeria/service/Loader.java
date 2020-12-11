@@ -56,7 +56,7 @@ public class Loader {
 
     private static Map<String, Integer> valueToInteger(Map<String, String> map) {
         return map.entrySet().stream().
-                collect(Collectors.toMap(Map.Entry::getKey, e -> Integer.parseInt(e.getValue())));
+                collect(Collectors.toMap(Map.Entry::getKey, e -> Integer.parseInt(e.getValue()), (a, b) -> a, TreeMap::new));
     }
 
     public static Map<LocalDateTime, Double> loadSellStoryOfPizzas() {

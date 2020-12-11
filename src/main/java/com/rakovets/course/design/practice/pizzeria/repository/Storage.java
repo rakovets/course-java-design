@@ -23,8 +23,10 @@ public class Storage {
     }
 
     public static String printIngredients() {
-       return ingredients.entrySet().stream()
-                .map(e -> "\n" + e.getKey() + " " + e.getValue() + "g")
-                .collect(Collectors.joining());
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, Integer> e : ingredients.entrySet()) {
+            result.append("\n").append(e.getKey()).append(" ").append(e.getValue()).append("g");
+        }
+       return result.toString();
     }
 }

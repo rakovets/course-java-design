@@ -6,6 +6,7 @@ import com.rakovets.course.design.practice.pizzeria.repository.Storage;
 
 import java.io.File;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class Saver {
@@ -14,15 +15,13 @@ public class Saver {
 
     public static void saveAccount() {
         String path = directory + "account.txt";
-        Map<String, String> map = Account.getAccount().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().toString()));
+        Map<String, String> map = stringalization(Account.getAccount());
         FileSaver.saveMapToFile(path, map);
     }
 
     public static void saveIngredients() {
         String path = directory + "storage.txt";
-        Map<String, String> map = Storage.getIngredients().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().toString()));
+        Map<String, String> map = stringalization(Storage.getIngredients());
         FileSaver.saveMapToFile(path, map);
     }
 
@@ -33,15 +32,22 @@ public class Saver {
 
     public static void saveSellStoryOfPizzas() {
         String path = directory + "sell_story_pizzas.txt";
-        Map<String, String> map = SellStory.getSellStoryOfPizzas().entrySet().stream()
-                .collect(Collectors.toMap(e -> e.getKey().toString(), e -> e.getValue().toString()));
+        Map<String, String> map = stringalization(SellStory.getSellStoryOfPizzas());
         FileSaver.saveMapToFile(path, map);
     }
 
-    public static void autoSaveAll(StringBuilder check) {
+    public static void autoSave(StringBuilder check) {
         saveIngredients();
         saveAccount();
         saveCheck(check);
         saveSellStoryOfPizzas();
+    }
+
+    private static Map<String, String> stringalization(Map<?, ?> map) {
+        Map<String, String> result = new TreeMap<>();
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            result.put(entry.getKey().toString(), entry.getValue().toString());
+        }
+        return result;
     }
 }

@@ -13,7 +13,7 @@ public class FileSaver {
             FileWriter writer = new FileWriter(path);
             StringBuilder data = new StringBuilder();
             for (Map.Entry<String, String> entry : map.entrySet()) {
-                data.append(entry.getKey() + "=" + entry.getValue() + "\n");
+                data.append(entry.getKey()).append("=").append(entry.getValue()).append("\n");
             }
             writer.write(String.valueOf(data));
             writer.close();

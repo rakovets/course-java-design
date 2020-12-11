@@ -26,7 +26,7 @@ public class Discounts {
     public static int getMaxDiscount(int amountOfPizzas) {
         int max = 0;
         for(Map.Entry<Integer, Integer> entry : byAmountOfPizzas.entrySet()) {
-            if (entry.getKey() >= amountOfPizzas) {
+            if (entry.getKey() <= amountOfPizzas) {
                 int value = entry.getValue();
                 if (max < value) max = value;
             }

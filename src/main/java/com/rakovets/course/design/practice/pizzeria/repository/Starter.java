@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import static com.rakovets.course.design.practice.pizzeria.service.Loader.*;
 
-public class Const {
+public class Starter {
     public static Set<String> payments;
     public static Set<String> pizzaNames;
     public static Map<String, Product> pizzaMap;

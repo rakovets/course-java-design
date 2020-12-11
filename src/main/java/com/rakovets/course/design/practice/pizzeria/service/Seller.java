@@ -11,6 +11,9 @@ public class Seller {
         double cost = product.getCost();
         cost -= cost * discount * 0.01;
         double newValue = account.get(payment) + cost;
+        newValue = Calc.round(newValue);
+        cost = Calc.round(cost);
+
         account.put(payment, newValue);
         Counter.addPizzaCostToSellStory(cost);
     }
