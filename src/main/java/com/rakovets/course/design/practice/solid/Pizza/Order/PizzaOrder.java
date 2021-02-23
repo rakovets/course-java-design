@@ -26,7 +26,6 @@ public class PizzaOrder {
         MeatDelight meatDelight = new MeatDelight();
         Pepperoni pepperoni = new Pepperoni();
         Vegetarian vegetarian = new Vegetarian();
-        List<Double> order = new ArrayList<>();
         CashPayment cashPayment = new CashPayment();
         CardPayment cardPayment = new CardPayment();
         OnlinePayment onlinePayment = new OnlinePayment();
@@ -40,6 +39,7 @@ public class PizzaOrder {
         Sausages sausages = new Sausages();
         Tomatoes tomatoes = new Tomatoes();
         TraditionalDough traditionalDough = new TraditionalDough();
+        Order order = new Order(new ArrayList<>());
 
         Scanner scan = new Scanner(System.in);
 
@@ -61,8 +61,7 @@ public class PizzaOrder {
 
             switch (choice) {
                 case 1:
-                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t"))
-                            + fourCheese.toString());
+                    System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + fourCheese.toString());
                     order.add(fourCheese.getPrice());
                     storage.changeIngredientQuantity(traditionalDough, storage.getIngredientQuantity(traditionalDough),
                             storage.getIngredientQuantity(traditionalDough) - 1);
@@ -77,8 +76,7 @@ public class PizzaOrder {
                     writer.append('\n');
                     break;
                 case 2:
-                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t"))
-                            + margherita.toString());
+                    System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + margherita.toString());
                     order.add(margherita.getPrice());
                     storage.changeIngredientQuantity(traditionalDough, storage.getIngredientQuantity(traditionalDough),
                             storage.getIngredientQuantity(traditionalDough) - 1);
@@ -95,8 +93,7 @@ public class PizzaOrder {
                     writer.append('\n');
                     break;
                 case 3:
-                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t"))
-                            + meatDelight.toString());
+                    System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + meatDelight.toString());
                     order.add(meatDelight.getPrice());
                     storage.changeIngredientQuantity(traditionalDough, storage.getIngredientQuantity(traditionalDough),
                             storage.getIngredientQuantity(traditionalDough) - 1);
@@ -113,8 +110,7 @@ public class PizzaOrder {
                     writer.append('\n');
                     break;
                 case 4:
-                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t"))
-                            + pepperoni.toString());
+                    System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + pepperoni.toString());
                     order.add(pepperoni.getPrice());
                     storage.changeIngredientQuantity(traditionalDough, storage.getIngredientQuantity(traditionalDough),
                             storage.getIngredientQuantity(traditionalDough) - 1);
@@ -129,8 +125,7 @@ public class PizzaOrder {
                     writer.append('\n');
                     break;
                 default:
-                    System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t"))
-                            + vegetarian.toString());
+                    System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + vegetarian.toString());
                     order.add(vegetarian.getPrice());
                     storage.changeIngredientQuantity(traditionalDough, storage.getIngredientQuantity(traditionalDough),
                             storage.getIngredientQuantity(traditionalDough) - 1);
@@ -150,10 +145,7 @@ public class PizzaOrder {
                     break;
             }
 
-            double totalOrder = BigDecimal.valueOf(order.stream()
-                    .mapToDouble(Double::doubleValue)
-                    .sum()).setScale(2, RoundingMode.HALF_UP).doubleValue();
-
+            double totalOrder = order.totalOrder();
             int size = order.size();
             System.out.println("Order is " + totalOrder + "$\nNumber of pizzas: " + size);
 
