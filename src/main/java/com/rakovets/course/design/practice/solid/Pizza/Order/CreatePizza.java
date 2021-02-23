@@ -6,17 +6,14 @@ import com.rakovets.course.design.practice.solid.Pizza.Finance.OnlinePayment;
 import com.rakovets.course.design.practice.solid.Pizza.Finance.Profit;
 import com.rakovets.course.design.practice.solid.Pizza.Ingredients.*;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class CreatePizza {
 
     public static void main(String[] args) {
 
-        List<Double> order = new ArrayList<>();
+        Order order = new Order(new ArrayList<>());
         ThinDough thinDough = new ThinDough();
         TraditionalDough traditionalDough = new TraditionalDough();
         Cheese cheese = new Cheese();
@@ -115,9 +112,7 @@ public class CreatePizza {
                     break;
             }
 
-            double totalOrder = BigDecimal.valueOf(order.stream()
-                    .mapToDouble(Double::doubleValue)
-                    .sum()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+            double totalOrder = order.totalOrder();
 
             System.out.println("Total order is " + totalOrder + "$");
 
