@@ -71,7 +71,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(cheese) - 4);
                     storage.changeIngredientQuantity(oregano, storage.getIngredientQuantity(oregano),
                             storage.getIngredientQuantity(oregano) - 1);
-                    writer.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t")))
+                    writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(fourCheese.toString());
                     writer.append('\n');
                     break;
@@ -88,7 +88,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(tomatoes) - 2);
                     storage.changeIngredientQuantity(oregano, storage.getIngredientQuantity(oregano),
                             storage.getIngredientQuantity(oregano) - 1);
-                    writer.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t")))
+                    writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(margherita.toString());
                     writer.append('\n');
                     break;
@@ -105,7 +105,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(meat) - 2);
                     storage.changeIngredientQuantity(sausages, storage.getIngredientQuantity(sausages),
                             storage.getIngredientQuantity(sausages) - 2);
-                    writer.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t")))
+                    writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(meatDelight.toString());
                     writer.append('\n');
                     break;
@@ -120,7 +120,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(meat) - 3);
                     storage.changeIngredientQuantity(cheese, storage.getIngredientQuantity(cheese),
                             storage.getIngredientQuantity(cheese) - 1);
-                    writer.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t")))
+                    writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(pepperoni.toString());
                     writer.append('\n');
                     break;
@@ -139,7 +139,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(pepper) - 2);
                     storage.changeIngredientQuantity(olives, storage.getIngredientQuantity(olives),
                             storage.getIngredientQuantity(olives) - 2);
-                    writer.append(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss\t")))
+                    writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(vegetarian.toString());
                     writer.append('\n');
                     break;
