@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.Pizza.Finance;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Finance;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ class DiscountTest {
     }
 
     @Test
-    void discountForOrderOnMonday() {
-        assertEquals(85, discount.discountForOrderOnMonday(100));
+    void discountForOrderOnSpecificDay() {
+        assertEquals(85, discount.discountForOrderOnSpecificDay(100));
     }
 }
