@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.Pizza.Finance;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Finance;
 
 public class Discount {
 
@@ -6,5 +6,6 @@ public class Discount {
 
     public double discountForThreeAndMoreItems(double totalOrder) { return totalOrder * 0.8; }
 
-    public double discountForOrderOnMonday(double totalOrder) { return totalOrder * 0.85; }
+    public double discountForOrderOnSpecificDay (double totalOrder) { return totalOrder * 0.85; }
+
 }

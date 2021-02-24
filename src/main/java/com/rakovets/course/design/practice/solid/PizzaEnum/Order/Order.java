@@ -1,7 +1,5 @@
-package com.rakovets.course.design.practice.solid.Pizza.Order;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Order;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 public class Order {
@@ -16,9 +14,9 @@ public class Order {
     }
 
     public double totalOrder() {
-        return BigDecimal.valueOf(order.stream()
+        return order.stream()
                 .mapToDouble(Double::doubleValue)
-                .sum()).setScale(2, RoundingMode.HALF_UP).doubleValue();
+                .sum();
     }
 
     public int size() {

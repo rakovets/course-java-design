@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.Pizza.Finance;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Finance;
 
 public class Profit {
 

@@ -1,10 +1,11 @@
-package com.rakovets.course.design.practice.solid.Pizza.Ingredients;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Ingredients;
 
 import java.util.Map;
 
 public class StorageUtility {
 
     public static void main(String[] args) {
+
         Storage storage = new Storage();
 
         for (Map.Entry<Ingredient, Integer> entry : storage.entrySet()) {

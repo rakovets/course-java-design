@@ -1,6 +1,6 @@
-package com.rakovets.course.design.practice.solid.Pizza.Order;
+package com.rakovets.course.design.practice.solid.PizzaEnum.Order;
 
-import com.rakovets.course.design.practice.solid.Pizza.Pizzas.Pizza;
+import com.rakovets.course.design.practice.solid.PizzaEnum.Pizzas.Pizza;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
