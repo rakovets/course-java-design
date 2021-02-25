@@ -1,9 +1,11 @@
 package com.rakovets.course.design.practice.solid.PizzaEnum.Ingredients;
 
+import com.rakovets.course.design.practice.solid.PizzaEnum.Pizzas.Pizza;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class Storage {
+public class Storage implements IngridientStorage {
     private final Map<Ingredient, Integer> storage = new HashMap<>();
 
     public Storage() {
@@ -29,6 +31,14 @@ public class Storage {
 
     public void changeIngredientQuantity(Ingredient ingredient, int oldQuantity, int newQuantity) {
         storage.replace(ingredient, oldQuantity, newQuantity);
+    }
+
+    public void changeIngredientQuantity(Pizza pizza) {
+        pizza.getIngredients().forEach((name, value) -> {
+            Integer count = storage.get(name);
+            int changedCountIngredientForPizza = count - value;
+            storage.put(name, changedCountIngredientForPizza);
+        });
     }
 
     public Iterable<Map.Entry<Ingredient, Integer>> entrySet() {

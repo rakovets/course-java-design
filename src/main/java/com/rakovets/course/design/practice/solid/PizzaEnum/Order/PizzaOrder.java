@@ -12,11 +12,12 @@ import java.math.RoundingMode;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class PizzaOrder {
-
-    public static void main(String[] args) throws IOException {
+    public void start() throws IOException {
 
         CashPayment cashPayment = new CashPayment();
         CardPayment cardPayment = new CardPayment();
@@ -40,37 +41,38 @@ public class PizzaOrder {
             System.out.println("3. Meat Delight");
             System.out.println("4. Pepperoni");
             System.out.println("5. Vegetarian");
-
             int choice = scan.nextInt();
 
-            switch (choice) {
-                case 1:
+            Map<Integer, Pizza> menu = new HashMap<>();
+            menu.put(1, Pizza.FOUR_CHEESE);
+            menu.put(2, Pizza.MARGHERITA);
+            menu.put(3, Pizza.MEAT_DELIGHT);
+            menu.put(4, Pizza.PEPPERONI);
+            menu.put(5, Pizza.VEGETARIAN);
+
+
+            switch (menu.get(choice)) {
+                case FOUR_CHEESE:
                     System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.FOUR_CHEESE +
-                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.FOUR_CHEESE.getCost())))
+                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.FOUR_CHEESE.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue()) + "$");
-                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.FOUR_CHEESE.getCost())))
+                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.FOUR_CHEESE.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue());
-                    storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH,
-                            storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH),
-                            storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
-                    storage.changeIngredientQuantity(Ingredient.SAUCE,
-                            storage.getIngredientQuantity(Ingredient.SAUCE),
-                            storage.getIngredientQuantity(Ingredient.SAUCE) - Ingredient.SAUCE.getQuantity());
-                    storage.changeIngredientQuantity(Ingredient.CHEESE, storage.getIngredientQuantity(Ingredient.CHEESE),
-                            storage.getIngredientQuantity(Ingredient.CHEESE) - Ingredient.CHEESE.getQuantity() * 4);
-                    storage.changeIngredientQuantity(Ingredient.OREGANO, storage.getIngredientQuantity(Ingredient.OREGANO),
-                            storage.getIngredientQuantity(Ingredient.OREGANO) - Ingredient.OREGANO.getQuantity());
+
+
+
+
                     writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
-                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.FOUR_CHEESE.getCost()))
+                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.FOUR_CHEESE.getIngredients()))
                                     .setScale(2, RoundingMode.HALF_UP).doubleValue())).append("$");
                     writer.append('\n');
                     break;
                 case 2:
                     System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MARGHERITA +
-                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.MARGHERITA.getCost())))
+                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.MARGHERITA.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue()) + "$");
-                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.MARGHERITA.getCost())))
+                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.MARGHERITA.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue());
                     storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH, storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH),
                             storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
@@ -84,15 +86,15 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(Ingredient.OREGANO) - Ingredient.OREGANO.getQuantity());
                     writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
-                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.MARGHERITA.getCost()))
+                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.MARGHERITA.getIngredients()))
                                     .setScale(2, RoundingMode.HALF_UP).doubleValue())).append("$");
                     writer.append('\n');
                     break;
                 case 3:
                     System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MEAT_DELIGHT +
-                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.MEAT_DELIGHT.getCost())))
+                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.MEAT_DELIGHT.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue()) + "$");
-                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.MEAT_DELIGHT.getCost())))
+                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.MEAT_DELIGHT.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue());
                     storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH, storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH),
                             storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
@@ -106,15 +108,15 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(Ingredient.SAUSAGES) - Ingredient.SAUSAGES.getQuantity() * 2);
                     writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
-                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.MEAT_DELIGHT.getCost()))
+                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.MEAT_DELIGHT.getIngredients()))
                                     .setScale(2, RoundingMode.HALF_UP).doubleValue())).append("$");
                     writer.append('\n');
                     break;
                 case 4:
                     System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.PEPPERONI +
-                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.PEPPERONI.getCost())))
+                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.PEPPERONI.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue()) + "$");
-                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.PEPPERONI.getCost())))
+                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.PEPPERONI.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue());
                     storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH, storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH),
                             storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
@@ -126,15 +128,15 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(Ingredient.CHEESE) - Ingredient.CHEESE.getQuantity());
                     writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
-                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.PEPPERONI.getCost()))
+                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.PEPPERONI.getIngredients()))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue())).append("$");
                     writer.append('\n');
                     break;
                 default:
                     System.out.println(DateFormat.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
-                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.VEGETARIAN.getCost())))
+                            "\t" + (BigDecimal.valueOf((profit.profitPercentage(Pizza.VEGETARIAN.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue()) + "$");
-                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.VEGETARIAN.getCost())))
+                    order.add(BigDecimal.valueOf((profit.profitPercentage(Pizza.VEGETARIAN.getIngredients())))
                             .setScale(2, RoundingMode.HALF_UP).doubleValue());
                     storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH, storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH),
                             storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
@@ -150,7 +152,7 @@ public class PizzaOrder {
                             storage.getIngredientQuantity(Ingredient.OLIVES) - Ingredient.OLIVES.getQuantity() * 2);
                     writer.append(DateFormat.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
-                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.VEGETARIAN.getCost()))
+                            .append(String.valueOf(BigDecimal.valueOf(profit.profitPercentage(Pizza.VEGETARIAN.getIngredients()))
                                     .setScale(2, RoundingMode.HALF_UP).doubleValue())).append("$");
                     writer.append('\n');
                     break;

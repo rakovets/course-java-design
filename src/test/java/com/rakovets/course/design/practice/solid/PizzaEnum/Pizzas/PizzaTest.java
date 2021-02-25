@@ -8,10 +8,10 @@ class PizzaTest {
 
     @Test
     void getCost() {
-        assertEquals(14.6, Pizza.FOUR_CHEESE.getCost());
-        assertEquals(12.6, Pizza.MARGHERITA.getCost());
-        assertEquals(28.4, Pizza.MEAT_DELIGHT.getCost());
-        assertEquals(21.6, Pizza.PEPPERONI.getCost());
-        assertEquals(17.6, Pizza.VEGETARIAN.getCost());
+        assertEquals(14.6, Pizza.FOUR_CHEESE.getIngredients());
+        assertEquals(12.6, Pizza.MARGHERITA.getIngredients());
+        assertEquals(28.4, Pizza.MEAT_DELIGHT.getIngredients());
+        assertEquals(21.6, Pizza.PEPPERONI.getIngredients());
+        assertEquals(17.6, Pizza.VEGETARIAN.getIngredients());
     }
 }
