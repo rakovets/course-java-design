@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.PizzaEnum.Finance;
+package com.rakovets.course.design.practice.solid.Pizza.Service;
 
 public class CardPayment implements Payment {
 

@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.PizzaEnum.Order;
+package com.rakovets.course.design.practice.solid.Pizza.Repository;
 
 import java.util.List;
 

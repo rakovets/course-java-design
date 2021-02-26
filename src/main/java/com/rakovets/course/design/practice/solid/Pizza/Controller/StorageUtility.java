@@ -1,4 +1,7 @@
-package com.rakovets.course.design.practice.solid.PizzaEnum.Ingredients;
+package com.rakovets.course.design.practice.solid.Pizza.Controller;
+
+import com.rakovets.course.design.practice.solid.Pizza.Repository.Ingredient;
+import com.rakovets.course.design.practice.solid.Pizza.Repository.Storage;
 
 import java.util.Map;
 

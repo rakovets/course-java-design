@@ -1,7 +1,9 @@
-package com.rakovets.course.design.practice.solid.PizzaEnum.Order;
+package com.rakovets.course.design.practice.solid.Pizza.Controller;
 
-import com.rakovets.course.design.practice.solid.PizzaEnum.Finance.Profit;
-import com.rakovets.course.design.practice.solid.PizzaEnum.Pizzas.*;
+import com.rakovets.course.design.practice.solid.Pizza.Repository.Pizza;
+import com.rakovets.course.design.practice.solid.Pizza.Service.PizzaCost;
+import com.rakovets.course.design.practice.solid.Pizza.Service.Profit;
+import com.rakovets.course.design.practice.solid.Pizza.Service.OrderStatistics;
 
 public class OrderStatisticsUtil {
     public static void main(String[] args) {
@@ -13,48 +15,45 @@ public class OrderStatisticsUtil {
         int numberOfVegetarianSold = 100;
 
         OrderStatistics orderStatistics = new OrderStatistics();
-        Profit profit = new Profit();
 
         System.out.println("\nPizzas 'Four Cheese':");
         System.out.println("Number of sold pizzas: " + orderStatistics.getNumberOfPizzasSold
                 (Pizza.FOUR_CHEESE, numberOfFourCheeseSold));
         System.out.println("Revenue: " + orderStatistics.getRevenue(Pizza.FOUR_CHEESE, numberOfFourCheeseSold,
-                (profit.profitPercentage(Pizza.FOUR_CHEESE.getIngredients()))) + "$");
+                (Profit.profitPercentage(PizzaCost.getCostFourCheese()))) + "$");
         System.out.println("Profit: " + orderStatistics.getProfit(Pizza.FOUR_CHEESE, numberOfFourCheeseSold,
-                profit.profitPercentage(Pizza.FOUR_CHEESE.getIngredients()), Pizza.FOUR_CHEESE.getIngredients()) + "$");
+                Profit.profitPercentage(PizzaCost.getCostFourCheese()), PizzaCost.getCostFourCheese()) + "$");
 
         System.out.println("\nPizzas 'Margherita':");
         System.out.println("Number of sold pizzas: " + orderStatistics.getNumberOfPizzasSold
                 (Pizza.MARGHERITA, numberOfMargheritaSold));
         System.out.println("Revenue: " + orderStatistics.getRevenue(Pizza.MARGHERITA, numberOfMargheritaSold,
-                profit.profitPercentage(Pizza.MARGHERITA.getIngredients())) + "$");
+                Profit.profitPercentage(PizzaCost.getCostMargherita())) + "$");
         System.out.println("Profit: " + orderStatistics.getProfit(Pizza.MARGHERITA, numberOfMargheritaSold,
-                profit.profitPercentage(Pizza.MARGHERITA.getIngredients()), Pizza.MARGHERITA.getIngredients()) + "$");
+                Profit.profitPercentage(PizzaCost.getCostMargherita()), PizzaCost.getCostMargherita()) + "$");
 
         System.out.println("\nPizzas 'MeatDelight':");
         System.out.println("Number of sold pizzas: " + orderStatistics.getNumberOfPizzasSold
                 (Pizza.MEAT_DELIGHT, numberOfMeatDelightSold));
         System.out.println("Revenue: " + orderStatistics.getRevenue(Pizza.MEAT_DELIGHT, numberOfMeatDelightSold,
-                profit.profitPercentage(Pizza.MEAT_DELIGHT.getIngredients())) + "$");
+                Profit.profitPercentage(PizzaCost.getCostMeatDelight())) + "$");
         System.out.println("Profit: " + orderStatistics.getProfit(Pizza.MEAT_DELIGHT, numberOfMeatDelightSold,
-                profit.profitPercentage(Pizza.MEAT_DELIGHT.getIngredients()), Pizza.MEAT_DELIGHT.getIngredients()) + "$");
+                Profit.profitPercentage(PizzaCost.getCostMeatDelight()), PizzaCost.getCostMeatDelight()) + "$");
 
         System.out.println("\nPizzas 'Pepperoni':");
         System.out.println("Number of sold pizzas: " + orderStatistics.getNumberOfPizzasSold
                 (Pizza.PEPPERONI, numberOfPepperoniSold));
         System.out.println("Revenue: " + orderStatistics.getRevenue(Pizza.PEPPERONI, numberOfPepperoniSold,
-                profit.profitPercentage(Pizza.PEPPERONI.getIngredients())) + "$");
+                Profit.profitPercentage(PizzaCost.getCostPepperoni())) + "$");
         System.out.println("Profit: " + orderStatistics.getProfit(Pizza.PEPPERONI, numberOfPepperoniSold,
-                profit.profitPercentage(Pizza.PEPPERONI.getIngredients()), Pizza.PEPPERONI.getIngredients()) + "$");
+                Profit.profitPercentage(PizzaCost.getCostPepperoni()), PizzaCost.getCostPepperoni()) + "$");
 
         System.out.println("\nPizzas 'Vegetarian':");
         System.out.println("Number of sold pizzas: " + orderStatistics.getNumberOfPizzasSold
                 (Pizza.VEGETARIAN, numberOfVegetarianSold));
         System.out.println("Revenue: " + orderStatistics.getRevenue(Pizza.VEGETARIAN, numberOfVegetarianSold,
-                profit.profitPercentage(Pizza.VEGETARIAN.getIngredients())) + "$");
+                Profit.profitPercentage(PizzaCost.getCostVegetarian())) + "$");
         System.out.println("Profit: " + orderStatistics.getProfit(Pizza.VEGETARIAN, numberOfVegetarianSold,
-                profit.profitPercentage(Pizza.VEGETARIAN.getIngredients()), Pizza.VEGETARIAN.getIngredients()) + "$");
-
+                Profit.profitPercentage(PizzaCost.getCostVegetarian()), PizzaCost.getCostVegetarian()) + "$");
     }
-
 }
