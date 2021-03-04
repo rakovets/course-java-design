@@ -1,11 +1,11 @@
-package com.rakovets.course.design.practice.solid.Pizza.Repository;
+package com.rakovets.course.design.practice.solid.pizza.repository;
 
 import java.util.List;
 
-public class Order {
+public class OrderRepository {
     private final List<Double> order;
 
-    public Order(List<Double> order) {
+    public OrderRepository(List<Double> order) {
         this.order = order;
     }
 

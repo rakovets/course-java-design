@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.Pizza.Repository;
+package com.rakovets.course.design.practice.solid.pizza.model;
 
 import java.util.Map;
 

@@ -1,12 +1,15 @@
-package com.rakovets.course.design.practice.solid.Pizza.Repository;
+package com.rakovets.course.design.practice.solid.pizza.repository;
+
+import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Storage implements IngredientStorage {
+public class StorageRepository implements IngredientStorageRepository {
     private final Map<Ingredient, Integer> storage = new HashMap<>();
 
-    public Storage() {
+    public StorageRepository() {
         storage.put(Ingredient.CHEESE, 90);
         storage.put(Ingredient.MEAT, 82);
         storage.put(Ingredient.OLIVES, 5);
@@ -27,6 +30,7 @@ public class Storage implements IngredientStorage {
         return storage.get(ingredient);
     }
 
+    @NotNullPizza
     public void changeIngredientQuantity(Pizza pizza) {
         pizza.getIngredients().forEach((ingredient, ingredientsForPizza) -> {
             Integer oldQuantity = storage.get(ingredient);
@@ -34,6 +38,7 @@ public class Storage implements IngredientStorage {
             storage.put(ingredient, newQuantity);
         });
     }
+
 
     public void changeIngredientQuantity(Ingredient ingredient, int oldQuantity, int newQuantity) {
         storage.replace(ingredient, oldQuantity, newQuantity);

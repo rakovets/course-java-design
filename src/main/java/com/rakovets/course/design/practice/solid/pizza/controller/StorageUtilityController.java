@@ -1,15 +1,15 @@
-package com.rakovets.course.design.practice.solid.Pizza.Controller;
+package com.rakovets.course.design.practice.solid.pizza.controller;
 
-import com.rakovets.course.design.practice.solid.Pizza.Repository.Ingredient;
-import com.rakovets.course.design.practice.solid.Pizza.Repository.Storage;
+import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
 
 import java.util.Map;
 
-public class StorageUtility {
+public class StorageUtilityController {
 
     public static void main(String[] args) {
 
-        Storage storage = new Storage();
+        StorageRepository storage = new StorageRepository();
 
         for (Map.Entry<Ingredient, Integer> entry : storage.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());

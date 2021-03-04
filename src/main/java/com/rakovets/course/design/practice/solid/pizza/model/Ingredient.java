@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.Pizza.Repository;
+package com.rakovets.course.design.practice.solid.pizza.model;
 
 public enum Ingredient {
     CHEESE(2.50),
