@@ -1,9 +1,12 @@
-package com.rakovets.course.design.practice.solid.Pizza.Repository;
+package com.rakovets.course.design.practice.solid.pizza.repository;
+
+import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 
 class StorageDemo {
     public static void main(String[] args) {
 
-        Storage storage = new Storage();
+        StorageRepository storage = new StorageRepository();
 
         System.out.println(storage.getStorage());
         System.out.println("Quantity of cheese : " + storage.getIngredientQuantity(Ingredient.CHEESE));
