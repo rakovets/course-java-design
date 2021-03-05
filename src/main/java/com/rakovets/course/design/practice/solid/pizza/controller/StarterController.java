@@ -8,6 +8,13 @@ import java.util.Scanner;
 
 public class StarterController {
     private final StarterViewConsole starterViewConsole = new StarterViewConsole();
+    private final PizzaOrderController pizzaOrderController = new PizzaOrderController();
+    private final CreatePizzaController createPizzaController = new CreatePizzaController();
+    private final OrderStatisticsController orderStatisticsController = new OrderStatisticsController();
+    private final StorageUtilityViewConsole storageUtilityViewConsole = new StorageUtilityViewConsole();
+
+    public StarterController() throws IOException {
+    }
 
     public void start() throws IOException {
         starterViewConsole.displayOperations();
@@ -15,14 +22,12 @@ public class StarterController {
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
-                PizzaOrderController pizzaOrderController = new PizzaOrderController();
                 pizzaOrderController.start();
                 pizzaOrderController.choosePizza();
                 pizzaOrderController.addPizzaQuestion();
                 addChoiceQuestion();
                 break;
             case 2:
-                CreatePizzaController createPizzaController = new CreatePizzaController();
                 createPizzaController.start();
                 createPizzaController.chooseDough();
                 createPizzaController.chooseIngredients();
@@ -30,12 +35,10 @@ public class StarterController {
                 addChoiceQuestion();
                 break;
             case 3:
-                OrderStatisticsController orderStatisticsController = new OrderStatisticsController();
                 orderStatisticsController.start();
                 addChoiceQuestion();
                 break;
             default:
-                StorageUtilityViewConsole storageUtilityViewConsole = new StorageUtilityViewConsole();
                 storageUtilityViewConsole.displayStorage();
                 storageUtilityViewConsole.showLackOfIngredients();
                 addChoiceQuestion();
