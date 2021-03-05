@@ -20,4 +20,14 @@ class DiscountServiceTest {
     void discountForOrderOnSpecificDay() {
         assertEquals(85, DiscountService.discountForOrderOnSpecificDay(100));
     }
+
+    @Test
+    void amountToPayFor2PizzasOnSpecificDay() {
+        assertEquals(75, DiscountService.amountToPayFor2PizzasOnSpecificDay(100));
+    }
+
+    @Test
+    void amountToPayFor3AndMorePizzasOnSpecificDay() {
+        assertEquals(65, DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(100));
+    }
 }

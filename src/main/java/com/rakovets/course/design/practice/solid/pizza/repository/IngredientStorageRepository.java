@@ -13,7 +13,7 @@ public interface IngredientStorageRepository {
 
     void changeIngredientQuantity(Pizza pizza);
 
-    void changeIngredientQuantity(Ingredient ingredient, int oldQuantity, int newQuantity);
+    void changeIngredientQuantity(Ingredient ingredient, int newQuantity);
 
     Iterable<Map.Entry<Ingredient, Integer>> entrySet();
 

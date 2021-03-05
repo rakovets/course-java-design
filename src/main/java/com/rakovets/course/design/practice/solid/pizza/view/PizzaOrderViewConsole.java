@@ -6,10 +6,9 @@ import com.rakovets.course.design.practice.solid.pizza.service.*;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
-
-    CashPaymentService cashPaymentService = new CashPaymentService();
-    CardPaymentService cardPaymentService = new CardPaymentService();
-    OnlinePaymentService onlinePaymentService = new OnlinePaymentService();
+    private final CashPaymentService cashPaymentService = new CashPaymentService();
+    private final CardPaymentService cardPaymentService = new CardPaymentService();
+    private final OnlinePaymentService onlinePaymentService = new OnlinePaymentService();
 
     public void greeting() {
         System.out.println("\nWELCOME TO PIZZERIA!");
@@ -60,7 +59,8 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public void discountFor2Pizzas(double totalOrder) {
         System.out.println("Discount for ordering 2 pizzas: "
-                + RoundUpService.roundUp(totalOrder - DiscountService.discountForTwoItems(totalOrder)) + "$");
+                + RoundUpService.roundUp(totalOrder -
+                DiscountService.discountForTwoItems(totalOrder)) + "$");
     }
 
     public void discountFor3AndMorePizzas(double totalOrder) {

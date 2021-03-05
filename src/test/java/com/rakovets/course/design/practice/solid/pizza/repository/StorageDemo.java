@@ -13,7 +13,7 @@ class StorageDemo {
         storage.changeIngredientQuantity(Pizza.FOUR_CHEESE);
         System.out.println("Quantity of ingredients after ordering pizza:");
         System.out.println(storage.getStorage());
-        storage.changeIngredientQuantity(Ingredient.CHEESE, storage.getIngredientQuantity(Ingredient.CHEESE),
+        storage.changeIngredientQuantity(Ingredient.CHEESE,
                 storage.getIngredientQuantity(Ingredient.CHEESE) - 1);
         System.out.println("Quantity of cheese after changing : " + storage.getIngredientQuantity(Ingredient.CHEESE));
     }

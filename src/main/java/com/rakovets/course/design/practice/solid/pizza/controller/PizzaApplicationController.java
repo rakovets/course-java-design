@@ -4,6 +4,9 @@ import java.io.IOException;
 
 public class PizzaApplicationController {
     public static void main(String[] args) throws IOException {
-        PizzaOrderController.start();
+        PizzaOrderController pizzaOrderController = new PizzaOrderController();
+        pizzaOrderController.start();
+        pizzaOrderController.choosePizza();
+        pizzaOrderController.addPizzaQuestion();
     }
 }

@@ -39,9 +39,8 @@ public class StorageRepository implements IngredientStorageRepository {
         });
     }
 
-
-    public void changeIngredientQuantity(Ingredient ingredient, int oldQuantity, int newQuantity) {
-        storage.replace(ingredient, oldQuantity, newQuantity);
+    public void changeIngredientQuantity(Ingredient ingredient, int newQuantity) {
+        storage.replace(ingredient, newQuantity);
     }
 
     public Iterable<Map.Entry<Ingredient, Integer>> entrySet() {

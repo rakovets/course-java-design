@@ -5,16 +5,16 @@ import com.rakovets.course.design.practice.solid.pizza.service.PizzaCostService;
 import com.rakovets.course.design.practice.solid.pizza.service.ProfitService;
 import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsService;
 
-public class OrderStatisticsUtilController {
-    public static void main(String[] args) {
+public class OrderStatisticsController {
+    private final OrderStatisticsService orderStatisticsService = new OrderStatisticsService();
+
+    public void start() {
 
         int numberOfFourCheeseSold = 100;
         int numberOfMargheritaSold = 100;
         int numberOfMeatDelightSold = 100;
         int numberOfPepperoniSold = 100;
         int numberOfVegetarianSold = 100;
-
-        OrderStatisticsService orderStatisticsService = new OrderStatisticsService();
 
         System.out.println("\nPizzas 'Four Cheese':");
         System.out.println("Number of sold pizzas: " + orderStatisticsService.getNumberOfPizzasSold

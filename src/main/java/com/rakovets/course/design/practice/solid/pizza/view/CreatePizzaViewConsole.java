@@ -5,10 +5,9 @@ import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentServic
 import com.rakovets.course.design.practice.solid.pizza.service.OnlinePaymentService;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-
-    CashPaymentService cashPaymentService = new CashPaymentService();
-    CardPaymentService cardPaymentService = new CardPaymentService();
-    OnlinePaymentService onlinePaymentService = new OnlinePaymentService();
+    private final CashPaymentService cashPaymentService = new CashPaymentService();
+    private final CardPaymentService cardPaymentService = new CardPaymentService();
+    private final OnlinePaymentService onlinePaymentService = new OnlinePaymentService();
 
     public void greeting() {
         System.out.println("\nWELCOME TO PIZZERIA!");
