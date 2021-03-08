@@ -7,7 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StorageRepository implements IngredientStorageRepository {
-    private final Map<Ingredient, Integer> storage = new HashMap<>();
+    private static final Map<Ingredient, Integer> storage;
+
+    static {
+
+        storage = new HashMap<>();
+
+    }
 
     public StorageRepository() {
         storage.put(Ingredient.CHEESE, 90);

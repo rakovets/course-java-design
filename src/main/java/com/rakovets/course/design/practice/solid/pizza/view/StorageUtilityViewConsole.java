@@ -6,7 +6,13 @@ import com.rakovets.course.design.practice.solid.pizza.repository.StorageReposit
 import java.util.Map;
 
 public class StorageUtilityViewConsole implements StorageUtilityView {
-    private final StorageRepository storage = new StorageRepository();
+    private static final StorageRepository storage;
+
+    static {
+
+        storage = new StorageRepository();
+
+    }
 
     public void displayStorage() {
         for (Map.Entry<Ingredient, Integer> entry : storage.entrySet()) {

@@ -2,9 +2,9 @@ package com.rakovets.course.design.practice.solid.pizza.controller;
 
 import java.io.IOException;
 
-public class StarterApplicationController {
+public class PizzaControllerStarter {
     public static void main(String[] args) throws IOException {
-        StarterController starterController = new StarterController();
-        starterController.start();
+        PizzaController pizzaController = new PizzaController();
+        pizzaController.start();
     }
 }

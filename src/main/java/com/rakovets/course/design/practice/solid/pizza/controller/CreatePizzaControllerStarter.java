@@ -1,6 +1,6 @@
 package com.rakovets.course.design.practice.solid.pizza.controller;
 
-public class CreatePizzaApplicationController {
+public class CreatePizzaControllerStarter {
     public static void main(String[] args) {
         CreatePizzaController createPizzaController = new CreatePizzaController();
         createPizzaController.start();

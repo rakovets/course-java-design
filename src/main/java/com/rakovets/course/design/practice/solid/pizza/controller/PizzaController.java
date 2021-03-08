@@ -6,14 +6,23 @@ import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewCo
 import java.io.IOException;
 import java.util.Scanner;
 
-public class StarterController {
-    private final StarterViewConsole starterViewConsole = new StarterViewConsole();
+public class PizzaController {
+    private static final StarterViewConsole starterViewConsole;
     private final PizzaOrderController pizzaOrderController = new PizzaOrderController();
-    private final CreatePizzaController createPizzaController = new CreatePizzaController();
-    private final OrderStatisticsController orderStatisticsController = new OrderStatisticsController();
-    private final StorageUtilityViewConsole storageUtilityViewConsole = new StorageUtilityViewConsole();
+    private static final CreatePizzaController createPizzaController;
+    private static final OrderStatisticsController orderStatisticsController;
+    private static final StorageUtilityViewConsole storageUtilityViewConsole;
 
-    public StarterController() throws IOException {
+    static {
+
+        starterViewConsole = new StarterViewConsole();
+        createPizzaController = new CreatePizzaController();
+        orderStatisticsController = new OrderStatisticsController();
+        storageUtilityViewConsole = new StorageUtilityViewConsole();
+
+    }
+
+    public PizzaController() throws IOException {
     }
 
     public void start() throws IOException {

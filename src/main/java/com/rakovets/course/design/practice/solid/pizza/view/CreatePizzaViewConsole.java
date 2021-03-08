@@ -5,9 +5,17 @@ import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentServic
 import com.rakovets.course.design.practice.solid.pizza.service.OnlinePaymentService;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-    private final CashPaymentService cashPaymentService = new CashPaymentService();
-    private final CardPaymentService cardPaymentService = new CardPaymentService();
-    private final OnlinePaymentService onlinePaymentService = new OnlinePaymentService();
+    private static final CashPaymentService cashPaymentService;
+    private static final CardPaymentService cardPaymentService;
+    private static final OnlinePaymentService onlinePaymentService;
+
+    static {
+
+        cashPaymentService = new CashPaymentService();
+        cardPaymentService = new CardPaymentService();
+        onlinePaymentService = new OnlinePaymentService();
+
+    }
 
     public void greeting() {
         System.out.println("\nWELCOME TO PIZZERIA!");

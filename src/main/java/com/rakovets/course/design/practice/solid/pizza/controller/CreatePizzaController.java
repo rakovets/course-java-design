@@ -12,18 +12,20 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class CreatePizzaController {
-    private final OrderRepository orderRepository = new OrderRepository(new ArrayList<>());
-    private final StorageRepository storage = new StorageRepository();
-    private final CreatePizzaViewConsole createPizzaViewConsole = new CreatePizzaViewConsole();
-    private static final Map<Integer, Ingredient> dough = new HashMap<>();
-    private static final Map<Integer, Ingredient> ingredients = new HashMap<>();
+    private static final OrderRepository orderRepository;
+    private static final StorageRepository storage;
+    private static final CreatePizzaViewConsole createPizzaViewConsole;
+    private static final Map<Integer, Ingredient> dough;
+    private static final Map<Integer, Ingredient> ingredients;
     public char ch;
 
     static {
 
+        dough = new HashMap<>();
         dough.put(1, Ingredient.THIN_DOUGH);
         dough.put(2, Ingredient.TRADITIONAL_DOUGH);
 
+        ingredients = new HashMap<>();
         ingredients.put(1, Ingredient.CHEESE);
         ingredients.put(2, Ingredient.MEAT);
         ingredients.put(3, Ingredient.SAUSAGES);
@@ -33,6 +35,10 @@ public class CreatePizzaController {
         ingredients.put(7, Ingredient.OREGANO);
         ingredients.put(8, Ingredient.SAUCE);
         ingredients.put(9, Ingredient.CRUST);
+
+        orderRepository = new OrderRepository(new ArrayList<>());
+        storage = new StorageRepository();
+        createPizzaViewConsole = new CreatePizzaViewConsole();
 
     }
 

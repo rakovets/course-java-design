@@ -19,21 +19,27 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class PizzaOrderController {
-    private static final Map<Integer, Pizza> pizzas = new HashMap<>();
-    private final StorageRepository storage = new StorageRepository();
-    private final OrderRepository orderRepository = new OrderRepository(new ArrayList<>());
-    private final PizzaOrderViewConsole pizzaOrderViewConsole = new PizzaOrderViewConsole();
+    private static final Map<Integer, Pizza> pizzas;
+    private static final StorageRepository storage;
+    private static final OrderRepository orderRepository;
+    private static final PizzaOrderViewConsole pizzaOrderViewConsole;
     public char ch;
-    private final Path filePath = Paths.get("src", "main", "resources", "Orders.txt");
-    private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));
+    private static final Path filePath;
+    private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));;
 
     static {
 
+        pizzas = new HashMap<>();
         pizzas.put(1, Pizza.FOUR_CHEESE);
         pizzas.put(2, Pizza.MARGHERITA);
         pizzas.put(3, Pizza.MEAT_DELIGHT);
         pizzas.put(4, Pizza.PEPPERONI);
         pizzas.put(5, Pizza.VEGETARIAN);
+
+        storage = new StorageRepository();
+        orderRepository = new OrderRepository(new ArrayList<>());
+        pizzaOrderViewConsole = new PizzaOrderViewConsole();
+        filePath = Paths.get("src", "main", "resources", "Orders.txt");
 
     }
 
