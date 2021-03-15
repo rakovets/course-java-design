@@ -31,32 +31,27 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public void orderPizzaFourCheese() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.FOUR_CHEESE +
-                "\t" + RoundUpService.roundUp(ProfitService.profitPercentage(
-                        PizzaCostService.getCostFourCheese())) + "$");
+                "\t" + RoundUpService.roundUp(PriceService.pricePizzaFourCheeseIncludingVAT()) + "$");
     }
 
     public void orderPizzaMargherita() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MARGHERITA +
-                "\t" + RoundUpService.roundUp(ProfitService.profitPercentage(
-                        PizzaCostService.getCostMargherita())) + "$");
+                "\t" + RoundUpService.roundUp(PriceService.pricePizzaMargheritaIncludingVAT()) + "$");
     }
 
     public void orderPizzaMeatDelight() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MEAT_DELIGHT +
-                "\t" + RoundUpService.roundUp(ProfitService.profitPercentage(
-                        PizzaCostService.getCostMeatDelight())) + "$");
+                "\t" + RoundUpService.roundUp(PriceService.pricePizzaMeatDelightIncludingVAT()) + "$");
     }
 
     public void orderPizzaPepperoni() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.PEPPERONI +
-                "\t" + RoundUpService.roundUp(ProfitService.profitPercentage(
-                        PizzaCostService.getCostPepperoni())) + "$");
+                "\t" + RoundUpService.roundUp(PriceService.pricePizzaPepperoniIncludingVAT()) + "$");
     }
 
     public void orderPizzaVegetarian() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
-                "\t" + RoundUpService.roundUp(ProfitService.profitPercentage(
-                        PizzaCostService.getCostVegetarian())) + "$");
+                "\t" + RoundUpService.roundUp(PriceService.pricePizzaVegetarianIncludingVAT()) + "$");
     }
 
     public void totalOrder(double totalOrder, int size) {
