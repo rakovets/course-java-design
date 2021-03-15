@@ -1,9 +1,7 @@
-package com.rakovets.course.design.practice.solid.pizza.controller;
+package com.rakovets.course.design.practice.solid.pizza.service;
 
-import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
-import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
-import com.rakovets.course.design.practice.solid.pizza.service.*;
+import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -18,17 +16,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class PizzaOrderController {
+public class PizzaOrderService {
     private static final Map<Integer, Pizza> pizzas;
-    private static final StorageRepository storage;
-    private static final OrderRepository orderRepository;
+    private static final CookService cook;
+    private static final OrderRepository order;
     private static final PizzaOrderViewConsole pizzaOrderViewConsole;
     public char ch;
     private static final Path filePath;
-    private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));;
+    private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));
 
     static {
-
         pizzas = new HashMap<>();
         pizzas.put(1, Pizza.FOUR_CHEESE);
         pizzas.put(2, Pizza.MARGHERITA);
@@ -36,14 +33,13 @@ public class PizzaOrderController {
         pizzas.put(4, Pizza.PEPPERONI);
         pizzas.put(5, Pizza.VEGETARIAN);
 
-        storage = new StorageRepository();
-        orderRepository = new OrderRepository(new ArrayList<>());
+        cook = new CookService();
+        order = new OrderRepository(new ArrayList<>());
         pizzaOrderViewConsole = new PizzaOrderViewConsole();
         filePath = Paths.get("src", "main", "resources", "Orders.txt");
-
     }
 
-    public PizzaOrderController() throws IOException {
+    public PizzaOrderService() throws IOException {
     }
 
     public void start() {
@@ -57,8 +53,8 @@ public class PizzaOrderController {
         switch (pizzas.get(choice)) {
             case FOUR_CHEESE:
                 pizzaOrderViewConsole.orderPizzaFourCheese();
-                storage.changeIngredientQuantity(Pizza.FOUR_CHEESE);
-                orderRepository.add(ProfitService.profitPercentage(PizzaCostService.getCostFourCheese()));
+                cook.pizzaFourCheese();
+                order.add(ProfitService.profitPercentage(PizzaCostService.getCostFourCheese()));
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
                         .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
@@ -67,8 +63,8 @@ public class PizzaOrderController {
                 break;
             case MARGHERITA:
                 pizzaOrderViewConsole.orderPizzaMargherita();
-                storage.changeIngredientQuantity(Pizza.MARGHERITA);
-                orderRepository.add(ProfitService.profitPercentage(PizzaCostService.getCostMargherita()));
+                cook.pizzaMargherita();
+                order.add(ProfitService.profitPercentage(PizzaCostService.getCostMargherita()));
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
                         .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
@@ -77,8 +73,8 @@ public class PizzaOrderController {
                 break;
             case MEAT_DELIGHT:
                 pizzaOrderViewConsole.orderPizzaMeatDelight();
-                storage.changeIngredientQuantity(Pizza.MEAT_DELIGHT);
-                orderRepository.add(ProfitService.profitPercentage(PizzaCostService.getCostMeatDelight()));
+                cook.pizzaMeatDelight();
+                order.add(ProfitService.profitPercentage(PizzaCostService.getCostMeatDelight()));
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
                         .append(String.valueOf(RoundUpService.roundUp(ProfitService
@@ -87,8 +83,8 @@ public class PizzaOrderController {
                 break;
             case PEPPERONI:
                 pizzaOrderViewConsole.orderPizzaPepperoni();
-                storage.changeIngredientQuantity(Pizza.PEPPERONI);
-                orderRepository.add(ProfitService.profitPercentage(PizzaCostService.getCostPepperoni()));
+                cook.pizzaPepperoni();
+                order.add(ProfitService.profitPercentage(PizzaCostService.getCostPepperoni()));
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
                         .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
@@ -97,8 +93,8 @@ public class PizzaOrderController {
                 break;
             case VEGETARIAN:
                 pizzaOrderViewConsole.orderPizzaVegetarian();
-                storage.changeIngredientQuantity(Pizza.VEGETARIAN);
-                orderRepository.add(ProfitService.profitPercentage(PizzaCostService.getCostVegetarian()));
+                cook.pizzaVegetarian();
+                order.add(ProfitService.profitPercentage(PizzaCostService.getCostVegetarian()));
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
                         .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
@@ -115,53 +111,53 @@ public class PizzaOrderController {
     }
 
     public void totalOrder() {
-        double totalOrder = orderRepository.totalOrder();
-        int size = orderRepository.size();
+        double totalOrder = order.totalOrder();
+        int size = order.size();
         pizzaOrderViewConsole.totalOrder(totalOrder, size);
     }
 
     public void discountForTwoItems() {
-        if (orderRepository.size() == 2) {
-            double totalOrder = DiscountService.discountForTwoItems(orderRepository.totalOrder());
+        if (order.size() == 2) {
+            double totalOrder = DiscountService.discountForTwoItems(order.totalOrder());
             pizzaOrderViewConsole.discountFor2Pizzas(totalOrder);
         }
     }
 
     public void discountForThreeAndMoreItems() {
-        if (orderRepository.size() >= 3) {
-            double totalOrder = DiscountService.discountForThreeAndMoreItems(orderRepository.totalOrder());
+        if (order.size() >= 3) {
+            double totalOrder = DiscountService.discountForThreeAndMoreItems(order.totalOrder());
             pizzaOrderViewConsole.discountFor3AndMorePizzas(totalOrder);
         }
     }
 
     public void discountForOrderOnSpecificDay() {
-        if (orderRepository.size() == 1 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
-            double totalOrder = DiscountService.discountForOrderOnSpecificDay(orderRepository.totalOrder());
+        if (order.size() == 1 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
+            double totalOrder = DiscountService.discountForOrderOnSpecificDay(order.totalOrder());
             pizzaOrderViewConsole.discountForOrderOnSpecificDay(totalOrder);
             pizzaOrderViewConsole.amountToPay(DiscountService.discountForOrderOnSpecificDay(
-                    orderRepository.totalOrder()));
+                    order.totalOrder()));
         }
         else if (LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
-            double totalOrder = DiscountService.discountForOrderOnSpecificDay(orderRepository.totalOrder());
+            double totalOrder = DiscountService.discountForOrderOnSpecificDay(order.totalOrder());
             pizzaOrderViewConsole.discountForOrderOnSpecificDay(totalOrder);
         }
     }
 
     public void amountToPay() {
-        if (orderRepository.size() == 2 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
-            pizzaOrderViewConsole.amountToPay(DiscountService.discountForTwoItems(orderRepository.totalOrder()));
+        if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
+            pizzaOrderViewConsole.amountToPay(DiscountService.discountForTwoItems(order.totalOrder()));
         }
-        else if (orderRepository.size() == 2 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
+        else if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor2PizzasOnSpecificDay(
-                    orderRepository.totalOrder()));
+                    order.totalOrder()));
         }
-        else if (orderRepository.size() >= 3 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
+        else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.discountForThreeAndMoreItems(
-                    orderRepository.totalOrder()));
+                    order.totalOrder()));
         }
-        else if (orderRepository.size() >= 3 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
+        else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(
-                    orderRepository.totalOrder()));
+                    order.totalOrder()));
         }
     }
 

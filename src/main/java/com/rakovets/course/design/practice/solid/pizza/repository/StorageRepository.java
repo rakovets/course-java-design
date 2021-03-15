@@ -10,9 +10,7 @@ public class StorageRepository implements IngredientStorageRepository {
     private static final Map<Ingredient, Integer> storage;
 
     static {
-
         storage = new HashMap<>();
-
     }
 
     public StorageRepository() {
@@ -36,7 +34,6 @@ public class StorageRepository implements IngredientStorageRepository {
         return storage.get(ingredient);
     }
 
-    @NotNullPizza
     public void changeIngredientQuantity(Pizza pizza) {
         pizza.getIngredients().forEach((ingredient, ingredientsForPizza) -> {
             Integer oldQuantity = storage.get(ingredient);

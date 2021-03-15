@@ -9,9 +9,7 @@ public class StorageUtilityViewConsole implements StorageUtilityView {
     private static final StorageRepository storage;
 
     static {
-
         storage = new StorageRepository();
-
     }
 
     public void displayStorage() {

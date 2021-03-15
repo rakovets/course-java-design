@@ -1,9 +1,7 @@
-package com.rakovets.course.design.practice.solid.pizza.controller;
+package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
-import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
-import com.rakovets.course.design.practice.solid.pizza.service.*;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
 
 import java.util.ArrayList;
@@ -11,16 +9,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class CreatePizzaController {
+public class CreatePizzaService {
     private static final OrderRepository orderRepository;
-    private static final StorageRepository storage;
+
     private static final CreatePizzaViewConsole createPizzaViewConsole;
     private static final Map<Integer, Ingredient> dough;
     private static final Map<Integer, Ingredient> ingredients;
+    private static final CookService cook;
     public char ch;
 
     static {
-
         dough = new HashMap<>();
         dough.put(1, Ingredient.THIN_DOUGH);
         dough.put(2, Ingredient.TRADITIONAL_DOUGH);
@@ -37,9 +35,8 @@ public class CreatePizzaController {
         ingredients.put(9, Ingredient.CRUST);
 
         orderRepository = new OrderRepository(new ArrayList<>());
-        storage = new StorageRepository();
         createPizzaViewConsole = new CreatePizzaViewConsole();
-
+        cook = new CookService();
     }
 
     public void start() {
@@ -53,13 +50,11 @@ public class CreatePizzaController {
         switch (dough.get(cho)) {
             case THIN_DOUGH:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.THIN_DOUGH.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.THIN_DOUGH,
-                        storage.getIngredientQuantity(Ingredient.THIN_DOUGH) - 1);
+                cook.thinDough();
                 break;
             case TRADITIONAL_DOUGH:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.TRADITIONAL_DOUGH.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH,
-                        storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
+                cook.traditionalDough();
                 break;
         }
     }
@@ -71,43 +66,35 @@ public class CreatePizzaController {
         switch (ingredients.get(choice)) {
             case CHEESE:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.CHEESE.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.CHEESE,
-                        storage.getIngredientQuantity(Ingredient.CHEESE) - 1);
+                cook.cheese();
                 break;
             case MEAT:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.MEAT.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.MEAT,
-                        storage.getIngredientQuantity(Ingredient.MEAT) - 1);
+                cook.meet();
                 break;
             case SAUSAGES:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.SAUSAGES.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.SAUSAGES,
-                        storage.getIngredientQuantity(Ingredient.SAUSAGES) - 1);
+                cook.sausages();
                 break;
             case OLIVES:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.OLIVES.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.OLIVES,
-                        storage.getIngredientQuantity(Ingredient.OLIVES) - 1);
+                cook.olives();
                 break;
             case TOMATOES:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.TOMATOES.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.TOMATOES,
-                        storage.getIngredientQuantity(Ingredient.TOMATOES) - 1);
+                cook.tomatoes();
                 break;
             case PEPPER:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.PEPPER.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.PEPPER,
-                        storage.getIngredientQuantity(Ingredient.PEPPER) - 1);
+                cook.pepper();
                 break;
             case OREGANO:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.OREGANO.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.OREGANO,
-                        storage.getIngredientQuantity(Ingredient.OREGANO) - 1);
+                cook.oregano();
                 break;
             case SAUCE:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.SAUCE.getCostPerUnit()));
-                storage.changeIngredientQuantity(Ingredient.SAUCE,
-                        storage.getIngredientQuantity(Ingredient.SAUCE) - 1);
+                cook.sauce();
                 break;
             case CRUST:
                 orderRepository.add(ProfitService.profitPercentage(Ingredient.CRUST.getCostPerUnit()));

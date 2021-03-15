@@ -14,14 +14,12 @@ public class OrderStatisticsController {
     private static final int numberOfVegetarianSold;
 
     static {
-
         orderStatisticsService = new OrderStatisticsService();
         numberOfFourCheeseSold = 100;
         numberOfMargheritaSold = 100;
         numberOfMeatDelightSold = 100;
         numberOfPepperoniSold = 100;
         numberOfVegetarianSold = 100;
-
     }
 
     public void start() {

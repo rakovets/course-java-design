@@ -1,5 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.controller;
 
+import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
+import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 import com.rakovets.course.design.practice.solid.pizza.view.StarterViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewConsole;
 
@@ -8,18 +10,16 @@ import java.util.Scanner;
 
 public class PizzaController {
     private static final StarterViewConsole starterViewConsole;
-    private final PizzaOrderController pizzaOrderController = new PizzaOrderController();
-    private static final CreatePizzaController createPizzaController;
+    private final PizzaOrderService pizzaOrderService = new PizzaOrderService();
+    private static final CreatePizzaService createPizzaService;
     private static final OrderStatisticsController orderStatisticsController;
     private static final StorageUtilityViewConsole storageUtilityViewConsole;
 
     static {
-
         starterViewConsole = new StarterViewConsole();
-        createPizzaController = new CreatePizzaController();
+        createPizzaService = new CreatePizzaService();
         orderStatisticsController = new OrderStatisticsController();
         storageUtilityViewConsole = new StorageUtilityViewConsole();
-
     }
 
     public PizzaController() throws IOException {
@@ -31,16 +31,16 @@ public class PizzaController {
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
-                pizzaOrderController.start();
-                pizzaOrderController.choosePizza();
-                pizzaOrderController.addPizzaQuestion();
+                pizzaOrderService.start();
+                pizzaOrderService.choosePizza();
+                pizzaOrderService.addPizzaQuestion();
                 addChoiceQuestion();
                 break;
             case 2:
-                createPizzaController.start();
-                createPizzaController.chooseDough();
-                createPizzaController.chooseIngredients();
-                createPizzaController.addIngredientsQuestion();
+                createPizzaService.start();
+                createPizzaService.chooseDough();
+                createPizzaService.chooseIngredients();
+                createPizzaService.addIngredientsQuestion();
                 addChoiceQuestion();
                 break;
             case 3:

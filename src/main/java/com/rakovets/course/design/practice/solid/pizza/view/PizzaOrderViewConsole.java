@@ -11,11 +11,9 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     private static final OnlinePaymentService onlinePaymentService;
 
     static {
-
         cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
-
     }
 
     public void greeting() {

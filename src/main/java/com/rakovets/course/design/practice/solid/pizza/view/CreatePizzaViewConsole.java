@@ -10,11 +10,9 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
     private static final OnlinePaymentService onlinePaymentService;
 
     static {
-
         cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
-
     }
 
     public void greeting() {
