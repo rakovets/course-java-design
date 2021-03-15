@@ -46,7 +46,7 @@ public class CookService {
                 storage.getIngredientQuantity(Ingredient.CHEESE) - 1);
     }
 
-    public void meet() {
+    public void meat() {
         storage.changeIngredientQuantity(Ingredient.MEAT,
                 storage.getIngredientQuantity(Ingredient.MEAT) - 1);
     }

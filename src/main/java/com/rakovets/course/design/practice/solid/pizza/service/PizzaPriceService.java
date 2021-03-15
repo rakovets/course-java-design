@@ -1,44 +1,44 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
-public class PriceService {
+public class PizzaPriceService {
 
-    public static double pricePizzaFourCheeseWithoutVAT() {
+    public double pricePizzaFourCheeseWithoutVAT() {
         return ProfitService.profitPercentage(PizzaCostService.getCostFourCheese());
     }
 
-    public static double pricePizzaFourCheeseIncludingVAT() {
+    public double pricePizzaFourCheeseIncludingVAT() {
         return pricePizzaFourCheeseWithoutVAT() + TaxService.VAT(pricePizzaFourCheeseWithoutVAT());
     }
 
-    public static double pricePizzaMargheritaWithoutVAT() {
+    public double pricePizzaMargheritaWithoutVAT() {
         return ProfitService.profitPercentage(PizzaCostService.getCostMargherita());
     }
 
-    public static double pricePizzaMargheritaIncludingVAT() {
+    public double pricePizzaMargheritaIncludingVAT() {
         return pricePizzaMargheritaWithoutVAT() + TaxService.VAT(pricePizzaMargheritaWithoutVAT());
     }
 
-    public static double pricePizzaMeatDelightWithoutVAT() {
+    public double pricePizzaMeatDelightWithoutVAT() {
         return ProfitService.profitPercentage(PizzaCostService.getCostMeatDelight());
     }
 
-    public static double pricePizzaMeatDelightIncludingVAT() {
+    public double pricePizzaMeatDelightIncludingVAT() {
         return pricePizzaMeatDelightWithoutVAT() + TaxService.VAT(pricePizzaMeatDelightWithoutVAT());
     }
 
-    public static double pricePizzaPepperoniWithoutVAT() {
+    public double pricePizzaPepperoniWithoutVAT() {
         return ProfitService.profitPercentage(PizzaCostService.getCostPepperoni());
     }
 
-    public static double pricePizzaPepperoniIncludingVAT() {
+    public double pricePizzaPepperoniIncludingVAT() {
         return pricePizzaPepperoniWithoutVAT() + TaxService.VAT(pricePizzaPepperoniWithoutVAT());
     }
 
-    public static double pricePizzaVegetarianWithoutVAT() {
+    public double pricePizzaVegetarianWithoutVAT() {
         return ProfitService.profitPercentage(PizzaCostService.getCostVegetarian());
     }
 
-    public static double pricePizzaVegetarianIncludingVAT() {
+    public double pricePizzaVegetarianIncludingVAT() {
         return pricePizzaVegetarianWithoutVAT() + TaxService.VAT(pricePizzaVegetarianWithoutVAT());
     }
 }

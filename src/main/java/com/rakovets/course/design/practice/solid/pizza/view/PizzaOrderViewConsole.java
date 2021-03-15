@@ -9,11 +9,13 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     private static final CashPaymentService cashPaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final OnlinePaymentService onlinePaymentService;
+    private static final PizzaPriceService pizzaPrice;
 
     static {
         cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
+        pizzaPrice = new PizzaPriceService();
     }
 
     public void greeting() {
@@ -31,27 +33,27 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public void orderPizzaFourCheese() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.FOUR_CHEESE +
-                "\t" + RoundUpService.roundUp(PriceService.pricePizzaFourCheeseIncludingVAT()) + "$");
+                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaFourCheeseIncludingVAT()) + "$");
     }
 
     public void orderPizzaMargherita() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MARGHERITA +
-                "\t" + RoundUpService.roundUp(PriceService.pricePizzaMargheritaIncludingVAT()) + "$");
+                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaMargheritaIncludingVAT()) + "$");
     }
 
     public void orderPizzaMeatDelight() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MEAT_DELIGHT +
-                "\t" + RoundUpService.roundUp(PriceService.pricePizzaMeatDelightIncludingVAT()) + "$");
+                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaMeatDelightIncludingVAT()) + "$");
     }
 
     public void orderPizzaPepperoni() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.PEPPERONI +
-                "\t" + RoundUpService.roundUp(PriceService.pricePizzaPepperoniIncludingVAT()) + "$");
+                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaPepperoniIncludingVAT()) + "$");
     }
 
     public void orderPizzaVegetarian() {
         System.out.println(DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
-                "\t" + RoundUpService.roundUp(PriceService.pricePizzaVegetarianIncludingVAT()) + "$");
+                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaVegetarianIncludingVAT()) + "$");
     }
 
     public void totalOrder(double totalOrder, int size) {

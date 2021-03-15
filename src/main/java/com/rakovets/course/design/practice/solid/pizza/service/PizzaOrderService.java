@@ -24,6 +24,7 @@ public class PizzaOrderService {
     public char ch;
     private static final Path filePath;
     private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));
+    private static final PizzaPriceService pizzaPrice;
 
     static {
         pizzas = new HashMap<>();
@@ -37,6 +38,7 @@ public class PizzaOrderService {
         order = new OrderRepository(new ArrayList<>());
         pizzaOrderViewConsole = new PizzaOrderViewConsole();
         filePath = Paths.get("src", "main", "resources", "Orders.txt");
+        pizzaPrice = new PizzaPriceService();
     }
 
     public PizzaOrderService() throws IOException {
@@ -54,50 +56,50 @@ public class PizzaOrderService {
             case FOUR_CHEESE:
                 pizzaOrderViewConsole.orderPizzaFourCheese();
                 cook.pizzaFourCheese();
-                order.add(PriceService.pricePizzaFourCheeseIncludingVAT());
+                order.add(pizzaPrice.pricePizzaFourCheeseIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                        .append(String.valueOf(RoundUpService.roundUp(pizzaPrice
                                 .pricePizzaFourCheeseIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case MARGHERITA:
                 pizzaOrderViewConsole.orderPizzaMargherita();
                 cook.pizzaMargherita();
-                order.add(PriceService.pricePizzaMargheritaIncludingVAT());
+                order.add(pizzaPrice.pricePizzaMargheritaIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                        .append(String.valueOf(RoundUpService.roundUp(pizzaPrice
                                 .pricePizzaMargheritaIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case MEAT_DELIGHT:
                 pizzaOrderViewConsole.orderPizzaMeatDelight();
                 cook.pizzaMeatDelight();
-                order.add(PriceService.pricePizzaMeatDelightIncludingVAT());
+                order.add(pizzaPrice.pricePizzaMeatDelightIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                        .append(String.valueOf(RoundUpService.roundUp(pizzaPrice
                                 .pricePizzaMeatDelightIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case PEPPERONI:
                 pizzaOrderViewConsole.orderPizzaPepperoni();
                 cook.pizzaPepperoni();
-                order.add(PriceService.pricePizzaPepperoniIncludingVAT());
+                order.add(pizzaPrice.pricePizzaPepperoniIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                        .append(String.valueOf(RoundUpService.roundUp(pizzaPrice
                                 .pricePizzaPepperoniIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case VEGETARIAN:
                 pizzaOrderViewConsole.orderPizzaVegetarian();
                 cook.pizzaVegetarian();
-                order.add(PriceService.pricePizzaVegetarianIncludingVAT());
+                order.add(pizzaPrice.pricePizzaVegetarianIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                        .append(String.valueOf(RoundUpService.roundUp(pizzaPrice
                                 .pricePizzaVegetarianIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
