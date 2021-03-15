@@ -54,51 +54,51 @@ public class PizzaOrderService {
             case FOUR_CHEESE:
                 pizzaOrderViewConsole.orderPizzaFourCheese();
                 cook.pizzaFourCheese();
-                order.add(ProfitService.profitPercentage(PizzaCostService.getCostFourCheese()));
+                order.add(PriceService.pricePizzaFourCheeseIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
-                                PizzaCostService.getCostFourCheese())))).append("$");
+                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                                .pricePizzaFourCheeseIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case MARGHERITA:
                 pizzaOrderViewConsole.orderPizzaMargherita();
                 cook.pizzaMargherita();
-                order.add(ProfitService.profitPercentage(PizzaCostService.getCostMargherita()));
+                order.add(PriceService.pricePizzaMargheritaIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
-                                PizzaCostService.getCostMargherita())))).append("$");
+                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                                .pricePizzaMargheritaIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case MEAT_DELIGHT:
                 pizzaOrderViewConsole.orderPizzaMeatDelight();
                 cook.pizzaMeatDelight();
-                order.add(ProfitService.profitPercentage(PizzaCostService.getCostMeatDelight()));
+                order.add(PriceService.pricePizzaMeatDelightIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(ProfitService
-                                .profitPercentage(PizzaCostService.getCostMeatDelight())))).append("$");
+                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                                .pricePizzaMeatDelightIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case PEPPERONI:
                 pizzaOrderViewConsole.orderPizzaPepperoni();
                 cook.pizzaPepperoni();
-                order.add(ProfitService.profitPercentage(PizzaCostService.getCostPepperoni()));
+                order.add(PriceService.pricePizzaPepperoniIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
-                                PizzaCostService.getCostPepperoni())))).append("$");
+                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                                .pricePizzaPepperoniIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
             case VEGETARIAN:
                 pizzaOrderViewConsole.orderPizzaVegetarian();
                 cook.pizzaVegetarian();
-                order.add(ProfitService.profitPercentage(PizzaCostService.getCostVegetarian()));
+                order.add(PriceService.pricePizzaVegetarianIncludingVAT());
                 writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                         .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
-                        .append(String.valueOf(RoundUpService.roundUp(ProfitService.profitPercentage(
-                                PizzaCostService.getCostVegetarian())))).append("$");
+                        .append(String.valueOf(RoundUpService.roundUp(PriceService
+                                .pricePizzaVegetarianIncludingVAT()))).append("$");
                 writer.append('\n');
                 break;
         }
