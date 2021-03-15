@@ -17,6 +17,7 @@ public class CreatePizzaService {
     private static final Map<Integer, Ingredient> ingredients;
     private static final CookService cook;
     public char ch;
+    private static final IngredientPriceService ingredientPrice;
 
     static {
         dough = new HashMap<>();
@@ -37,6 +38,7 @@ public class CreatePizzaService {
         orderRepository = new OrderRepository(new ArrayList<>());
         createPizzaViewConsole = new CreatePizzaViewConsole();
         cook = new CookService();
+        ingredientPrice = new IngredientPriceService();
     }
 
     public void start() {
@@ -49,11 +51,11 @@ public class CreatePizzaService {
         int cho = scan.nextInt();
         switch (dough.get(cho)) {
             case THIN_DOUGH:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.THIN_DOUGH.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceThinDoughIncludingVAT());
                 cook.thinDough();
                 break;
             case TRADITIONAL_DOUGH:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.TRADITIONAL_DOUGH.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceTraditionalDoughIncludingVAT());
                 cook.traditionalDough();
                 break;
         }
@@ -65,39 +67,39 @@ public class CreatePizzaService {
         int choice = scan.nextInt();
         switch (ingredients.get(choice)) {
             case CHEESE:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.CHEESE.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceCheeseIncludingVAT());
                 cook.cheese();
                 break;
             case MEAT:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.MEAT.getCostPerUnit()));
-                cook.meet();
+                orderRepository.add(ingredientPrice.priceMeatIncludingVAT());
+                cook.meat();
                 break;
             case SAUSAGES:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.SAUSAGES.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceSausagesIncludingVAT());
                 cook.sausages();
                 break;
             case OLIVES:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.OLIVES.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceOlivesIncludingVAT());
                 cook.olives();
                 break;
             case TOMATOES:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.TOMATOES.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceTomatoesIncludingVAT());
                 cook.tomatoes();
                 break;
             case PEPPER:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.PEPPER.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.pricePepperIncludingVAT());
                 cook.pepper();
                 break;
             case OREGANO:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.OREGANO.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceOreganoIncludingVAT());
                 cook.oregano();
                 break;
             case SAUCE:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.SAUCE.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceSauceIncludingVAT());
                 cook.sauce();
                 break;
             case CRUST:
-                orderRepository.add(ProfitService.profitPercentage(Ingredient.CRUST.getCostPerUnit()));
+                orderRepository.add(ingredientPrice.priceCrustIncludingVAT());
                 break;
         }
         totalOrder();
