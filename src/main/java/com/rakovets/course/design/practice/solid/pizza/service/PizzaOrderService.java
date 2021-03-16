@@ -114,7 +114,6 @@ public class PizzaOrderService {
                 throw new UserInputException(choice);
             } catch (UserInputException ex) {
                 ex.printStackTrace();
-                sc.nextInt();
             }
         }
     }
