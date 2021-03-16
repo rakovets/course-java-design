@@ -43,6 +43,10 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
         System.out.println("Total order is " + totalOrder + "$");
     }
 
+    public void addDoughQuestion() {
+        System.out.println("\nDo you want to add dough? (Type y or n)");
+    }
+
     public void addIngredientsQuestion() {
         System.out.println("\nDo you want to add more ingredients? (Type y or n)");
     }
