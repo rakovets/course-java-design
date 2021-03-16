@@ -10,6 +10,8 @@ public interface CreatePizzaView {
 
     void totalOrder(double totalOrder);
 
+    void addDoughQuestion();
+
     void addIngredientsQuestion();
 
     void paymentChoice();
