@@ -2,7 +2,6 @@ package com.rakovets.course.design.practice.solid.pizza.repository;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
-import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,14 +32,6 @@ public class StorageRepository implements IngredientStorageRepository {
 
     public int getIngredientQuantity(Ingredient ingredient) {
         return storage.get(ingredient);
-    }
-
-    public void changeIngredientQuantity(Supplier supplier) {
-        supplier.getIngredients().forEach((ingredient, ingredientsFromSupplier) -> {
-            Integer oldQuantity = storage.get(ingredient);
-            int newQuantity = oldQuantity + ingredientsFromSupplier;
-            storage.put(ingredient, newQuantity);
-        });
     }
 
     public void changeIngredientQuantity(Pizza pizza) {

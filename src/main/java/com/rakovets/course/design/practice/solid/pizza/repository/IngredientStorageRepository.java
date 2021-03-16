@@ -12,8 +12,6 @@ public interface IngredientStorageRepository {
 
     int getIngredientQuantity(Ingredient ingredient);
 
-    void changeIngredientQuantity(Supplier supplier);
-
     void changeIngredientQuantity(Pizza pizza);
 
     void changeIngredientQuantity(Ingredient ingredient, int newQuantity);
