@@ -6,15 +6,15 @@ public interface PizzaOrderView {
 
     void pizzaMenu();
 
-    void orderPizzaFourCheese();
+    String orderPizzaFourCheese();
 
-    void orderPizzaMargherita();
+    String orderPizzaMargherita();
 
-    void orderPizzaMeatDelight();
+    String orderPizzaMeatDelight();
 
-    void orderPizzaPepperoni();
+    String orderPizzaPepperoni();
 
-    void orderPizzaVegetarian();
+    String orderPizzaVegetarian();
 
     void totalOrder(double totalOrder, int size);
 
@@ -29,8 +29,6 @@ public interface PizzaOrderView {
     void addPizzaQuestion();
 
     void paymentChoice();
-
-    void cashPayment();
 
     void cardPayment();
 
