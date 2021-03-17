@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
+import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
 
 import java.util.*;
@@ -15,6 +16,8 @@ public class CreatePizzaService {
     private static final CookService cook;
     public char ch;
     private static final IngredientPriceService ingredientPrice;
+    private static final CashPaymentService cashPaymentService;
+    private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
 
     static {
         dough = new HashMap<>();
@@ -36,6 +39,8 @@ public class CreatePizzaService {
         createPizzaViewConsole = new CreatePizzaViewConsole();
         cook = new CookService();
         ingredientPrice = new IngredientPriceService();
+        cashPaymentService = new CashPaymentService();
+        cashPaymentServiceViewConsole = new CashPaymentViewConsole();
     }
 
     public void start() {
@@ -130,9 +135,14 @@ public class CreatePizzaService {
         }
     }
 
-    public void totalOrder() {
+    public double totalOrder() {
         double totalOrder = RoundUpService.roundUp(orderRepository.totalOrder());
         createPizzaViewConsole.totalOrder(totalOrder);
+        return totalOrder;
+    }
+
+    public double getChange() {
+        return cashPaymentService.countChange(totalOrder());
     }
 
     public void addIngredientsQuestion() {
@@ -153,7 +163,8 @@ public class CreatePizzaService {
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
-                createPizzaViewConsole.cashPayment();
+                cashPaymentService.getFullAmount();
+                cashPaymentServiceViewConsole.getChangeCreatePizza();
                 break;
             case 2:
                 createPizzaViewConsole.cardPayment();

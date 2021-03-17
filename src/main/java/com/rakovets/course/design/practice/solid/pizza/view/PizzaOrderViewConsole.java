@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.view;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
@@ -10,8 +11,14 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     private static final CardPaymentService cardPaymentService;
     private static final OnlinePaymentService onlinePaymentService;
     private static final PizzaPriceService pizzaPrice;
+    public static PizzaOrderService pizzaOrderService;
 
     static {
+        try {
+            pizzaOrderService = new PizzaOrderService();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();

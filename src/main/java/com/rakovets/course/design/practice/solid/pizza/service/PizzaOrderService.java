@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
+import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -23,6 +24,8 @@ public class PizzaOrderService {
     private static final Path filePath;
     private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));
     private static final PizzaPriceService pizzaPrice;
+    private static final CashPaymentService cashPaymentService;
+    private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
 
     static {
         pizzas = new HashMap<>();
@@ -37,6 +40,8 @@ public class PizzaOrderService {
         pizzaOrderViewConsole = new PizzaOrderViewConsole();
         filePath = Paths.get("src", "main", "resources", "Orders.txt");
         pizzaPrice = new PizzaPriceService();
+        cashPaymentService = new CashPaymentService();
+        cashPaymentServiceViewConsole = new CashPaymentViewConsole();
     }
 
     public PizzaOrderService() throws IOException {
@@ -107,7 +112,7 @@ public class PizzaOrderService {
             discountForTwoItems();
             discountForThreeAndMoreItems();
             discountForOrderOnSpecificDay();
-            amountToPay();
+            amountToPay(order.totalOrder());
             writer.flush();
         } catch (NullPointerException e) {
             try {
@@ -150,19 +155,27 @@ public class PizzaOrderService {
         }
     }
 
-    public void amountToPay() {
+    public double amountToPay(double amountToPay) {
         if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.discountForTwoItems(order.totalOrder()));
+            amountToPay = DiscountService.discountForTwoItems(order.totalOrder());
         } else if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor2PizzasOnSpecificDay(
                     order.totalOrder()));
+            amountToPay = DiscountService.amountToPayFor2PizzasOnSpecificDay(
+                    order.totalOrder());
         } else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.discountForThreeAndMoreItems(
                     order.totalOrder()));
+            amountToPay = DiscountService.discountForThreeAndMoreItems(
+                    order.totalOrder());
         } else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(
                     order.totalOrder()));
+            amountToPay = DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(
+                    order.totalOrder());
         }
+        return amountToPay;
     }
 
     public void addPizzaQuestion() throws IOException {
@@ -177,13 +190,18 @@ public class PizzaOrderService {
         }
     }
 
+    public double getChange() {
+        return cashPaymentService.countChange(amountToPay(order.totalOrder()));
+    }
+
     public void paymentChoice() {
         pizzaOrderViewConsole.paymentChoice();
         Scanner scan = new Scanner(System.in);
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
-                pizzaOrderViewConsole.cashPayment();
+                cashPaymentService.getFullAmount();
+                cashPaymentServiceViewConsole.getChangePizzaOrder();
                 break;
             case 2:
                 pizzaOrderViewConsole.cardPayment();
