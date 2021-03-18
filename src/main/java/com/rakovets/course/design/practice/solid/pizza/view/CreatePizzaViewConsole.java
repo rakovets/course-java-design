@@ -1,18 +1,21 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
-import com.rakovets.course.design.practice.solid.pizza.service.CardPaymentService;
-import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentService;
-import com.rakovets.course.design.practice.solid.pizza.service.OnlinePaymentService;
+import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.service.*;
+
+import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
     private static final CashPaymentService cashPaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final OnlinePaymentService onlinePaymentService;
+    private static final IngredientPriceService ingredientPrice;
 
     static {
         cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
+        ingredientPrice = new IngredientPriceService();
     }
 
     public void greeting() {
@@ -39,6 +42,61 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
         System.out.println("9. Cheese crust");
     }
 
+    public String orderThinDough() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.THIN_DOUGH +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceThinDoughIncludingVAT()) + "$";
+    }
+
+    public String orderTraditionalDough() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TRADITIONAL_DOUGH +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceTraditionalDoughIncludingVAT()) + "$";
+    }
+
+    public String orderCheese() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CHEESE +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceCheeseIncludingVAT()) + "$";
+    }
+
+    public String orderMeat() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.MEAT +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceMeatIncludingVAT()) + "$";
+    }
+
+    public String orderSausages() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUSAGES +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceSausagesIncludingVAT()) + "$";
+    }
+
+    public String orderOlives() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OLIVES +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceOlivesIncludingVAT()) + "$";
+    }
+
+    public String orderTomatoes() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TOMATOES +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceTomatoesIncludingVAT()) + "$";
+    }
+
+    public String orderPepper() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.PEPPER +
+                "\t" + RoundUpService.roundUp(ingredientPrice.pricePepperIncludingVAT()) + "$";
+    }
+
+    public String orderOregano() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OREGANO +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceOreganoIncludingVAT()) + "$";
+    }
+
+    public String orderSauce() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUCE +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceSauceIncludingVAT()) + "$";
+    }
+
+    public String orderCrust() {
+        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
+                "\t" + RoundUpService.roundUp(ingredientPrice.priceCrustIncludingVAT()) + "$";
+    }
+
     public void totalOrder(double totalOrder) {
         System.out.println("Total order is " + totalOrder + "$");
     }
@@ -56,10 +114,6 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
         System.out.println("1. Cash");
         System.out.println("2. Credit card");
         System.out.println("3. Online");
-    }
-
-    public void cashPayment() {
-        System.out.println(cashPaymentService.toString());
     }
 
     public void cardPayment() {

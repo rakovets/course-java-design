@@ -219,19 +219,19 @@ public class PizzaOrderService {
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
+                checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
-                checkViewConsole.displayCheck();
                 cashPaymentService.getFullAmount();
                 cashPaymentServiceViewConsole.getChangePizzaOrder();
                 break;
             case 2:
+                checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
-                checkViewConsole.displayCheck();
                 pizzaOrderViewConsole.cardPayment();
                 break;
             default:
+                checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
-                checkViewConsole.displayCheck();
                 pizzaOrderViewConsole.onlinePayment();
                 break;
         }

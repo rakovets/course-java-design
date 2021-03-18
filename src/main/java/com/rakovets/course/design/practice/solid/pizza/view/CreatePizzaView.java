@@ -8,6 +8,28 @@ public interface CreatePizzaView {
 
     void menuIngredients();
 
+    String orderThinDough();
+
+    String orderTraditionalDough();
+
+    String orderCheese();
+
+    String orderMeat();
+
+    String orderSausages();
+
+    String orderOlives();
+
+    String orderTomatoes();
+
+    String orderPepper();
+
+    String orderOregano();
+
+    String orderSauce();
+
+    String orderCrust();
+
     void totalOrder(double totalOrder);
 
     void addDoughQuestion();
@@ -15,8 +37,6 @@ public interface CreatePizzaView {
     void addIngredientsQuestion();
 
     void paymentChoice();
-
-    void cashPayment();
 
     void cardPayment();
 

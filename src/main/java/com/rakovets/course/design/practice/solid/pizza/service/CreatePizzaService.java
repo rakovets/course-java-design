@@ -1,9 +1,11 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
+import com.rakovets.course.design.practice.solid.pizza.model.Check;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
+import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
 
 import java.util.*;
@@ -18,6 +20,8 @@ public class CreatePizzaService {
     private static final IngredientPriceService ingredientPrice;
     private static final CashPaymentService cashPaymentService;
     private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
+    public static final Check check;
+    private static final CheckViewConsole checkViewConsole;
 
     static {
         dough = new HashMap<>();
@@ -41,6 +45,8 @@ public class CreatePizzaService {
         ingredientPrice = new IngredientPriceService();
         cashPaymentService = new CashPaymentService();
         cashPaymentServiceViewConsole = new CashPaymentViewConsole();
+        check = new Check(new ArrayList<>());
+        checkViewConsole = new CheckViewConsole();
     }
 
     public void start() {
@@ -56,10 +62,12 @@ public class CreatePizzaService {
                 case THIN_DOUGH:
                     orderRepository.add(ingredientPrice.priceThinDoughIncludingVAT());
                     cook.thinDough();
+                    check.add(createPizzaViewConsole.orderThinDough());
                     break;
                 case TRADITIONAL_DOUGH:
                     orderRepository.add(ingredientPrice.priceTraditionalDoughIncludingVAT());
                     cook.traditionalDough();
+                    check.add(createPizzaViewConsole.orderTraditionalDough());
                     break;
             }
         } catch (NullPointerException e) {
@@ -92,37 +100,46 @@ public class CreatePizzaService {
                 case CHEESE:
                     orderRepository.add(ingredientPrice.priceCheeseIncludingVAT());
                     cook.cheese();
+                    check.add(createPizzaViewConsole.orderCheese());
                     break;
                 case MEAT:
                     orderRepository.add(ingredientPrice.priceMeatIncludingVAT());
                     cook.meat();
+                    check.add(createPizzaViewConsole.orderMeat());
                     break;
                 case SAUSAGES:
                     orderRepository.add(ingredientPrice.priceSausagesIncludingVAT());
                     cook.sausages();
+                    check.add(createPizzaViewConsole.orderSausages());
                     break;
                 case OLIVES:
                     orderRepository.add(ingredientPrice.priceOlivesIncludingVAT());
                     cook.olives();
+                    check.add(createPizzaViewConsole.orderOlives());
                     break;
                 case TOMATOES:
                     orderRepository.add(ingredientPrice.priceTomatoesIncludingVAT());
                     cook.tomatoes();
+                    check.add(createPizzaViewConsole.orderTomatoes());
                     break;
                 case PEPPER:
                     orderRepository.add(ingredientPrice.pricePepperIncludingVAT());
                     cook.pepper();
+                    check.add(createPizzaViewConsole.orderPepper());
                     break;
                 case OREGANO:
                     orderRepository.add(ingredientPrice.priceOreganoIncludingVAT());
                     cook.oregano();
+                    check.add(createPizzaViewConsole.orderOregano());
                     break;
                 case SAUCE:
                     orderRepository.add(ingredientPrice.priceSauceIncludingVAT());
                     cook.sauce();
+                    check.add(createPizzaViewConsole.orderSauce());
                     break;
                 case CRUST:
                     orderRepository.add(ingredientPrice.priceCrustIncludingVAT());
+                    check.add(createPizzaViewConsole.orderCrust());
                     break;
             }
             totalOrder();
@@ -136,9 +153,12 @@ public class CreatePizzaService {
     }
 
     public double totalOrder() {
+        return RoundUpService.roundUp(orderRepository.totalOrder());
+    }
+
+    public void displayTotalOrder() {
         double totalOrder = RoundUpService.roundUp(orderRepository.totalOrder());
         createPizzaViewConsole.totalOrder(totalOrder);
-        return totalOrder;
     }
 
     public double getChange() {
@@ -163,13 +183,19 @@ public class CreatePizzaService {
         int choice = scan.nextInt();
         switch (choice) {
             case 1:
+                checkViewConsole.displayCheckCreatePizza();
+                displayTotalOrder();
                 cashPaymentService.getFullAmount();
                 cashPaymentServiceViewConsole.getChangeCreatePizza();
                 break;
             case 2:
+                checkViewConsole.displayCheckCreatePizza();
+                displayTotalOrder();
                 createPizzaViewConsole.cardPayment();
                 break;
             default:
+                checkViewConsole.displayCheckCreatePizza();
+                displayTotalOrder();
                 createPizzaViewConsole.onlinePayment();
                 break;
         }
