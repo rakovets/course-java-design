@@ -7,6 +7,7 @@ import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepositor
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
+import com.rakovets.course.design.practice.solid.pizza.view.OnlinePaymentViewConsole;
 
 import java.util.*;
 
@@ -22,6 +23,8 @@ public class CreatePizzaService {
     private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
     public static final Check check;
     private static final CheckViewConsole checkViewConsole;
+    private static final OnlinePaymentService onlinePaymentService;
+    private static final OnlinePaymentViewConsole onlinePaymentViewConsole;
 
     static {
         dough = new HashMap<>();
@@ -47,6 +50,8 @@ public class CreatePizzaService {
         cashPaymentServiceViewConsole = new CashPaymentViewConsole();
         check = new Check(new ArrayList<>());
         checkViewConsole = new CheckViewConsole();
+        onlinePaymentService = new OnlinePaymentService();
+        onlinePaymentViewConsole = new OnlinePaymentViewConsole();
     }
 
     public void start() {
@@ -196,7 +201,8 @@ public class CreatePizzaService {
             default:
                 checkViewConsole.displayCheckCreatePizza();
                 displayTotalOrder();
-                createPizzaViewConsole.onlinePayment();
+                onlinePaymentService.addCustomer();
+                onlinePaymentViewConsole.displayPayment();
                 break;
         }
     }

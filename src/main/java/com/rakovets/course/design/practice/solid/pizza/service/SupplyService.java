@@ -1,7 +1,6 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
-import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.SupplyServiceViewConsole;

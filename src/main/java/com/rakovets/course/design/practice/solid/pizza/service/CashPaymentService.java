@@ -4,7 +4,7 @@ import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConso
 
 import java.util.Scanner;
 
-public class CashPaymentService implements PaymentService {
+public class CashPaymentService {
     public static double fullAmount;
     private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
 

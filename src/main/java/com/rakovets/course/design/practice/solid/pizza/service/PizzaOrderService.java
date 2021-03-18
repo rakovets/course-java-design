@@ -6,6 +6,7 @@ import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
+import com.rakovets.course.design.practice.solid.pizza.view.OnlinePaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -30,6 +31,8 @@ public class PizzaOrderService {
     private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
     public static final Check check;
     private static final CheckViewConsole checkViewConsole;
+    private static final OnlinePaymentService onlinePaymentService;
+    private static final OnlinePaymentViewConsole onlinePaymentViewConsole;
 
     static {
         pizzas = new HashMap<>();
@@ -48,6 +51,8 @@ public class PizzaOrderService {
         cashPaymentServiceViewConsole = new CashPaymentViewConsole();
         check = new Check(new ArrayList<>());
         checkViewConsole = new CheckViewConsole();
+        onlinePaymentService = new OnlinePaymentService();
+        onlinePaymentViewConsole = new OnlinePaymentViewConsole();
     }
 
     public PizzaOrderService() throws IOException {
@@ -232,7 +237,8 @@ public class PizzaOrderService {
             default:
                 checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
-                pizzaOrderViewConsole.onlinePayment();
+                onlinePaymentService.addCustomer();
+                onlinePaymentViewConsole.displayPayment();
                 break;
         }
     }

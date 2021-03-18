@@ -2,6 +2,7 @@ package com.rakovets.course.design.practice.solid.pizza.controller;
 
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
+import com.rakovets.course.design.practice.solid.pizza.service.SupplyService;
 import com.rakovets.course.design.practice.solid.pizza.view.StarterViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewConsole;
 
@@ -14,12 +15,14 @@ public class PizzaController {
     private static final CreatePizzaService createPizzaService;
     private static final OrderStatisticsController orderStatisticsController;
     private static final StorageUtilityViewConsole storageUtilityViewConsole;
+    private static final SupplyService supplyService;
 
     static {
         starterViewConsole = new StarterViewConsole();
         createPizzaService = new CreatePizzaService();
         orderStatisticsController = new OrderStatisticsController();
         storageUtilityViewConsole = new StorageUtilityViewConsole();
+        supplyService = new SupplyService();
     }
 
     public PizzaController() throws IOException {
@@ -47,9 +50,13 @@ public class PizzaController {
                 orderStatisticsController.start();
                 addChoiceQuestion();
                 break;
-            default:
+            case 4:
                 storageUtilityViewConsole.displayStorage();
                 storageUtilityViewConsole.showLackOfIngredients();
+                addChoiceQuestion();
+                break;
+            default:
+                supplyService.start();
                 addChoiceQuestion();
                 break;
         }
