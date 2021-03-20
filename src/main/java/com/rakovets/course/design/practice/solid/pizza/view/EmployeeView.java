@@ -18,7 +18,9 @@ public interface EmployeeView {
 
     void employeeQuantity();
 
-    void employeeName();
+    void employeeFirstName();
+
+    void employeeLastName();
 
     void employeeSalary();
 

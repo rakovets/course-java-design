@@ -19,8 +19,9 @@ public class EmployeeService {
         employeeView = new EmployeeViewConsole();
     }
 
-    public EmployeeService(String name, double salary) {
-        employee.name = name;
+    public EmployeeService(String firstName, String lastName, double salary) {
+        employee.firstName = firstName;
+        employee.lastName = lastName;
         employee.salary = salary;
     }
 
@@ -53,11 +54,13 @@ public class EmployeeService {
         employeeView.employeeQuantity();
         employeeID = checkID();
         for (int i = 0; i < employeeID; i++) {
-            employeeView.employeeName();
-            employee.name = scan.next();
+            employeeView.employeeFirstName();
+            employee.firstName = scan.next();
+            employeeView.employeeLastName();
+            employee.lastName = scan.next();
             employeeView.employeeSalary();
             employee.salary = checkSalary();
-            employeeList.add(new EmployeeService(employee.name, employee.salary));
+            employeeList.add(new EmployeeService(employee.firstName, employee.lastName, employee.salary));
         }
     }
 
@@ -83,10 +86,6 @@ public class EmployeeService {
 
     public double getSalary() {
         return employee.salary;
-    }
-
-    public String getName() {
-        return employee.name;
     }
 
     public String toString() {

@@ -34,8 +34,12 @@ public class EmployeeViewConsole implements EmployeeView {
         System.out.println("How many Employees would you like to create?");
     }
 
-    public void employeeName() {
-        System.out.println("Enter Employee Name:");
+    public void employeeFirstName() {
+        System.out.println("Enter Employee First Name:");
+    }
+
+    public void employeeLastName() {
+        System.out.println("Enter Employee Last Name:");
     }
 
     public void employeeSalary() {

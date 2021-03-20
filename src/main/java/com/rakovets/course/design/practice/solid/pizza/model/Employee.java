@@ -1,11 +1,16 @@
 package com.rakovets.course.design.practice.solid.pizza.model;
 
 public class Employee {
-    public String name;
+    public String firstName;
+    public String lastName;
     public double salary;
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public double getSalary() {
@@ -13,6 +18,7 @@ public class Employee {
     }
 
     public String toString() {
-        return ("Employee Name: " + this.getName() + "\tSalary: $" + this.getSalary());
+        return ("Employee Name: " + this.getFirstName() + " " + this.getLastName()
+                + "\tSalary: $" + this.getSalary());
     }
 }
