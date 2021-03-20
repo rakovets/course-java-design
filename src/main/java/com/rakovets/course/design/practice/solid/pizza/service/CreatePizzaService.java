@@ -24,7 +24,7 @@ public class CreatePizzaService {
     public static final Check check;
     private static final CheckViewConsole checkViewConsole;
     private static final OnlinePaymentService onlinePaymentService;
-    private static final OnlinePaymentViewConsole onlinePaymentViewConsole;
+    private static final CardPaymentService cardPaymentService;
 
     static {
         dough = new HashMap<>();
@@ -51,7 +51,7 @@ public class CreatePizzaService {
         check = new Check(new ArrayList<>());
         checkViewConsole = new CheckViewConsole();
         onlinePaymentService = new OnlinePaymentService();
-        onlinePaymentViewConsole = new OnlinePaymentViewConsole();
+        cardPaymentService = new CardPaymentService();
     }
 
     public void start() {
@@ -196,13 +196,12 @@ public class CreatePizzaService {
             case 2:
                 checkViewConsole.displayCheckCreatePizza();
                 displayTotalOrder();
-                createPizzaViewConsole.cardPayment();
+                cardPaymentService.enterPIN();
                 break;
             default:
                 checkViewConsole.displayCheckCreatePizza();
                 displayTotalOrder();
                 onlinePaymentService.addCustomer();
-                onlinePaymentViewConsole.displayPayment();
                 break;
         }
     }

@@ -32,7 +32,7 @@ public class PizzaOrderService {
     public static final Check check;
     private static final CheckViewConsole checkViewConsole;
     private static final OnlinePaymentService onlinePaymentService;
-    private static final OnlinePaymentViewConsole onlinePaymentViewConsole;
+    private static final CardPaymentService cardPaymentService;
 
     static {
         pizzas = new HashMap<>();
@@ -52,7 +52,7 @@ public class PizzaOrderService {
         check = new Check(new ArrayList<>());
         checkViewConsole = new CheckViewConsole();
         onlinePaymentService = new OnlinePaymentService();
-        onlinePaymentViewConsole = new OnlinePaymentViewConsole();
+        cardPaymentService = new CardPaymentService();
     }
 
     public PizzaOrderService() throws IOException {
@@ -232,13 +232,12 @@ public class PizzaOrderService {
             case 2:
                 checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
-                pizzaOrderViewConsole.cardPayment();
+                cardPaymentService.enterPIN();
                 break;
             default:
                 checkViewConsole.displayCheckPizzaOrder();
                 createCheck();
                 onlinePaymentService.addCustomer();
-                onlinePaymentViewConsole.displayPayment();
                 break;
         }
     }
