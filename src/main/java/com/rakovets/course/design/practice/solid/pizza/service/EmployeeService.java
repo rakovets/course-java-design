@@ -1,7 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Employee;
-import com.rakovets.course.design.practice.solid.pizza.view.EmployeeView;
+import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.List;
 import java.util.Scanner;
@@ -11,12 +11,12 @@ public class EmployeeService {
     public int enteredNumber;
     public int employeeID;
     private static final Scanner scan;
-    private static final EmployeeView employeeView;
+    private static final EmployeeViewConsole employeeView;
     private final Employee employee = new Employee();
 
     static {
         scan = new Scanner(System.in);
-        employeeView = new EmployeeView();
+        employeeView = new EmployeeViewConsole();
     }
 
     public EmployeeService(String name, double salary) {

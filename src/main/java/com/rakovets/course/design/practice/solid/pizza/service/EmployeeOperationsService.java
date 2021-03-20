@@ -1,12 +1,12 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
-import com.rakovets.course.design.practice.solid.pizza.view.EmployeeView;
+import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeOperationsService {
-    private static final EmployeeView employeeView;
+    private static final EmployeeViewConsole employeeView;
     private static final EmployeeService employeeService;
     private static boolean programOn;
     public int userMenuOption;
@@ -15,7 +15,7 @@ public class EmployeeOperationsService {
     private static final List<EmployeeService> employeeList;
 
     static {
-        employeeView = new EmployeeView();
+        employeeView = new EmployeeViewConsole();
         employeeService = new EmployeeService();
         programOn = true;
         employeeList = new ArrayList<>();
