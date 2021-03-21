@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
-    private static final CashPaymentService cashPaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final OnlinePaymentService onlinePaymentService;
     private static final PizzaPriceService pizzaPrice;
@@ -19,7 +18,6 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
         pizzaPrice = new PizzaPriceService();
@@ -98,13 +96,5 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         System.out.println("1. Cash");
         System.out.println("2. Credit card");
         System.out.println("3. Online");
-    }
-
-    public void cardPayment() {
-        System.out.println(cardPaymentService.toString());
-    }
-
-    public void onlinePayment() {
-        System.out.println(onlinePaymentService.toString());
     }
 }

@@ -6,13 +6,11 @@ import com.rakovets.course.design.practice.solid.pizza.service.*;
 import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-    private static final CashPaymentService cashPaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final OnlinePaymentService onlinePaymentService;
     private static final IngredientPriceService ingredientPrice;
 
     static {
-        cashPaymentService = new CashPaymentService();
         cardPaymentService = new CardPaymentService();
         onlinePaymentService = new OnlinePaymentService();
         ingredientPrice = new IngredientPriceService();
@@ -114,13 +112,5 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
         System.out.println("1. Cash");
         System.out.println("2. Credit card");
         System.out.println("3. Online");
-    }
-
-    public void cardPayment() {
-        System.out.println(cardPaymentService.toString());
-    }
-
-    public void onlinePayment() {
-        System.out.println(onlinePaymentService.toString());
     }
 }

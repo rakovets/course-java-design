@@ -30,8 +30,4 @@ public interface PizzaOrderView {
 
     void paymentChoice();
 
-    void cardPayment();
-
-    void onlinePayment();
-
 }

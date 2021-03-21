@@ -2,11 +2,10 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
 import com.rakovets.course.design.practice.solid.pizza.model.Check;
-import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
-import com.rakovets.course.design.practice.solid.pizza.view.OnlinePaymentViewConsole;
+import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -16,7 +15,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class PizzaOrderService {
     private static final Map<Integer, Pizza> pizzas;

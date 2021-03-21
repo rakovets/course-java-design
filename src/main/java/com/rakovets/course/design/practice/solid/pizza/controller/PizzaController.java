@@ -16,6 +16,7 @@ public class PizzaController {
     private static final OrderStatisticsController orderStatisticsController;
     private static final StorageUtilityViewConsole storageUtilityViewConsole;
     private static final SupplyService supplyService;
+    private static final EmployeeController employeeController;
 
     static {
         starterViewConsole = new StarterViewConsole();
@@ -23,6 +24,7 @@ public class PizzaController {
         orderStatisticsController = new OrderStatisticsController();
         storageUtilityViewConsole = new StorageUtilityViewConsole();
         supplyService = new SupplyService();
+        employeeController = new EmployeeController();
     }
 
     public PizzaController() throws IOException {
@@ -55,8 +57,12 @@ public class PizzaController {
                 storageUtilityViewConsole.showLackOfIngredients();
                 addChoiceQuestion();
                 break;
-            default:
+            case 5:
                 supplyService.start();
+                addChoiceQuestion();
+                break;
+            default:
+                employeeController.start();
                 addChoiceQuestion();
                 break;
         }

@@ -13,10 +13,6 @@ public class Customer {
         return name;
     }
 
-    public int getCardNumber() {
-        return cardNumber;
-    }
-
     @Override
     public String toString() {
         return "Customer{" +

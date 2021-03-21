@@ -2,7 +2,6 @@ package com.rakovets.course.design.practice.solid.pizza.repository;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
-import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 
 import java.util.Map;
 

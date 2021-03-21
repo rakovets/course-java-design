@@ -7,9 +7,11 @@ import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepositor
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
-import com.rakovets.course.design.practice.solid.pizza.view.OnlinePaymentViewConsole;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class CreatePizzaService {
     private static final OrderRepository orderRepository;

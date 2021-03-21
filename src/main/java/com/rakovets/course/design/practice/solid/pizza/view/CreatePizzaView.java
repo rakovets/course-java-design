@@ -38,8 +38,4 @@ public interface CreatePizzaView {
 
     void paymentChoice();
 
-    void cardPayment();
-
-    void onlinePayment();
-
 }
