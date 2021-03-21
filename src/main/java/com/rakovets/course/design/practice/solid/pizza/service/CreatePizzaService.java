@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
 import com.rakovets.course.design.practice.solid.pizza.model.Check;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.repository.IngredientCaloriesRepository;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
@@ -27,6 +28,7 @@ public class CreatePizzaService {
     private static final CheckViewConsole checkViewConsole;
     private static final OnlinePaymentService onlinePaymentService;
     private static final CardPaymentService cardPaymentService;
+    private static final IngredientCaloriesRepository ingredientCaloriesRepository;
 
     static {
         dough = new HashMap<>();
@@ -54,6 +56,7 @@ public class CreatePizzaService {
         checkViewConsole = new CheckViewConsole();
         onlinePaymentService = new OnlinePaymentService();
         cardPaymentService = new CardPaymentService();
+        ingredientCaloriesRepository = new IngredientCaloriesRepository(new ArrayList<>());
     }
 
     public void start() {
@@ -68,11 +71,15 @@ public class CreatePizzaService {
             switch (dough.get(cho)) {
                 case THIN_DOUGH:
                     orderRepository.add(ingredientPrice.priceThinDoughIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesThinDough();
+                    ingredientCaloriesRepository.add(Ingredient.THIN_DOUGH.getCalories());
                     cook.thinDough();
                     check.add(createPizzaViewConsole.orderThinDough());
                     break;
                 case TRADITIONAL_DOUGH:
                     orderRepository.add(ingredientPrice.priceTraditionalDoughIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesTraditionalDough();
+                    ingredientCaloriesRepository.add(Ingredient.TRADITIONAL_DOUGH.getCalories());
                     cook.traditionalDough();
                     check.add(createPizzaViewConsole.orderTraditionalDough());
                     break;
@@ -106,50 +113,69 @@ public class CreatePizzaService {
             switch (ingredients.get(choice)) {
                 case CHEESE:
                     orderRepository.add(ingredientPrice.priceCheeseIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesCheese();
+                    ingredientCaloriesRepository.add(Ingredient.CHEESE.getCalories());
                     cook.cheese();
                     check.add(createPizzaViewConsole.orderCheese());
                     break;
                 case MEAT:
                     orderRepository.add(ingredientPrice.priceMeatIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesMeat();
+                    ingredientCaloriesRepository.add(Ingredient.MEAT.getCalories());
                     cook.meat();
                     check.add(createPizzaViewConsole.orderMeat());
                     break;
                 case SAUSAGES:
                     orderRepository.add(ingredientPrice.priceSausagesIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesSausages();
+                    ingredientCaloriesRepository.add(Ingredient.SAUSAGES.getCalories());
                     cook.sausages();
                     check.add(createPizzaViewConsole.orderSausages());
                     break;
                 case OLIVES:
                     orderRepository.add(ingredientPrice.priceOlivesIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesOlives();
+                    ingredientCaloriesRepository.add(Ingredient.OLIVES.getCalories());
                     cook.olives();
                     check.add(createPizzaViewConsole.orderOlives());
                     break;
                 case TOMATOES:
                     orderRepository.add(ingredientPrice.priceTomatoesIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesTomatoes();
+                    ingredientCaloriesRepository.add(Ingredient.TOMATOES.getCalories());
                     cook.tomatoes();
                     check.add(createPizzaViewConsole.orderTomatoes());
                     break;
                 case PEPPER:
                     orderRepository.add(ingredientPrice.pricePepperIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesPepper();
+                    ingredientCaloriesRepository.add(Ingredient.PEPPER.getCalories());
                     cook.pepper();
                     check.add(createPizzaViewConsole.orderPepper());
                     break;
                 case OREGANO:
                     orderRepository.add(ingredientPrice.priceOreganoIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesOregano();
+                    ingredientCaloriesRepository.add(Ingredient.OREGANO.getCalories());
                     cook.oregano();
                     check.add(createPizzaViewConsole.orderOregano());
                     break;
                 case SAUCE:
                     orderRepository.add(ingredientPrice.priceSauceIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesSauce();
+                    ingredientCaloriesRepository.add(Ingredient.SAUCE.getCalories());
                     cook.sauce();
                     check.add(createPizzaViewConsole.orderSauce());
                     break;
                 case CRUST:
                     orderRepository.add(ingredientPrice.priceCrustIncludingVAT());
+                    createPizzaViewConsole.displayCaloriesCrust();
+                    ingredientCaloriesRepository.add(Ingredient.CRUST.getCalories());
                     check.add(createPizzaViewConsole.orderCrust());
                     break;
             }
             totalOrder();
+            createPizzaViewConsole.totalCalories(ingredientCaloriesRepository.countTotalCalories());
         } catch (NullPointerException e) {
             try {
                 throw new UserInputException(choice);

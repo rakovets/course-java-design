@@ -7,10 +7,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
-    private static final CardPaymentService cardPaymentService;
-    private static final OnlinePaymentService onlinePaymentService;
     private static final PizzaPriceService pizzaPrice;
     public static PizzaOrderService pizzaOrderService;
+    private static final PizzaCaloriesService pizzaCaloriesService;
 
     static {
         try {
@@ -18,9 +17,8 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cardPaymentService = new CardPaymentService();
-        onlinePaymentService = new OnlinePaymentService();
         pizzaPrice = new PizzaPriceService();
+        pizzaCaloriesService = new PizzaCaloriesService();
     }
 
     public void greeting() {
@@ -59,6 +57,31 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     public String orderPizzaVegetarian() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
                 "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaVegetarianIncludingVAT()) + "$";
+    }
+
+    public void displayCaloriesPizzaFourCheese() {
+        System.out.println("Pizza " + Pizza.FOUR_CHEESE + " Calories: " +
+                pizzaCaloriesService.caloriesPizzaFourCheese());
+    }
+
+    public void displayCaloriesPizzaMargherita() {
+        System.out.println("Pizza " + Pizza.MARGHERITA + " Calories: " +
+                pizzaCaloriesService.caloriesPizzaMargherita());
+    }
+
+    public void displayCaloriesPizzaMeatDelight() {
+        System.out.println("Pizza " + Pizza.MEAT_DELIGHT + " Calories: " +
+                pizzaCaloriesService.caloriesPizzaMeatDelight());
+    }
+
+    public void displayCaloriesPizzaPepperoni() {
+        System.out.println("Pizza " + Pizza.PEPPERONI + " Calories: " +
+                pizzaCaloriesService.caloriesPizzaPepperoni());
+    }
+
+    public void displayCaloriesPizzaVegetarian() {
+        System.out.println("Pizza " + Pizza.VEGETARIAN + " Calories: " +
+                pizzaCaloriesService.caloriesPizzaVegetarian());
     }
 
     public void totalOrder(double totalOrder, int size) {

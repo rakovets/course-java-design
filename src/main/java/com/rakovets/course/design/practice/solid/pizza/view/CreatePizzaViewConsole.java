@@ -6,13 +6,9 @@ import com.rakovets.course.design.practice.solid.pizza.service.*;
 import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-    private static final CardPaymentService cardPaymentService;
-    private static final OnlinePaymentService onlinePaymentService;
     private static final IngredientPriceService ingredientPrice;
 
     static {
-        cardPaymentService = new CardPaymentService();
-        onlinePaymentService = new OnlinePaymentService();
         ingredientPrice = new IngredientPriceService();
     }
 
@@ -93,6 +89,65 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
     public String orderCrust() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
                 "\t" + RoundUpService.roundUp(ingredientPrice.priceCrustIncludingVAT()) + "$";
+    }
+
+    public void displayCaloriesThinDough() {
+        System.out.println("Ingredient " + Ingredient.THIN_DOUGH + " Calories: " +
+                Ingredient.THIN_DOUGH.getCalories());
+    }
+
+    public void displayCaloriesTraditionalDough() {
+        System.out.println("Ingredient " + Ingredient.TRADITIONAL_DOUGH + " Calories: " +
+                Ingredient.TRADITIONAL_DOUGH.getCalories());
+    }
+
+    public void displayCaloriesCheese() {
+        System.out.println("Ingredient " + Ingredient.CHEESE + " Calories: " +
+                Ingredient.CHEESE.getCalories());
+    }
+
+    public void displayCaloriesMeat() {
+        System.out.println("Ingredient " + Ingredient.MEAT + " Calories: " +
+                Ingredient.MEAT.getCalories());
+    }
+
+    public void displayCaloriesSausages() {
+        System.out.println("Ingredient " + Ingredient.SAUSAGES + " Calories: " +
+                Ingredient.SAUSAGES.getCalories());
+    }
+
+    public void displayCaloriesOlives() {
+        System.out.println("Ingredient " + Ingredient.OLIVES + " Calories: " +
+                Ingredient.OLIVES.getCalories());
+    }
+
+    public void displayCaloriesTomatoes() {
+        System.out.println("Ingredient " + Ingredient.TOMATOES + " Calories: " +
+                Ingredient.TOMATOES.getCalories());
+    }
+
+    public void displayCaloriesPepper() {
+        System.out.println("Ingredient " + Ingredient.PEPPER + " Calories: " +
+                Ingredient.PEPPER.getCalories());
+    }
+
+    public void displayCaloriesOregano() {
+        System.out.println("Ingredient " + Ingredient.OREGANO + " Calories: " +
+                Ingredient.OREGANO.getCalories());
+    }
+
+    public void displayCaloriesSauce() {
+        System.out.println("Ingredient " + Ingredient.SAUCE + " Calories: " +
+                Ingredient.SAUCE.getCalories());
+    }
+
+    public void displayCaloriesCrust() {
+        System.out.println("Ingredient " + Ingredient.CRUST + " Calories: " +
+                Ingredient.CRUST.getCalories());
+    }
+
+    public void totalCalories(int totalCalories) {
+        System.out.println("Total Calories of Created Pizza: " + totalCalories);
     }
 
     public void totalOrder(double totalOrder) {

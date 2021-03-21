@@ -16,6 +16,16 @@ public interface PizzaOrderView {
 
     String orderPizzaVegetarian();
 
+    void displayCaloriesPizzaFourCheese();
+
+    void displayCaloriesPizzaMargherita();
+
+    void displayCaloriesPizzaMeatDelight();
+
+    void displayCaloriesPizzaPepperoni();
+
+    void displayCaloriesPizzaVegetarian();
+
     void totalOrder(double totalOrder, int size);
 
     void discountFor2Pizzas(double totalOrder);

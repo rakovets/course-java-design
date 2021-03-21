@@ -11,12 +11,14 @@ public class PizzaTests {
     private static final IngredientPriceService ingredientPriceService;
     private static final PizzaPriceService pizzaPriceService;
     private static final OrderStatisticsService orderStatisticsService;
+    private static final PizzaCaloriesService pizzaCaloriesService;
 
     static {
         cashPaymentService = new CashPaymentService();
         ingredientPriceService = new IngredientPriceService();
         pizzaPriceService = new PizzaPriceService();
         orderStatisticsService = new OrderStatisticsService();
+        pizzaCaloriesService = new PizzaCaloriesService();
     }
 
     @Test
@@ -239,6 +241,31 @@ public class PizzaTests {
                 orderStatisticsService.getProfit(Pizza.VEGETARIAN, 100,
                         pizzaPriceService.pricePizzaVegetarianIncludingVAT(),
                         PizzaCostService.getCostVegetarian()));
+    }
+
+    @Test
+    void caloriesPizzaFourCheese_PizzaCaloriesService() {
+        assertEquals(1750, pizzaCaloriesService.caloriesPizzaFourCheese());
+    }
+
+    @Test
+    void caloriesPizzaMargherita_PizzaCaloriesService() {
+        assertEquals(1420, pizzaCaloriesService.caloriesPizzaMargherita());
+    }
+
+    @Test
+    void caloriesPizzaMeatDelight_PizzaCaloriesService() {
+        assertEquals(1740, pizzaCaloriesService.caloriesPizzaMeatDelight());
+    }
+
+    @Test
+    void caloriesPizzaPepperoni_PizzaCaloriesService() {
+        assertEquals(1320, pizzaCaloriesService.caloriesPizzaPepperoni());
+    }
+
+    @Test
+    void caloriesPizzaVegetarian_PizzaCaloriesService() {
+        assertEquals(990, pizzaCaloriesService.caloriesPizzaVegetarian());
     }
 
     @Test

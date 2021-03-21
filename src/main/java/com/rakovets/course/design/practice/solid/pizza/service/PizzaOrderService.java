@@ -72,6 +72,7 @@ public class PizzaOrderService {
             switch (pizzas.get(choice)) {
                 case FOUR_CHEESE:
                     pizzaOrderViewConsole.orderPizzaFourCheese();
+                    pizzaOrderViewConsole.displayCaloriesPizzaFourCheese();
                     cook.pizzaFourCheese();
                     check.add(pizzaOrderViewConsole.orderPizzaFourCheese());
                     order.add(pizzaPrice.pricePizzaFourCheeseIncludingVAT());
@@ -83,6 +84,7 @@ public class PizzaOrderService {
                     break;
                 case MARGHERITA:
                     pizzaOrderViewConsole.orderPizzaMargherita();
+                    pizzaOrderViewConsole.displayCaloriesPizzaMargherita();
                     cook.pizzaMargherita();
                     check.add(pizzaOrderViewConsole.orderPizzaMargherita());
                     order.add(pizzaPrice.pricePizzaMargheritaIncludingVAT());
@@ -94,6 +96,7 @@ public class PizzaOrderService {
                     break;
                 case MEAT_DELIGHT:
                     pizzaOrderViewConsole.orderPizzaMeatDelight();
+                    pizzaOrderViewConsole.displayCaloriesPizzaMeatDelight();
                     cook.pizzaMeatDelight();
                     check.add(pizzaOrderViewConsole.orderPizzaMeatDelight());
                     order.add(pizzaPrice.pricePizzaMeatDelightIncludingVAT());
@@ -105,6 +108,7 @@ public class PizzaOrderService {
                     break;
                 case PEPPERONI:
                     pizzaOrderViewConsole.orderPizzaPepperoni();
+                    pizzaOrderViewConsole.displayCaloriesPizzaPepperoni();
                     cook.pizzaPepperoni();
                     check.add(pizzaOrderViewConsole.orderPizzaPepperoni());
                     order.add(pizzaPrice.pricePizzaPepperoniIncludingVAT());
@@ -116,6 +120,7 @@ public class PizzaOrderService {
                     break;
                 case VEGETARIAN:
                     pizzaOrderViewConsole.orderPizzaVegetarian();
+                    pizzaOrderViewConsole.displayCaloriesPizzaVegetarian();
                     cook.pizzaVegetarian();
                     check.add(pizzaOrderViewConsole.orderPizzaVegetarian());
                     order.add(pizzaPrice.pricePizzaVegetarianIncludingVAT());
