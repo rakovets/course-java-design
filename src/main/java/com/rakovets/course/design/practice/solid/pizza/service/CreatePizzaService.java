@@ -9,10 +9,7 @@ import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConso
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class CreatePizzaService {
     private static final OrderRepository orderRepository;
@@ -64,10 +61,10 @@ public class CreatePizzaService {
     }
 
     public void chooseDough() {
-        createPizzaViewConsole.menuDough();
-        Scanner scan = new Scanner(System.in);
-        int cho = scan.nextInt();
         try {
+            createPizzaViewConsole.menuDough();
+            Scanner scan = new Scanner(System.in);
+            int cho = scan.nextInt();
             switch (dough.get(cho)) {
                 case THIN_DOUGH:
                     orderRepository.add(ingredientPrice.priceThinDoughIncludingVAT());
@@ -84,9 +81,9 @@ public class CreatePizzaService {
                     check.add(createPizzaViewConsole.orderTraditionalDough());
                     break;
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | InputMismatchException e) {
             try {
-                throw new UserInputException(cho);
+                throw new UserInputException();
             } catch (UserInputException ex) {
                 ex.printStackTrace();
                 addDoughQuestion();
@@ -106,10 +103,10 @@ public class CreatePizzaService {
     }
 
     public void chooseIngredients() {
-        createPizzaViewConsole.menuIngredients();
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
         try {
+            createPizzaViewConsole.menuIngredients();
+            Scanner scan = new Scanner(System.in);
+            int choice = scan.nextInt();
             switch (ingredients.get(choice)) {
                 case CHEESE:
                     orderRepository.add(ingredientPrice.priceCheeseIncludingVAT());
@@ -176,9 +173,9 @@ public class CreatePizzaService {
             }
             totalOrder();
             createPizzaViewConsole.totalCalories(ingredientCaloriesRepository.countTotalCalories());
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | InputMismatchException e) {
             try {
-                throw new UserInputException(choice);
+                throw new UserInputException();
             } catch (UserInputException ex) {
                 ex.printStackTrace();
             }
@@ -211,26 +208,35 @@ public class CreatePizzaService {
     }
 
     public void paymentChoice() {
-        createPizzaViewConsole.paymentChoice();
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
-        switch (choice) {
-            case 1:
-                checkViewConsole.displayCheckCreatePizza();
-                displayTotalOrder();
-                cashPaymentService.getFullAmount();
-                cashPaymentServiceViewConsole.getChangeCreatePizza();
-                break;
-            case 2:
-                checkViewConsole.displayCheckCreatePizza();
-                displayTotalOrder();
-                cardPaymentService.enterPIN();
-                break;
-            default:
-                checkViewConsole.displayCheckCreatePizza();
-                displayTotalOrder();
-                onlinePaymentService.addCustomer();
-                break;
+        try {
+            createPizzaViewConsole.paymentChoice();
+            Scanner scan = new Scanner(System.in);
+            int choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    checkViewConsole.displayCheckCreatePizza();
+                    displayTotalOrder();
+                    cashPaymentService.getFullAmount();
+                    cashPaymentServiceViewConsole.getChangeCreatePizza();
+                    break;
+                case 2:
+                    checkViewConsole.displayCheckCreatePizza();
+                    displayTotalOrder();
+                    cardPaymentService.enterPIN();
+                    break;
+                default:
+                    checkViewConsole.displayCheckCreatePizza();
+                    displayTotalOrder();
+                    onlinePaymentService.addCustomer();
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            try {
+                throw new UserInputException();
+            } catch (UserInputException ex) {
+                ex.printStackTrace();
+                paymentChoice();
+            }
         }
     }
 }

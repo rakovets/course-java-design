@@ -6,6 +6,7 @@ import com.rakovets.course.design.practice.solid.pizza.repository.StorageReposit
 import com.rakovets.course.design.practice.solid.pizza.view.SupplyServiceViewConsole;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -30,10 +31,10 @@ public class SupplyService {
     }
 
     public void start() {
-        supplyServiceViewConsole.suppliersMenu();
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
         try {
+            supplyServiceViewConsole.suppliersMenu();
+            Scanner scan = new Scanner(System.in);
+            int choice = scan.nextInt();
             switch (suppliers.get(choice)) {
                 case SUPPLIER_1:
                     supplyServiceViewConsole.supplier1IngredientBefore();
@@ -108,9 +109,9 @@ public class SupplyService {
                     addChoiceQuestion();
                     break;
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | InputMismatchException e) {
             try {
-                throw new UserInputException(choice);
+                throw new UserInputException();
             } catch (UserInputException ex) {
                 ex.printStackTrace();
                 addChoiceQuestion();

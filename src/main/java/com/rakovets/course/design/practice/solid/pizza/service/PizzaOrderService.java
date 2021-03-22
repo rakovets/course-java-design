@@ -15,10 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class PizzaOrderService {
     private static final Map<Integer, Pizza> pizzas;
@@ -65,10 +62,10 @@ public class PizzaOrderService {
     }
 
     public void choosePizza() throws IOException {
-        pizzaOrderViewConsole.pizzaMenu();
-        Scanner sc = new Scanner(System.in);
-        int choice = sc.nextInt();
         try {
+            pizzaOrderViewConsole.pizzaMenu();
+            Scanner sc = new Scanner(System.in);
+            int choice = sc.nextInt();
             switch (pizzas.get(choice)) {
                 case FOUR_CHEESE:
                     pizzaOrderViewConsole.orderPizzaFourCheese();
@@ -137,9 +134,9 @@ public class PizzaOrderService {
             discountForOrderOnSpecificDay();
             amountToPay(order.totalOrder());
             writer.flush();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | InputMismatchException e) {
             try {
-                throw new UserInputException(choice);
+                throw new UserInputException();
             } catch (UserInputException ex) {
                 ex.printStackTrace();
             }
@@ -226,26 +223,35 @@ public class PizzaOrderService {
     }
 
     public void paymentChoice() {
-        pizzaOrderViewConsole.paymentChoice();
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
-        switch (choice) {
-            case 1:
-                checkViewConsole.displayCheckPizzaOrder();
-                createCheck();
-                cashPaymentService.getFullAmount();
-                cashPaymentServiceViewConsole.getChangePizzaOrder();
-                break;
-            case 2:
-                checkViewConsole.displayCheckPizzaOrder();
-                createCheck();
-                cardPaymentService.enterPIN();
-                break;
-            default:
-                checkViewConsole.displayCheckPizzaOrder();
-                createCheck();
-                onlinePaymentService.addCustomer();
-                break;
+        try {
+            pizzaOrderViewConsole.paymentChoice();
+            Scanner scan = new Scanner(System.in);
+            int choice = scan.nextInt();
+            switch (choice) {
+                case 1:
+                    checkViewConsole.displayCheckPizzaOrder();
+                    createCheck();
+                    cashPaymentService.getFullAmount();
+                    cashPaymentServiceViewConsole.getChangePizzaOrder();
+                    break;
+                case 2:
+                    checkViewConsole.displayCheckPizzaOrder();
+                    createCheck();
+                    cardPaymentService.enterPIN();
+                    break;
+                default:
+                    checkViewConsole.displayCheckPizzaOrder();
+                    createCheck();
+                    onlinePaymentService.addCustomer();
+                    break;
+            }
+        } catch (InputMismatchException e) {
+            try {
+                throw new UserInputException();
+            } catch (UserInputException ex) {
+                ex.printStackTrace();
+                paymentChoice();
+            }
         }
     }
 }
