@@ -7,7 +7,7 @@ public class CardPaymentViewConsole implements CardPaymentView {
     }
 
     public void invalidInput() {
-        System.out.println("Invalid input");
+        System.out.println("PIN must contain 4 digits");
     }
 
     public void approvePayment() {
