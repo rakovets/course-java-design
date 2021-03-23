@@ -1,7 +1,9 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
-import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Check;
+import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
@@ -15,7 +17,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class PizzaOrderService {
     private static final Map<Integer, Pizza> pizzas;
@@ -32,6 +37,11 @@ public class PizzaOrderService {
     private static final CheckViewConsole checkViewConsole;
     private static final OnlinePaymentService onlinePaymentService;
     private static final CardPaymentService cardPaymentService;
+    private static final Map<Integer, PaymentMethod> paymentMethod;
+    private static final Scanner scanner;
+    public int enteredInt;
+    public int pizzaMenu;
+    public int payment;
 
     static {
         pizzas = new HashMap<>();
@@ -52,6 +62,12 @@ public class PizzaOrderService {
         checkViewConsole = new CheckViewConsole();
         onlinePaymentService = new OnlinePaymentService();
         cardPaymentService = new CardPaymentService();
+        scanner = new Scanner(System.in);
+
+        paymentMethod = new HashMap<>();
+        paymentMethod.put(1, PaymentMethod.CASH);
+        paymentMethod.put(2, PaymentMethod.CARD);
+        paymentMethod.put(3, PaymentMethod.ONLINE);
     }
 
     public PizzaOrderService() throws IOException {
@@ -62,11 +78,10 @@ public class PizzaOrderService {
     }
 
     public void choosePizza() throws IOException {
+        pizzaOrderViewConsole.pizzaMenu();
+        pizzaMenu = checkInt();
         try {
-            pizzaOrderViewConsole.pizzaMenu();
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-            switch (pizzas.get(choice)) {
+            switch (pizzas.get(pizzaMenu)) {
                 case FOUR_CHEESE:
                     pizzaOrderViewConsole.orderPizzaFourCheese();
                     pizzaOrderViewConsole.displayCaloriesPizzaFourCheese();
@@ -128,19 +143,19 @@ public class PizzaOrderService {
                     writer.append('\n');
                     break;
             }
-            totalOrder();
-            discountForTwoItems();
-            discountForThreeAndMoreItems();
-            discountForOrderOnSpecificDay();
-            amountToPay(order.totalOrder());
-            writer.flush();
-        } catch (NullPointerException | InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new PizzaNumberException();
+            } catch (PizzaNumberException ex) {
                 ex.printStackTrace();
             }
         }
+        totalOrder();
+        discountForTwoItems();
+        discountForThreeAndMoreItems();
+        discountForOrderOnSpecificDay();
+        amountToPay(order.totalOrder());
+        writer.flush();
     }
 
     public void totalOrder() {
@@ -223,35 +238,45 @@ public class PizzaOrderService {
     }
 
     public void paymentChoice() {
+        pizzaOrderViewConsole.paymentChoice();
         try {
-            pizzaOrderViewConsole.paymentChoice();
-            Scanner scan = new Scanner(System.in);
-            int choice = scan.nextInt();
-            switch (choice) {
-                case 1:
+            payment = checkInt();
+            switch (paymentMethod.get(payment)) {
+                case CASH:
                     checkViewConsole.displayCheckPizzaOrder();
                     createCheck();
                     cashPaymentService.getFullAmount();
                     cashPaymentServiceViewConsole.getChangePizzaOrder();
                     break;
-                case 2:
+                case CARD:
                     checkViewConsole.displayCheckPizzaOrder();
                     createCheck();
                     cardPaymentService.enterPIN();
                     break;
-                default:
+                case ONLINE:
                     checkViewConsole.displayCheckPizzaOrder();
                     createCheck();
                     onlinePaymentService.addCustomer();
                     break;
             }
-        } catch (InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new PaymentChoiceException();
+            } catch (PaymentChoiceException ex) {
                 ex.printStackTrace();
                 paymentChoice();
             }
         }
+    }
+
+    public int checkInt() {
+        do {
+            while (!scanner.hasNextInt()) {
+                pizzaOrderViewConsole.invalidInput();
+                scanner.next();
+            }
+            enteredInt = scanner.nextInt();
+        } while (enteredInt <= 0);
+        return enteredInt;
     }
 }

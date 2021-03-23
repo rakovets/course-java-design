@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService {
-    public double enteredSalary;
-    public int enteredNumber;
+    public double enteredDouble;
+    public int enteredInt;
     public int employeeID;
     private static final Scanner scan;
     private static final EmployeeViewConsole employeeView;
@@ -36,7 +36,7 @@ public class EmployeeService {
 
     public void quitEmployee(List<EmployeeService> employeeList) {
         employeeView.quitEmployee();
-        employeeID = checkID();
+        employeeID = checkInt();
         if (employeeID > employeeList.size())
             employeeView.notValidID();
         else
@@ -52,36 +52,36 @@ public class EmployeeService {
 
     public void createNewEmployee(List<EmployeeService> employeeList) {
         employeeView.employeeQuantity();
-        employeeID = checkID();
+        employeeID = checkInt();
         for (int i = 0; i < employeeID; i++) {
             employeeView.employeeFirstName();
             employee.firstName = scan.next();
             employeeView.employeeLastName();
             employee.lastName = scan.next();
             employeeView.employeeSalary();
-            employee.salary = checkSalary();
+            employee.salary = checkDouble();
             employeeList.add(new EmployeeService(employee.firstName, employee.lastName, employee.salary));
         }
     }
 
-    public int checkID() {
+    public int checkInt() {
         do {
             while (!scan.hasNextInt()) {
                 employeeView.invalidInput();
                 scan.next();
             }
-            enteredNumber = scan.nextInt();
-        } while (enteredNumber <= 0);
-        return enteredNumber;
+            enteredInt = scan.nextInt();
+        } while (enteredInt <= 0);
+        return enteredInt;
     }
 
-    public double checkSalary() {
+    public double checkDouble() {
         while (!scan.hasNextDouble()) {
             employeeView.invalidInput();
             scan.next();
         }
-        enteredSalary = scan.nextDouble();
-        return enteredSalary;
+        enteredDouble = scan.nextDouble();
+        return enteredDouble;
     }
 
     public double getSalary() {

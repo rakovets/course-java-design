@@ -40,4 +40,6 @@ public interface SupplyServiceView {
 
     void chooseOtherSupplier();
 
+    void invalidInput();
+
 }

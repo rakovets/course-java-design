@@ -1,8 +1,8 @@
 package com.rakovets.course.design.practice.solid.pizza.exceptions;
 
-public class UserInputException extends Exception {
+public class CashAmountException extends Exception {
 
     public String toString() {
-        return "Input is invalid";
+        return "Cash amount must be a number";
     }
 }

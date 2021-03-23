@@ -117,4 +117,8 @@ public class SupplyServiceViewConsole implements SupplyServiceView {
     public void chooseOtherSupplier() {
         System.out.println("\nDo you want to choose another supplier? (Type y or n)");
     }
+
+    public void invalidInput() {
+        System.out.println("Your input is invalid. You must enter a digit");
+    }
 }

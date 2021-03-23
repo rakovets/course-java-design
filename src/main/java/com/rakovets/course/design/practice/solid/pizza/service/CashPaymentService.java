@@ -1,7 +1,9 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
+import com.rakovets.course.design.practice.solid.pizza.exceptions.CashAmountException;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CashPaymentService {
@@ -20,8 +22,17 @@ public class CashPaymentService {
     }
 
     public void getFullAmount() {
-        cashPaymentServiceViewConsole.fullAmountView();
-        Scanner scan = new Scanner(System.in);
-        fullAmount = scan.nextDouble();
+        try {
+            cashPaymentServiceViewConsole.fullAmountView();
+            Scanner scan = new Scanner(System.in);
+            fullAmount = scan.nextDouble();
+        } catch (InputMismatchException e) {
+            try {
+                throw new CashAmountException();
+            } catch (CashAmountException ex) {
+                ex.printStackTrace();
+                getFullAmount();
+            }
+        }
     }
 }

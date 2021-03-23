@@ -1,12 +1,11 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
-import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.SupplierNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.SupplyServiceViewConsole;
 
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -14,6 +13,9 @@ public class SupplyService {
     private static final Map<Integer, Supplier> suppliers;
     private static final StorageRepository storage;
     private static final SupplyServiceViewConsole supplyServiceViewConsole;
+    private static final Scanner scanner;
+    public int enteredInt;
+    public int supplierChoice;
 
     static {
         suppliers = new HashMap<>();
@@ -28,20 +30,20 @@ public class SupplyService {
 
         storage = new StorageRepository();
         supplyServiceViewConsole = new SupplyServiceViewConsole();
+        scanner = new Scanner(System.in);
     }
 
     public void start() {
+        supplyServiceViewConsole.suppliersMenu();
         try {
-            supplyServiceViewConsole.suppliersMenu();
-            Scanner scan = new Scanner(System.in);
-            int choice = scan.nextInt();
-            switch (suppliers.get(choice)) {
+            supplierChoice = checkInt();
+            switch (suppliers.get(supplierChoice)) {
                 case SUPPLIER_1:
                     supplyServiceViewConsole.supplier1IngredientBefore();
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_1.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_1.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier1IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -50,7 +52,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_2.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_2.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier2IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -59,7 +61,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_3.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_3.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier3IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -68,7 +70,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_4.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_4.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier4IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -77,7 +79,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_5.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_5.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier5IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -86,7 +88,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_6.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_6.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier6IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -95,7 +97,7 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_7.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_7.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier7IngredientAfter();
                     addChoiceQuestion();
                     break;
@@ -104,15 +106,15 @@ public class SupplyService {
                     supplyServiceViewConsole.supplierDeliveredQuantity();
                     storage.changeIngredientQuantity(Supplier.SUPPLIER_8.getIngredient(),
                             storage.getIngredientQuantity(Supplier.SUPPLIER_8.getIngredient())
-                                    + scan.nextInt());
+                                    + scanner.nextInt());
                     supplyServiceViewConsole.supplier8IngredientAfter();
                     addChoiceQuestion();
                     break;
             }
-        } catch (NullPointerException | InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new SupplierNumberException();
+            } catch (SupplierNumberException ex) {
                 ex.printStackTrace();
                 addChoiceQuestion();
             }
@@ -126,5 +128,16 @@ public class SupplyService {
         if (ch == 'Y' || ch == 'y') {
             start();
         }
+    }
+
+    public int checkInt() {
+        do {
+            while (!scanner.hasNextInt()) {
+                supplyServiceViewConsole.invalidInput();
+                scanner.next();
+            }
+            enteredInt = scanner.nextInt();
+        } while (enteredInt <= 0);
+        return enteredInt;
     }
 }

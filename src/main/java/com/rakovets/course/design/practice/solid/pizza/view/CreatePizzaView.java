@@ -62,4 +62,6 @@ public interface CreatePizzaView {
 
     void paymentChoice();
 
+    void invalidInput();
+
 }

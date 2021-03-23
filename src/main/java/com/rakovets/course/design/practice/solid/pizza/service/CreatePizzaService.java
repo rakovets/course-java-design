@@ -1,8 +1,9 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
-import com.rakovets.course.design.practice.solid.pizza.exceptions.UserInputException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.*;
 import com.rakovets.course.design.practice.solid.pizza.model.Check;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
+import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.repository.IngredientCaloriesRepository;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
@@ -26,6 +27,12 @@ public class CreatePizzaService {
     private static final OnlinePaymentService onlinePaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final IngredientCaloriesRepository ingredientCaloriesRepository;
+    private static final Map<Integer, PaymentMethod> paymentMethod;
+    private static final Scanner scanner;
+    public int enteredInt;
+    public int doughMenu;
+    public int ingredientMenu;
+    public int payment;
 
     static {
         dough = new HashMap<>();
@@ -54,6 +61,12 @@ public class CreatePizzaService {
         onlinePaymentService = new OnlinePaymentService();
         cardPaymentService = new CardPaymentService();
         ingredientCaloriesRepository = new IngredientCaloriesRepository(new ArrayList<>());
+        scanner = new Scanner(System.in);
+
+        paymentMethod = new HashMap<>();
+        paymentMethod.put(1, PaymentMethod.CASH);
+        paymentMethod.put(2, PaymentMethod.CARD);
+        paymentMethod.put(3, PaymentMethod.ONLINE);
     }
 
     public void start() {
@@ -61,11 +74,10 @@ public class CreatePizzaService {
     }
 
     public void chooseDough() {
+        createPizzaViewConsole.menuDough();
         try {
-            createPizzaViewConsole.menuDough();
-            Scanner scan = new Scanner(System.in);
-            int cho = scan.nextInt();
-            switch (dough.get(cho)) {
+            doughMenu = checkInt();
+            switch (dough.get(doughMenu)) {
                 case THIN_DOUGH:
                     orderRepository.add(ingredientPrice.priceThinDoughIncludingVAT());
                     createPizzaViewConsole.displayCaloriesThinDough();
@@ -81,10 +93,10 @@ public class CreatePizzaService {
                     check.add(createPizzaViewConsole.orderTraditionalDough());
                     break;
             }
-        } catch (NullPointerException | InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new DoughException();
+            } catch (DoughException ex) {
                 ex.printStackTrace();
                 addDoughQuestion();
             }
@@ -103,11 +115,10 @@ public class CreatePizzaService {
     }
 
     public void chooseIngredients() {
+        createPizzaViewConsole.menuIngredients();
         try {
-            createPizzaViewConsole.menuIngredients();
-            Scanner scan = new Scanner(System.in);
-            int choice = scan.nextInt();
-            switch (ingredients.get(choice)) {
+            ingredientMenu = checkInt();
+            switch (ingredients.get(ingredientMenu)) {
                 case CHEESE:
                     orderRepository.add(ingredientPrice.priceCheeseIncludingVAT());
                     createPizzaViewConsole.displayCaloriesCheese();
@@ -171,15 +182,15 @@ public class CreatePizzaService {
                     check.add(createPizzaViewConsole.orderCrust());
                     break;
             }
-            totalOrder();
-            createPizzaViewConsole.totalCalories(ingredientCaloriesRepository.countTotalCalories());
-        } catch (NullPointerException | InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new IngredientNumberException();
+            } catch (IngredientNumberException ex) {
                 ex.printStackTrace();
             }
         }
+        totalOrder();
+        createPizzaViewConsole.totalCalories(ingredientCaloriesRepository.countTotalCalories());
     }
 
     public double totalOrder() {
@@ -208,35 +219,45 @@ public class CreatePizzaService {
     }
 
     public void paymentChoice() {
+        createPizzaViewConsole.paymentChoice();
         try {
-            createPizzaViewConsole.paymentChoice();
-            Scanner scan = new Scanner(System.in);
-            int choice = scan.nextInt();
-            switch (choice) {
-                case 1:
+            payment = checkInt();
+            switch (paymentMethod.get(payment)) {
+                case CASH:
                     checkViewConsole.displayCheckCreatePizza();
                     displayTotalOrder();
                     cashPaymentService.getFullAmount();
                     cashPaymentServiceViewConsole.getChangeCreatePizza();
                     break;
-                case 2:
+                case CARD:
                     checkViewConsole.displayCheckCreatePizza();
                     displayTotalOrder();
                     cardPaymentService.enterPIN();
                     break;
-                default:
+                case ONLINE:
                     checkViewConsole.displayCheckCreatePizza();
                     displayTotalOrder();
                     onlinePaymentService.addCustomer();
                     break;
             }
-        } catch (InputMismatchException e) {
+        } catch (NullPointerException e) {
             try {
-                throw new UserInputException();
-            } catch (UserInputException ex) {
+                throw new PaymentChoiceException();
+            } catch (PaymentChoiceException ex) {
                 ex.printStackTrace();
                 paymentChoice();
             }
         }
+    }
+
+    public int checkInt() {
+        do {
+            while (!scanner.hasNextInt()) {
+                createPizzaViewConsole.invalidInput();
+                scanner.next();
+            }
+            enteredInt = scanner.nextInt();
+        } while (enteredInt <= 0);
+        return enteredInt;
     }
 }

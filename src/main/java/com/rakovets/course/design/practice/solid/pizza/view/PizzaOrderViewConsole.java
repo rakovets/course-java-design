@@ -120,4 +120,8 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         System.out.println("2. Credit card");
         System.out.println("3. Online");
     }
+
+    public void invalidInput() {
+        System.out.println("Your input is invalid. You must enter a digit");
+    }
 }
