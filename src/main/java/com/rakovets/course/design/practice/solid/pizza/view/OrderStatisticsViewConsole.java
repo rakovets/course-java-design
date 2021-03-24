@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
 import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.OrderStatisticsException;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaCostService;
@@ -9,10 +10,12 @@ import com.rakovets.course.design.practice.solid.pizza.service.PizzaPriceService
 public class OrderStatisticsViewConsole implements OrderStatisticsView {
     private static final OrderStatisticsService orderStatisticsService;
     private static final PizzaPriceService pizzaPriceService;
+    private static final OrderStatisticsException orderStatisticsException;
 
     static {
         orderStatisticsService = new OrderStatisticsService();
         pizzaPriceService = new PizzaPriceService();
+        orderStatisticsException = new OrderStatisticsException();
     }
 
     public void enterFourCheese() {
@@ -93,5 +96,9 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
                 OrderStatisticsController.numberOfVegetarianSold,
                 pizzaPriceService.pricePizzaVegetarianIncludingVAT(),
                 PizzaCostService.getCostVegetarian()) + "$");
+    }
+
+    public void orderStatisticsException() {
+        System.out.println(orderStatisticsException.toString());
     }
 }

@@ -1,13 +1,16 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
+import com.rakovets.course.design.practice.solid.pizza.exceptions.SupplierNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
 
 public class SupplyServiceViewConsole implements SupplyServiceView {
     private static final StorageRepository storageRepository;
+    private static final SupplierNumberException supplierNumberException;
 
     static {
         storageRepository = new StorageRepository();
+        supplierNumberException = new SupplierNumberException();
     }
 
     public void suppliersMenu() {
@@ -120,5 +123,9 @@ public class SupplyServiceViewConsole implements SupplyServiceView {
 
     public void invalidInput() {
         System.out.println("Your input is invalid. You must enter a digit");
+    }
+
+    public void supplierNumberException() {
+        System.out.println(supplierNumberException.toString());
     }
 }

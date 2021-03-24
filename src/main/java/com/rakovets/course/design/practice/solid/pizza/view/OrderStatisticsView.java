@@ -22,4 +22,6 @@ public interface OrderStatisticsView {
 
     void displayVegetarian();
 
+    void orderStatisticsException();
+
 }

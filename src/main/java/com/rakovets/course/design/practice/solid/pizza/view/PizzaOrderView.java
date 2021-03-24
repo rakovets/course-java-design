@@ -40,4 +40,10 @@ public interface PizzaOrderView {
 
     void paymentChoice();
 
+    void invalidInput();
+
+    void pizzaNumberException();
+
+    void paymentChoiceException();
+
 }

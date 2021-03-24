@@ -8,15 +8,15 @@ import java.util.Scanner;
 
 public class CardPaymentService {
     public int PIN;
-    private static final CardPaymentViewConsole cardPaymentViewConsole;
+    private static final CardPaymentViewConsole cardPaymentView;
 
     static {
-        cardPaymentViewConsole = new CardPaymentViewConsole();
+        cardPaymentView = new CardPaymentViewConsole();
     }
 
     public void enterPIN() {
         try {
-            cardPaymentViewConsole.enterPIN();
+            cardPaymentView.enterPIN();
             Scanner scan = new Scanner(System.in);
             int count = 0;
             PIN = scan.nextInt();
@@ -25,16 +25,16 @@ public class CardPaymentService {
                 count++;
             }
             if (count != 4) {
-                cardPaymentViewConsole.invalidInput();
+                cardPaymentView.invalidInput();
                 enterPIN();
             } else {
-                cardPaymentViewConsole.approvePayment();
+                cardPaymentView.approvePayment();
             }
         } catch (InputMismatchException e) {
             try {
                 throw new PinException();
             } catch (PinException ex) {
-                ex.printStackTrace();
+                cardPaymentView.pinException();
                 enterPIN();
             }
         }

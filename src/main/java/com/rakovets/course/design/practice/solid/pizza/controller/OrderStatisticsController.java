@@ -40,7 +40,7 @@ public class OrderStatisticsController {
             try {
                 throw new OrderStatisticsException();
             } catch (OrderStatisticsException ex) {
-                ex.printStackTrace();
+                orderStatisticsView.orderStatisticsException();
                 start();
             }
         }

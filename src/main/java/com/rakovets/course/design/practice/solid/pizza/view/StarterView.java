@@ -6,4 +6,10 @@ public interface StarterView {
 
     void chooseOtherOperations();
 
+    void noSuchOperation();
+
+    void invalidInput();
+
+    void exitProgram();
+
 }

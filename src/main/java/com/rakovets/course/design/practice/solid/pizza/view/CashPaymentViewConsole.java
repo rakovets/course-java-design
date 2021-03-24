@@ -1,5 +1,6 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
+import com.rakovets.course.design.practice.solid.pizza.exceptions.CashAmountException;
 import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentService;
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
@@ -9,6 +10,7 @@ import java.io.IOException;
 public class CashPaymentViewConsole implements CashPaymentView {
     private static PizzaOrderService pizzaOrderService;
     private static final CreatePizzaService createPizzaService;
+    private static final CashAmountException cashAmountException;
 
     static {
         try {
@@ -17,6 +19,7 @@ public class CashPaymentViewConsole implements CashPaymentView {
             e.printStackTrace();
         }
         createPizzaService = new CreatePizzaService();
+        cashAmountException = new CashAmountException();
     }
 
     public void fullAmountView() {
@@ -37,5 +40,9 @@ public class CashPaymentViewConsole implements CashPaymentView {
 
     public void notEnoughMoney() {
         System.out.println("The amount is not enough to pay");
+    }
+
+    public void cashAmountException() {
+        System.out.println(cashAmountException.toString());
     }
 }

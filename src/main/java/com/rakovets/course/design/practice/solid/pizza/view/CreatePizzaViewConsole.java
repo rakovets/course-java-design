@@ -1,5 +1,8 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
+import com.rakovets.course.design.practice.solid.pizza.exceptions.DoughException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.IngredientNumberException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 
@@ -7,9 +10,15 @@ import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
     private static final IngredientPriceService ingredientPrice;
+    private static final DoughException doughException;
+    private static final IngredientNumberException ingredientNumberException;
+    private static final PaymentChoiceException paymentChoiceException;
 
     static {
         ingredientPrice = new IngredientPriceService();
+        doughException = new DoughException();
+        ingredientNumberException = new IngredientNumberException();
+        paymentChoiceException = new PaymentChoiceException();
     }
 
     public void greeting() {
@@ -171,5 +180,17 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
 
     public void invalidInput() {
         System.out.println("Your input is invalid. You must enter a digit");
+    }
+
+    public void doughException() {
+        System.out.println(doughException.toString());
+    }
+
+    public void ingredientNumberException() {
+        System.out.println(ingredientNumberException.toString());
+    }
+
+    public void paymentChoiceException() {
+        System.out.println(paymentChoiceException.toString());
     }
 }

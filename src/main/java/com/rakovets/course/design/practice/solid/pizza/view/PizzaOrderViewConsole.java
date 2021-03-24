@@ -1,5 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.view;
 
+import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
+import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 
@@ -10,6 +12,8 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     private static final PizzaPriceService pizzaPrice;
     public static PizzaOrderService pizzaOrderService;
     private static final PizzaCaloriesService pizzaCaloriesService;
+    private static final PizzaNumberException pizzaNumberException;
+    private static final PaymentChoiceException paymentChoiceException;
 
     static {
         try {
@@ -19,6 +23,8 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         }
         pizzaPrice = new PizzaPriceService();
         pizzaCaloriesService = new PizzaCaloriesService();
+        pizzaNumberException = new PizzaNumberException();
+        paymentChoiceException = new PaymentChoiceException();
     }
 
     public void greeting() {
@@ -123,5 +129,13 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public void invalidInput() {
         System.out.println("Your input is invalid. You must enter a digit");
+    }
+
+    public void pizzaNumberException() {
+        System.out.println(pizzaNumberException.toString());
+    }
+
+    public void paymentChoiceException() {
+        System.out.println(paymentChoiceException.toString());
     }
 }

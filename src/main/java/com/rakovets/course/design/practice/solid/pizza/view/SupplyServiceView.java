@@ -42,4 +42,6 @@ public interface SupplyServiceView {
 
     void invalidInput();
 
+    void supplierNumberException();
+
 }

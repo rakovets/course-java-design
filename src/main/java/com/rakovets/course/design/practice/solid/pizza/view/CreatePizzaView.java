@@ -64,4 +64,10 @@ public interface CreatePizzaView {
 
     void invalidInput();
 
+    void doughException();
+
+    void ingredientNumberException();
+
+    void paymentChoiceException();
+
 }

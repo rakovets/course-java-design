@@ -10,4 +10,6 @@ public interface CashPaymentView {
 
     void notEnoughMoney();
 
+    void cashAmountException();
+
 }

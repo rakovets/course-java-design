@@ -12,4 +12,6 @@ public interface OnlinePaymentView {
 
     void displayPayment();
 
+    void cardException();
+
 }

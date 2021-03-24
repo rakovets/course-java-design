@@ -8,4 +8,6 @@ public interface CardPaymentView {
 
     void approvePayment();
 
+    void pinException();
+
 }

@@ -26,15 +26,15 @@ public class PizzaOrderService {
     private static final Map<Integer, Pizza> pizzas;
     private static final CookService cook;
     private static final OrderRepository order;
-    private static final PizzaOrderViewConsole pizzaOrderViewConsole;
+    private static final PizzaOrderViewConsole pizzaOrderView;
     public char ch;
     private static final Path filePath;
     private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(filePath)));
     private static final PizzaPriceService pizzaPrice;
     private static final CashPaymentService cashPaymentService;
-    private static final CashPaymentViewConsole cashPaymentServiceViewConsole;
+    private static final CashPaymentViewConsole cashPaymentServiceView;
     public static final Check check;
-    private static final CheckViewConsole checkViewConsole;
+    private static final CheckViewConsole checkView;
     private static final OnlinePaymentService onlinePaymentService;
     private static final CardPaymentService cardPaymentService;
     private static final Map<Integer, PaymentMethod> paymentMethod;
@@ -53,13 +53,13 @@ public class PizzaOrderService {
 
         cook = new CookService();
         order = new OrderRepository(new ArrayList<>());
-        pizzaOrderViewConsole = new PizzaOrderViewConsole();
+        pizzaOrderView = new PizzaOrderViewConsole();
         filePath = Paths.get("src", "main", "resources", "Orders.txt");
         pizzaPrice = new PizzaPriceService();
         cashPaymentService = new CashPaymentService();
-        cashPaymentServiceViewConsole = new CashPaymentViewConsole();
+        cashPaymentServiceView = new CashPaymentViewConsole();
         check = new Check(new ArrayList<>());
-        checkViewConsole = new CheckViewConsole();
+        checkView = new CheckViewConsole();
         onlinePaymentService = new OnlinePaymentService();
         cardPaymentService = new CardPaymentService();
         scanner = new Scanner(System.in);
@@ -74,19 +74,19 @@ public class PizzaOrderService {
     }
 
     public void start() {
-        pizzaOrderViewConsole.greeting();
+        pizzaOrderView.greeting();
     }
 
     public void choosePizza() throws IOException {
-        pizzaOrderViewConsole.pizzaMenu();
+        pizzaOrderView.pizzaMenu();
         pizzaMenu = checkInt();
         try {
             switch (pizzas.get(pizzaMenu)) {
                 case FOUR_CHEESE:
-                    pizzaOrderViewConsole.orderPizzaFourCheese();
-                    pizzaOrderViewConsole.displayCaloriesPizzaFourCheese();
+                    pizzaOrderView.orderPizzaFourCheese();
+                    pizzaOrderView.displayCaloriesPizzaFourCheese();
                     cook.pizzaFourCheese();
-                    check.add(pizzaOrderViewConsole.orderPizzaFourCheese());
+                    check.add(pizzaOrderView.orderPizzaFourCheese());
                     order.add(pizzaPrice.pricePizzaFourCheeseIncludingVAT());
                     writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
@@ -95,10 +95,10 @@ public class PizzaOrderService {
                     writer.append('\n');
                     break;
                 case MARGHERITA:
-                    pizzaOrderViewConsole.orderPizzaMargherita();
-                    pizzaOrderViewConsole.displayCaloriesPizzaMargherita();
+                    pizzaOrderView.orderPizzaMargherita();
+                    pizzaOrderView.displayCaloriesPizzaMargherita();
                     cook.pizzaMargherita();
-                    check.add(pizzaOrderViewConsole.orderPizzaMargherita());
+                    check.add(pizzaOrderView.orderPizzaMargherita());
                     order.add(pizzaPrice.pricePizzaMargheritaIncludingVAT());
                     writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
@@ -107,10 +107,10 @@ public class PizzaOrderService {
                     writer.append('\n');
                     break;
                 case MEAT_DELIGHT:
-                    pizzaOrderViewConsole.orderPizzaMeatDelight();
-                    pizzaOrderViewConsole.displayCaloriesPizzaMeatDelight();
+                    pizzaOrderView.orderPizzaMeatDelight();
+                    pizzaOrderView.displayCaloriesPizzaMeatDelight();
                     cook.pizzaMeatDelight();
-                    check.add(pizzaOrderViewConsole.orderPizzaMeatDelight());
+                    check.add(pizzaOrderView.orderPizzaMeatDelight());
                     order.add(pizzaPrice.pricePizzaMeatDelightIncludingVAT());
                     writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
@@ -119,10 +119,10 @@ public class PizzaOrderService {
                     writer.append('\n');
                     break;
                 case PEPPERONI:
-                    pizzaOrderViewConsole.orderPizzaPepperoni();
-                    pizzaOrderViewConsole.displayCaloriesPizzaPepperoni();
+                    pizzaOrderView.orderPizzaPepperoni();
+                    pizzaOrderView.displayCaloriesPizzaPepperoni();
                     cook.pizzaPepperoni();
-                    check.add(pizzaOrderViewConsole.orderPizzaPepperoni());
+                    check.add(pizzaOrderView.orderPizzaPepperoni());
                     order.add(pizzaPrice.pricePizzaPepperoniIncludingVAT());
                     writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
@@ -131,10 +131,10 @@ public class PizzaOrderService {
                     writer.append('\n');
                     break;
                 case VEGETARIAN:
-                    pizzaOrderViewConsole.orderPizzaVegetarian();
-                    pizzaOrderViewConsole.displayCaloriesPizzaVegetarian();
+                    pizzaOrderView.orderPizzaVegetarian();
+                    pizzaOrderView.displayCaloriesPizzaVegetarian();
                     cook.pizzaVegetarian();
-                    check.add(pizzaOrderViewConsole.orderPizzaVegetarian());
+                    check.add(pizzaOrderView.orderPizzaVegetarian());
                     order.add(pizzaPrice.pricePizzaVegetarianIncludingVAT());
                     writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
                             .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
@@ -147,7 +147,7 @@ public class PizzaOrderService {
             try {
                 throw new PizzaNumberException();
             } catch (PizzaNumberException ex) {
-                ex.printStackTrace();
+                pizzaOrderView.pizzaNumberException();
             }
         }
         totalOrder();
@@ -161,32 +161,32 @@ public class PizzaOrderService {
     public void totalOrder() {
         double totalOrder = order.totalOrder();
         int size = order.size();
-        pizzaOrderViewConsole.totalOrder(totalOrder, size);
+        pizzaOrderView.totalOrder(totalOrder, size);
     }
 
     public void discountForTwoItems() {
         if (order.size() == 2) {
             double totalOrder = DiscountService.discountForTwoItems(order.totalOrder());
-            pizzaOrderViewConsole.discountFor2Pizzas(totalOrder);
+            pizzaOrderView.discountFor2Pizzas(totalOrder);
         }
     }
 
     public void discountForThreeAndMoreItems() {
         if (order.size() >= 3) {
             double totalOrder = DiscountService.discountForThreeAndMoreItems(order.totalOrder());
-            pizzaOrderViewConsole.discountFor3AndMorePizzas(totalOrder);
+            pizzaOrderView.discountFor3AndMorePizzas(totalOrder);
         }
     }
 
     public void discountForOrderOnSpecificDay() {
         if (order.size() == 1 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             double totalOrder = DiscountService.discountForOrderOnSpecificDay(order.totalOrder());
-            pizzaOrderViewConsole.discountForOrderOnSpecificDay(totalOrder);
-            pizzaOrderViewConsole.amountToPay(DiscountService.discountForOrderOnSpecificDay(
+            pizzaOrderView.discountForOrderOnSpecificDay(totalOrder);
+            pizzaOrderView.amountToPay(DiscountService.discountForOrderOnSpecificDay(
                     order.totalOrder()));
         } else if (LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
             double totalOrder = DiscountService.discountForOrderOnSpecificDay(order.totalOrder());
-            pizzaOrderViewConsole.discountForOrderOnSpecificDay(totalOrder);
+            pizzaOrderView.discountForOrderOnSpecificDay(totalOrder);
         }
     }
 
@@ -208,21 +208,21 @@ public class PizzaOrderService {
 
     public void createCheck() {
         if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
-            pizzaOrderViewConsole.amountToPay(DiscountService.discountForTwoItems(order.totalOrder()));
+            pizzaOrderView.amountToPay(DiscountService.discountForTwoItems(order.totalOrder()));
         } else if (order.size() == 2 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
-            pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor2PizzasOnSpecificDay(
+            pizzaOrderView.amountToPay(DiscountService.amountToPayFor2PizzasOnSpecificDay(
                     order.totalOrder()));
         } else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() != DayOfWeek.FRIDAY) {
-            pizzaOrderViewConsole.amountToPay(DiscountService.discountForThreeAndMoreItems(
+            pizzaOrderView.amountToPay(DiscountService.discountForThreeAndMoreItems(
                     order.totalOrder()));
         } else if (order.size() >= 3 && LocalDateTime.now().getDayOfWeek() == DayOfWeek.FRIDAY) {
-            pizzaOrderViewConsole.amountToPay(DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(
+            pizzaOrderView.amountToPay(DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(
                     order.totalOrder()));
         }
     }
 
     public void addPizzaQuestion() throws IOException {
-        pizzaOrderViewConsole.addPizzaQuestion();
+        pizzaOrderView.addPizzaQuestion();
         Scanner scan = new Scanner(System.in);
         ch = scan.next().charAt(0);
         if (ch == 'Y' || ch == 'y') {
@@ -238,23 +238,23 @@ public class PizzaOrderService {
     }
 
     public void paymentChoice() {
-        pizzaOrderViewConsole.paymentChoice();
+        pizzaOrderView.paymentChoice();
         try {
             payment = checkInt();
             switch (paymentMethod.get(payment)) {
                 case CASH:
-                    checkViewConsole.displayCheckPizzaOrder();
+                    checkView.displayCheckPizzaOrder();
                     createCheck();
                     cashPaymentService.getFullAmount();
-                    cashPaymentServiceViewConsole.getChangePizzaOrder();
+                    cashPaymentServiceView.getChangePizzaOrder();
                     break;
                 case CARD:
-                    checkViewConsole.displayCheckPizzaOrder();
+                    checkView.displayCheckPizzaOrder();
                     createCheck();
                     cardPaymentService.enterPIN();
                     break;
                 case ONLINE:
-                    checkViewConsole.displayCheckPizzaOrder();
+                    checkView.displayCheckPizzaOrder();
                     createCheck();
                     onlinePaymentService.addCustomer();
                     break;
@@ -263,7 +263,7 @@ public class PizzaOrderService {
             try {
                 throw new PaymentChoiceException();
             } catch (PaymentChoiceException ex) {
-                ex.printStackTrace();
+                pizzaOrderView.paymentChoiceException();
                 paymentChoice();
             }
         }
@@ -272,7 +272,7 @@ public class PizzaOrderService {
     public int checkInt() {
         do {
             while (!scanner.hasNextInt()) {
-                pizzaOrderViewConsole.invalidInput();
+                pizzaOrderView.invalidInput();
                 scanner.next();
             }
             enteredInt = scanner.nextInt();
