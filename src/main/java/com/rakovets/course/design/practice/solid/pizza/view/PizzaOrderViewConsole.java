@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
-    private static final PizzaPriceService pizzaPrice;
+    private static final PizzaPriceService PIZZA_PRICE;
     public static PizzaOrderService pizzaOrderService;
-    private static final PizzaCaloriesService pizzaCaloriesService;
-    private static final PizzaNumberException pizzaNumberException;
-    private static final PaymentChoiceException paymentChoiceException;
+    private static final PizzaCaloriesService PIZZA_CALORIES_SERVICE;
+    private static final PizzaNumberException PIZZA_NUMBER_EXCEPTION;
+    private static final PaymentChoiceException PAYMENT_CHOICE_EXCEPTION;
 
     static {
         try {
@@ -21,10 +21,10 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        pizzaPrice = new PizzaPriceService();
-        pizzaCaloriesService = new PizzaCaloriesService();
-        pizzaNumberException = new PizzaNumberException();
-        paymentChoiceException = new PaymentChoiceException();
+        PIZZA_PRICE = new PizzaPriceService();
+        PIZZA_CALORIES_SERVICE = new PizzaCaloriesService();
+        PIZZA_NUMBER_EXCEPTION = new PizzaNumberException();
+        PAYMENT_CHOICE_EXCEPTION = new PaymentChoiceException();
     }
 
     public void greeting() {
@@ -42,52 +42,57 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public String orderPizzaFourCheese() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.FOUR_CHEESE +
-                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaFourCheeseIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()) + "$";
     }
 
     public String orderPizzaMargherita() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MARGHERITA +
-                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaMargheritaIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()) + "$";
     }
 
     public String orderPizzaMeatDelight() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MEAT_DELIGHT +
-                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaMeatDelightIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()) + "$";
     }
 
     public String orderPizzaPepperoni() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.PEPPERONI +
-                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaPepperoniIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()) + "$";
     }
 
     public String orderPizzaVegetarian() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
-                "\t" + RoundUpService.roundUp(pizzaPrice.pricePizzaVegetarianIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()) + "$";
     }
 
-    public void displayCaloriesPizzaFourCheese() {
+    public void displayInfoPizzaFourCheese() {
         System.out.println("Pizza " + Pizza.FOUR_CHEESE + " Calories: " +
-                pizzaCaloriesService.caloriesPizzaFourCheese());
+                PIZZA_CALORIES_SERVICE.caloriesPizzaFourCheese() +
+                ", Ingredients: " + Pizza.FOUR_CHEESE.getIngredients());
     }
 
-    public void displayCaloriesPizzaMargherita() {
+    public void displayInfoPizzaMargherita() {
         System.out.println("Pizza " + Pizza.MARGHERITA + " Calories: " +
-                pizzaCaloriesService.caloriesPizzaMargherita());
+                PIZZA_CALORIES_SERVICE.caloriesPizzaMargherita() +
+                ", Ingredients: " + Pizza.MARGHERITA.getIngredients());
     }
 
-    public void displayCaloriesPizzaMeatDelight() {
+    public void displayInfoPizzaMeatDelight() {
         System.out.println("Pizza " + Pizza.MEAT_DELIGHT + " Calories: " +
-                pizzaCaloriesService.caloriesPizzaMeatDelight());
+                PIZZA_CALORIES_SERVICE.caloriesPizzaMeatDelight() +
+                ", Ingredients: " + Pizza.MEAT_DELIGHT.getIngredients());
     }
 
-    public void displayCaloriesPizzaPepperoni() {
+    public void displayInfoPizzaPepperoni() {
         System.out.println("Pizza " + Pizza.PEPPERONI + " Calories: " +
-                pizzaCaloriesService.caloriesPizzaPepperoni());
+                PIZZA_CALORIES_SERVICE.caloriesPizzaPepperoni() +
+                ", Ingredients: " + Pizza.PEPPERONI.getIngredients());
     }
 
-    public void displayCaloriesPizzaVegetarian() {
+    public void displayInfoPizzaVegetarian() {
         System.out.println("Pizza " + Pizza.VEGETARIAN + " Calories: " +
-                pizzaCaloriesService.caloriesPizzaVegetarian());
+                PIZZA_CALORIES_SERVICE.caloriesPizzaVegetarian() +
+                ", Ingredients: " + Pizza.VEGETARIAN.getIngredients());
     }
 
     public void totalOrder(double totalOrder, int size) {
@@ -132,10 +137,10 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     }
 
     public void pizzaNumberException() {
-        System.out.println(pizzaNumberException.toString());
+        System.out.println(PIZZA_NUMBER_EXCEPTION.toString());
     }
 
     public void paymentChoiceException() {
-        System.out.println(paymentChoiceException.toString());
+        System.out.println(PAYMENT_CHOICE_EXCEPTION.toString());
     }
 }
