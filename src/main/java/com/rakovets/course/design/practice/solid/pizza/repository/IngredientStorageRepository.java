@@ -15,6 +15,8 @@ public interface IngredientStorageRepository {
 
     void changeIngredientQuantity(Ingredient ingredient, int newQuantity);
 
+    void removeOneIngredient(Ingredient ingredient);
+
     Iterable<Map.Entry<Ingredient, Integer>> entrySet();
 
 }

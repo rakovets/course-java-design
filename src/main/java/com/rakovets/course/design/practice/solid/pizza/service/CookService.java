@@ -5,79 +5,69 @@ import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
 
 public class CookService {
-    private static final StorageRepository storage;
+    private static final StorageRepository STORAGE;
 
     static {
-        storage = new StorageRepository();
+        STORAGE = new StorageRepository();
     }
 
     public void pizzaFourCheese() {
-        storage.changeIngredientQuantity(Pizza.FOUR_CHEESE);
+        STORAGE.changeIngredientQuantity(Pizza.FOUR_CHEESE);
     }
 
     public void pizzaMargherita() {
-        storage.changeIngredientQuantity(Pizza.MARGHERITA);
+        STORAGE.changeIngredientQuantity(Pizza.MARGHERITA);
     }
 
     public void pizzaMeatDelight() {
-        storage.changeIngredientQuantity(Pizza.MEAT_DELIGHT);
+        STORAGE.changeIngredientQuantity(Pizza.MEAT_DELIGHT);
     }
 
     public void pizzaPepperoni() {
-        storage.changeIngredientQuantity(Pizza.PEPPERONI);
+        STORAGE.changeIngredientQuantity(Pizza.PEPPERONI);
     }
 
     public void pizzaVegetarian() {
-        storage.changeIngredientQuantity(Pizza.VEGETARIAN);
+        STORAGE.changeIngredientQuantity(Pizza.VEGETARIAN);
     }
 
     public void thinDough() {
-        storage.changeIngredientQuantity(Ingredient.THIN_DOUGH,
-                storage.getIngredientQuantity(Ingredient.THIN_DOUGH) - 1);
+        STORAGE.removeOneIngredient(Ingredient.THIN_DOUGH);
     }
 
     public void traditionalDough() {
-        storage.changeIngredientQuantity(Ingredient.TRADITIONAL_DOUGH,
-                storage.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) - 1);
+        STORAGE.removeOneIngredient(Ingredient.TRADITIONAL_DOUGH);
     }
 
     public void cheese() {
-        storage.changeIngredientQuantity(Ingredient.CHEESE,
-                storage.getIngredientQuantity(Ingredient.CHEESE) - 1);
+        STORAGE.removeOneIngredient(Ingredient.CHEESE);
     }
 
     public void meat() {
-        storage.changeIngredientQuantity(Ingredient.MEAT,
-                storage.getIngredientQuantity(Ingredient.MEAT) - 1);
+        STORAGE.removeOneIngredient(Ingredient.MEAT);
     }
 
     public void sausages() {
-        storage.changeIngredientQuantity(Ingredient.SAUSAGES,
-                storage.getIngredientQuantity(Ingredient.SAUSAGES) - 1);
+        STORAGE.removeOneIngredient(Ingredient.SAUSAGES);
     }
 
     public void olives() {
-        storage.changeIngredientQuantity(Ingredient.OLIVES,
-                storage.getIngredientQuantity(Ingredient.OLIVES) - 1);
+        STORAGE.removeOneIngredient(Ingredient.OLIVES);
     }
 
     public void tomatoes() {
-        storage.changeIngredientQuantity(Ingredient.TOMATOES,
-                storage.getIngredientQuantity(Ingredient.TOMATOES) - 1);
+        STORAGE.removeOneIngredient(Ingredient.TOMATOES);
     }
 
     public void pepper() {
-        storage.changeIngredientQuantity(Ingredient.PEPPER,
-                storage.getIngredientQuantity(Ingredient.PEPPER) - 1);
+        STORAGE.removeOneIngredient(Ingredient.PEPPER);
     }
 
     public void oregano() {
-        storage.changeIngredientQuantity(Ingredient.OREGANO,
-                storage.getIngredientQuantity(Ingredient.OREGANO) - 1);
+        STORAGE.removeOneIngredient(Ingredient.OREGANO);
     }
 
     public void sauce() {
-        storage.changeIngredientQuantity(Ingredient.SAUCE,
-                storage.getIngredientQuantity(Ingredient.SAUCE) - 1);
+        STORAGE.removeOneIngredient(Ingredient.SAUCE);
     }
 }

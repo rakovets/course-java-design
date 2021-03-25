@@ -7,46 +7,50 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StorageRepository implements IngredientStorageRepository {
-    private static final Map<Ingredient, Integer> storage;
+    private static final Map<Ingredient, Integer> STORAGE;
 
     static {
-        storage = new HashMap<>();
+        STORAGE = new HashMap<>();
     }
 
     public StorageRepository() {
-        storage.put(Ingredient.CHEESE, 90);
-        storage.put(Ingredient.MEAT, 82);
-        storage.put(Ingredient.OLIVES, 5);
-        storage.put(Ingredient.OREGANO, 78);
-        storage.put(Ingredient.PEPPER, 53);
-        storage.put(Ingredient.SAUCE, 15);
-        storage.put(Ingredient.SAUSAGES, 8);
-        storage.put(Ingredient.TOMATOES, 60);
-        storage.put(Ingredient.THIN_DOUGH, 11);
-        storage.put(Ingredient.TRADITIONAL_DOUGH, 15);
+        STORAGE.put(Ingredient.CHEESE, 90);
+        STORAGE.put(Ingredient.MEAT, 82);
+        STORAGE.put(Ingredient.OLIVES, 5);
+        STORAGE.put(Ingredient.OREGANO, 78);
+        STORAGE.put(Ingredient.PEPPER, 53);
+        STORAGE.put(Ingredient.SAUCE, 15);
+        STORAGE.put(Ingredient.SAUSAGES, 8);
+        STORAGE.put(Ingredient.TOMATOES, 60);
+        STORAGE.put(Ingredient.THIN_DOUGH, 11);
+        STORAGE.put(Ingredient.TRADITIONAL_DOUGH, 15);
     }
 
     public Map<Ingredient, Integer> getStorage() {
-        return storage;
+        return STORAGE;
     }
 
     public int getIngredientQuantity(Ingredient ingredient) {
-        return storage.get(ingredient);
+        return STORAGE.get(ingredient);
     }
 
     public void changeIngredientQuantity(Pizza pizza) {
         pizza.getIngredients().forEach((ingredient, ingredientsForPizza) -> {
-            Integer oldQuantity = storage.get(ingredient);
+            Integer oldQuantity = STORAGE.get(ingredient);
             int newQuantity = oldQuantity - ingredientsForPizza;
-            storage.put(ingredient, newQuantity);
+            STORAGE.put(ingredient, newQuantity);
         });
     }
 
     public void changeIngredientQuantity(Ingredient ingredient, int newQuantity) {
-        storage.replace(ingredient, newQuantity);
+        STORAGE.replace(ingredient, newQuantity);
+    }
+
+    public void removeOneIngredient(Ingredient ingredient) {
+        changeIngredientQuantity(ingredient, getIngredientQuantity(ingredient) - 1);
     }
 
     public Iterable<Map.Entry<Ingredient, Integer>> entrySet() {
-        return storage.entrySet();
+        return STORAGE.entrySet();
     }
 }
