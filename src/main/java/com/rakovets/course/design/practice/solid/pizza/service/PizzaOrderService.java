@@ -2,7 +2,13 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
+import com.rakovets.course.design.practice.solid.pizza.model.Check;
+import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
+import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
+import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
+import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -12,16 +18,30 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class PizzaOrderService extends UserOrder {
+public class PizzaOrderService {
     private static final Map<Integer, Pizza> PIZZAS;
     private static final PizzaOrderViewConsole PIZZA_ORDER_VIEW;
     private static final Path FILE_PATH;
     private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(FILE_PATH)));
     private static final PizzaPriceService PIZZA_PRICE;
+    private static final CookService COOK;
+    private static final OrderRepository ORDER;
+    private static final CashPaymentService CASH_PAYMENT_SERVICE;
+    private static final CashPaymentViewConsole CASH_PAYMENT_VIEW_CONSOLE;
+    public static final Check CHECK;
+    private static final CheckViewConsole CHECK_VIEW;
+    private static final OnlinePaymentService ONLINE_PAYMENT_SERVICE;
+    private static final CardPaymentService CARD_PAYMENT_SERVICE;
+    private static final Map<Integer, PaymentMethod> PAYMENT_METHOD;
+    public int payment;
+    public char ch;
+    public int choice;
+    private static final CheckInt CHECK_INT;
 
     static {
         PIZZAS = new HashMap<>();
@@ -34,6 +54,21 @@ public class PizzaOrderService extends UserOrder {
         PIZZA_ORDER_VIEW = new PizzaOrderViewConsole();
         FILE_PATH = Paths.get("src", "main", "resources", "Orders.txt");
         PIZZA_PRICE = new PizzaPriceService();
+
+        COOK = new CookService();
+        CASH_PAYMENT_SERVICE = new CashPaymentService();
+        CASH_PAYMENT_VIEW_CONSOLE = new CashPaymentViewConsole();
+        CHECK = new Check(new ArrayList<>());
+        CHECK_VIEW = new CheckViewConsole();
+        ONLINE_PAYMENT_SERVICE = new OnlinePaymentService();
+        CARD_PAYMENT_SERVICE = new CardPaymentService();
+        ORDER = new OrderRepository(new ArrayList<>());
+        CHECK_INT = new CheckInt();
+
+        PAYMENT_METHOD = new HashMap<>();
+        PAYMENT_METHOD.put(1, PaymentMethod.CASH);
+        PAYMENT_METHOD.put(2, PaymentMethod.CARD);
+        PAYMENT_METHOD.put(3, PaymentMethod.ONLINE);
     }
 
     public PizzaOrderService() throws IOException {
