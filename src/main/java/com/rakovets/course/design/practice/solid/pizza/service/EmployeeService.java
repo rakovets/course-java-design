@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Employee;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
 import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.List;
@@ -8,15 +9,16 @@ import java.util.Scanner;
 
 public class EmployeeService {
     public double enteredDouble;
-    public int enteredInt;
     public int employeeID;
-    private static final Scanner scan;
-    private static final EmployeeViewConsole employeeView;
+    private static final Scanner SCAN;
+    private static final EmployeeViewConsole EMPLOYEE_VIEW;
     private final Employee employee = new Employee();
+    public static final CheckInt CHECK_INT;
 
     static {
-        scan = new Scanner(System.in);
-        employeeView = new EmployeeViewConsole();
+        SCAN = new Scanner(System.in);
+        EMPLOYEE_VIEW = new EmployeeViewConsole();
+        CHECK_INT = new CheckInt();
     }
 
     public EmployeeService(String firstName, String lastName, double salary) {
@@ -31,14 +33,14 @@ public class EmployeeService {
     public void salaryChange(double amount) {
         employee.salary = getSalary();
         employee.salary += amount;
-        employeeView.employeeSalaryChange();
+        EMPLOYEE_VIEW.employeeSalaryChange();
     }
 
     public void quitEmployee(List<EmployeeService> employeeList) {
-        employeeView.quitEmployee();
-        employeeID = checkInt();
+        EMPLOYEE_VIEW.quitEmployee();
+        employeeID = CHECK_INT.checkInt();
         if (employeeID > employeeList.size())
-            employeeView.notValidID();
+            EMPLOYEE_VIEW.notValidID();
         else
             employeeID -= 1;
         double amount = -employeeList.get(employeeID).getSalary();
@@ -46,41 +48,30 @@ public class EmployeeService {
     }
 
     public void getInfo(List<EmployeeService> employeeList) {
-        employeeView.employeeInfo();
-        employeeView.employeeDisplay(employeeList);
+        EMPLOYEE_VIEW.employeeInfo();
+        EMPLOYEE_VIEW.employeeDisplay(employeeList);
     }
 
     public void createNewEmployee(List<EmployeeService> employeeList) {
-        employeeView.employeeQuantity();
-        employeeID = checkInt();
+        EMPLOYEE_VIEW.employeeQuantity();
+        employeeID = CHECK_INT.checkInt();
         for (int i = 0; i < employeeID; i++) {
-            employeeView.employeeFirstName();
-            employee.firstName = scan.next();
-            employeeView.employeeLastName();
-            employee.lastName = scan.next();
-            employeeView.employeeSalary();
+            EMPLOYEE_VIEW.employeeFirstName();
+            employee.firstName = SCAN.next();
+            EMPLOYEE_VIEW.employeeLastName();
+            employee.lastName = SCAN.next();
+            EMPLOYEE_VIEW.employeeSalary();
             employee.salary = checkDouble();
             employeeList.add(new EmployeeService(employee.firstName, employee.lastName, employee.salary));
         }
     }
 
-    public int checkInt() {
-        do {
-            while (!scan.hasNextInt()) {
-                employeeView.invalidInput();
-                scan.next();
-            }
-            enteredInt = scan.nextInt();
-        } while (enteredInt <= 0);
-        return enteredInt;
-    }
-
     public double checkDouble() {
-        while (!scan.hasNextDouble()) {
-            employeeView.invalidInput();
-            scan.next();
+        while (!SCAN.hasNextDouble()) {
+            EMPLOYEE_VIEW.invalidInput();
+            SCAN.next();
         }
-        enteredDouble = scan.nextDouble();
+        enteredDouble = SCAN.nextDouble();
         return enteredDouble;
     }
 

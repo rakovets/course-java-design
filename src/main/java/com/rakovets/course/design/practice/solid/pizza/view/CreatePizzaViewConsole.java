@@ -9,16 +9,16 @@ import com.rakovets.course.design.practice.solid.pizza.service.*;
 import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-    private static final IngredientPriceService ingredientPrice;
-    private static final DoughException doughException;
-    private static final IngredientNumberException ingredientNumberException;
-    private static final PaymentChoiceException paymentChoiceException;
+    private static final IngredientPriceService INGREDIENT_PRICE;
+    private static final DoughException DOUGH_EXCEPTION;
+    private static final IngredientNumberException INGREDIENT_NUMBER_EXCEPTION;
+    private static final PaymentChoiceException PAYMENT_CHOICE_EXCEPTION;
 
     static {
-        ingredientPrice = new IngredientPriceService();
-        doughException = new DoughException();
-        ingredientNumberException = new IngredientNumberException();
-        paymentChoiceException = new PaymentChoiceException();
+        INGREDIENT_PRICE = new IngredientPriceService();
+        DOUGH_EXCEPTION = new DoughException();
+        INGREDIENT_NUMBER_EXCEPTION = new IngredientNumberException();
+        PAYMENT_CHOICE_EXCEPTION = new PaymentChoiceException();
     }
 
     public void greeting() {
@@ -47,57 +47,57 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
 
     public String orderThinDough() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.THIN_DOUGH +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceThinDoughIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceThinDoughIncludingVAT()) + "$";
     }
 
     public String orderTraditionalDough() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TRADITIONAL_DOUGH +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceTraditionalDoughIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT()) + "$";
     }
 
     public String orderCheese() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CHEESE +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceCheeseIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceCheeseIncludingVAT()) + "$";
     }
 
     public String orderMeat() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.MEAT +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceMeatIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceMeatIncludingVAT()) + "$";
     }
 
     public String orderSausages() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUSAGES +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceSausagesIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceSausagesIncludingVAT()) + "$";
     }
 
     public String orderOlives() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OLIVES +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceOlivesIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceOlivesIncludingVAT()) + "$";
     }
 
     public String orderTomatoes() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TOMATOES +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceTomatoesIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceTomatoesIncludingVAT()) + "$";
     }
 
     public String orderPepper() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.PEPPER +
-                "\t" + RoundUpService.roundUp(ingredientPrice.pricePepperIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.pricePepperIncludingVAT()) + "$";
     }
 
     public String orderOregano() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OREGANO +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceOreganoIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceOreganoIncludingVAT()) + "$";
     }
 
     public String orderSauce() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUCE +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceSauceIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceSauceIncludingVAT()) + "$";
     }
 
     public String orderCrust() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
-                "\t" + RoundUpService.roundUp(ingredientPrice.priceCrustIncludingVAT()) + "$";
+                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceCrustIncludingVAT()) + "$";
     }
 
     public void displayCaloriesThinDough() {
@@ -178,19 +178,15 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
         System.out.println("3. Online");
     }
 
-    public void invalidInput() {
-        System.out.println("Your input is invalid. You must enter a digit");
-    }
-
     public void doughException() {
-        System.out.println(doughException.toString());
+        System.out.println(DOUGH_EXCEPTION.toString());
     }
 
     public void ingredientNumberException() {
-        System.out.println(ingredientNumberException.toString());
+        System.out.println(INGREDIENT_NUMBER_EXCEPTION.toString());
     }
 
     public void paymentChoiceException() {
-        System.out.println(paymentChoiceException.toString());
+        System.out.println(PAYMENT_CHOICE_EXCEPTION.toString());
     }
 }

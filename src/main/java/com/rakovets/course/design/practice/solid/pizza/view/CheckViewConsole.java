@@ -10,6 +10,6 @@ public class CheckViewConsole implements CheckView {
     }
 
     public void displayCheckCreatePizza() {
-        CreatePizzaService.check.getItemsInCheck().forEach(System.out::println);
+        CreatePizzaService.CHECK.getItemsInCheck().forEach(System.out::println);
     }
 }

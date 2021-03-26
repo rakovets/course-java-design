@@ -132,10 +132,6 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
         System.out.println("3. Online");
     }
 
-    public void invalidInput() {
-        System.out.println("Your input is invalid. You must enter a digit");
-    }
-
     public void pizzaNumberException() {
         System.out.println(PIZZA_NUMBER_EXCEPTION.toString());
     }

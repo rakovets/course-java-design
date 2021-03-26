@@ -7,56 +7,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeController {
-    private static final EmployeeViewConsole employeeView;
-    private static final EmployeeService employeeService;
+    private static final EmployeeViewConsole EMPLOYEE_VIEW;
+    private static final EmployeeService EMPLOYEE_SERVICE;
     private static boolean programOn;
     public int userMenuOption;
     public int employeeID;
     public double amount;
-    private static final List<EmployeeService> employeeList;
+    private static final List<EmployeeService> EMPLOYEE_LIST;
 
     static {
-        employeeView = new EmployeeViewConsole();
-        employeeService = new EmployeeService();
+        EMPLOYEE_VIEW = new EmployeeViewConsole();
+        EMPLOYEE_SERVICE = new EmployeeService();
         programOn = true;
-        employeeList = new ArrayList<>();
+        EMPLOYEE_LIST = new ArrayList<>();
     }
 
     public void start() {
-        employeeService.createNewEmployee(employeeList);
-        employeeView.selectOption();
-        employeeView.operationsMenu();
+        EMPLOYEE_SERVICE.createNewEmployee(EMPLOYEE_LIST);
+        EMPLOYEE_VIEW.selectOption();
+        EMPLOYEE_VIEW.operationsMenu();
         while (programOn) {
-            employeeView.showMenu();
-            userMenuOption = employeeService.checkInt();
+            EMPLOYEE_VIEW.showMenu();
+            userMenuOption = EmployeeService.CHECK_INT.checkInt();
             switch (userMenuOption) {
                 case 1:
-                    employeeService.createNewEmployee(employeeList);
+                    EMPLOYEE_SERVICE.createNewEmployee(EMPLOYEE_LIST);
                     break;
                 case 2:
-                    employeeView.idForChangingSalary();
-                    employeeID = employeeService.checkInt();
-                    if (employeeID > employeeList.size()) {
-                        employeeView.notValidID();
+                    EMPLOYEE_VIEW.idForChangingSalary();
+                    employeeID = EmployeeService.CHECK_INT.checkInt();
+                    if (employeeID > EMPLOYEE_LIST.size()) {
+                        EMPLOYEE_VIEW.notValidID();
                         break;
                     } else {
                         employeeID -= 1;
-                        employeeView.changeSalary();
-                        amount = employeeService.checkDouble();
+                        EMPLOYEE_VIEW.changeSalary();
+                        amount = EMPLOYEE_SERVICE.checkDouble();
                     }
-                    employeeList.get(employeeID).salaryChange(amount);
+                    EMPLOYEE_LIST.get(employeeID).salaryChange(amount);
                     break;
                 case 3:
-                    employeeService.getInfo(employeeList);
+                    EMPLOYEE_SERVICE.getInfo(EMPLOYEE_LIST);
                     break;
                 case 4:
-                    employeeService.quitEmployee(employeeList);
+                    EMPLOYEE_SERVICE.quitEmployee(EMPLOYEE_LIST);
                     break;
                 case 5:
-                    employeeView.operationsMenu();
+                    EMPLOYEE_VIEW.operationsMenu();
                     break;
                 case 6:
-                    employeeView.exitProgram();
+                    EMPLOYEE_VIEW.exitProgram();
                     programOn = false;
                     break;
             }

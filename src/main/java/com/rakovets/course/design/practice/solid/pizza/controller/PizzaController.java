@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.controller;
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 import com.rakovets.course.design.practice.solid.pizza.service.SupplyService;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
 import com.rakovets.course.design.practice.solid.pizza.view.StarterViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewConsole;
 
@@ -10,27 +11,26 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class PizzaController {
-    private static final StarterViewConsole starterView;
+    private static final StarterViewConsole STARTER_VIEW;
     private final PizzaOrderService pizzaOrderService = new PizzaOrderService();
-    private static final CreatePizzaService createPizzaService;
-    private static final OrderStatisticsController orderStatisticsController;
-    private static final StorageUtilityViewConsole storageUtilityView;
-    private static final SupplyService supplyService;
-    private static final EmployeeController employeeController;
-    private static final Scanner scanner;
-    public int enteredInt;
+    private static final CreatePizzaService CREATE_PIZZA_SERVICE;
+    private static final OrderStatisticsController ORDER_STATISTICS_CONTROLLER;
+    private static final StorageUtilityViewConsole STORAGE_UTILITY_VIEW;
+    private static final SupplyService SUPPLY_SERVICE;
+    private static final EmployeeController EMPLOYEE_CONTROLLER;
     public int operationChoice;
     private static boolean programOn;
+    public static final CheckInt CHECK_INT;
 
     static {
-        starterView = new StarterViewConsole();
-        createPizzaService = new CreatePizzaService();
-        orderStatisticsController = new OrderStatisticsController();
-        storageUtilityView = new StorageUtilityViewConsole();
-        supplyService = new SupplyService();
-        employeeController = new EmployeeController();
-        scanner = new Scanner(System.in);
+        STARTER_VIEW = new StarterViewConsole();
+        CREATE_PIZZA_SERVICE = new CreatePizzaService();
+        ORDER_STATISTICS_CONTROLLER = new OrderStatisticsController();
+        STORAGE_UTILITY_VIEW = new StorageUtilityViewConsole();
+        SUPPLY_SERVICE = new SupplyService();
+        EMPLOYEE_CONTROLLER = new EmployeeController();
         programOn = true;
+        CHECK_INT = new CheckInt();
     }
 
     public PizzaController() throws IOException {
@@ -38,8 +38,8 @@ public class PizzaController {
 
     public void start() throws IOException {
         while (programOn) {
-            starterView.displayOperations();
-            operationChoice = checkInt();
+            STARTER_VIEW.displayOperations();
+            operationChoice = CHECK_INT.checkInt();
             switch (operationChoice) {
                 case 1:
                     pizzaOrderService.start();
@@ -48,35 +48,35 @@ public class PizzaController {
                     addChoiceQuestion();
                     break;
                 case 2:
-                    createPizzaService.start();
-                    createPizzaService.chooseDough();
-                    createPizzaService.chooseIngredients();
-                    createPizzaService.addIngredientsQuestion();
+                    CREATE_PIZZA_SERVICE.start();
+                    CREATE_PIZZA_SERVICE.chooseDough();
+                    CREATE_PIZZA_SERVICE.chooseIngredients();
+                    CREATE_PIZZA_SERVICE.addIngredientsQuestion();
                     addChoiceQuestion();
                     break;
                 case 3:
-                    orderStatisticsController.start();
+                    ORDER_STATISTICS_CONTROLLER.start();
                     addChoiceQuestion();
                     break;
                 case 4:
-                    storageUtilityView.displayStorage();
-                    storageUtilityView.showLackOfIngredients();
+                    STORAGE_UTILITY_VIEW.displayStorage();
+                    STORAGE_UTILITY_VIEW.showLackOfIngredients();
                     addChoiceQuestion();
                     break;
                 case 5:
-                    supplyService.start();
+                    SUPPLY_SERVICE.start();
                     addChoiceQuestion();
                     break;
                 case 6:
-                    employeeController.start();
+                    EMPLOYEE_CONTROLLER.start();
                     addChoiceQuestion();
                     break;
                 case 7:
-                    starterView.exitProgram();
+                    STARTER_VIEW.exitProgram();
                     programOn = false;
                     break;
                 default:
-                    starterView.noSuchOperation();
+                    STARTER_VIEW.noSuchOperation();
                     start();
                     break;
             }
@@ -84,22 +84,11 @@ public class PizzaController {
     }
 
     public void addChoiceQuestion() throws IOException {
-        starterView.chooseOtherOperations();
+        STARTER_VIEW.chooseOtherOperations();
         Scanner scan = new Scanner(System.in);
         char ch = scan.next().charAt(0);
         if (ch == 'Y' || ch == 'y') {
             start();
         }
-    }
-
-    public int checkInt() {
-        do {
-            while (!scanner.hasNextInt()) {
-                starterView.invalidInput();
-                scanner.next();
-            }
-            enteredInt = scanner.nextInt();
-        } while (enteredInt <= 0);
-        return enteredInt;
     }
 }

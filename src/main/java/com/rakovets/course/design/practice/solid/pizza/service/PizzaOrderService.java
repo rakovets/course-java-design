@@ -2,12 +2,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
-import com.rakovets.course.design.practice.solid.pizza.model.Check;
-import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
-import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
-import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
-import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
 import java.io.BufferedWriter;
@@ -17,31 +12,16 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class PizzaOrderService {
+public class PizzaOrderService extends UserOrder {
     private static final Map<Integer, Pizza> PIZZAS;
-    private static final CookService COOK;
-    private static final OrderRepository ORDER;
     private static final PizzaOrderViewConsole PIZZA_ORDER_VIEW;
-    public char ch;
     private static final Path FILE_PATH;
     private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(FILE_PATH)));
     private static final PizzaPriceService PIZZA_PRICE;
-    private static final CashPaymentService CASH_PAYMENT_SERVICE;
-    private static final CashPaymentViewConsole CASH_PAYMENT_VIEW_CONSOLE;
-    public static final Check CHECK;
-    private static final CheckViewConsole CHECK_VIEW;
-    private static final OnlinePaymentService ONLINE_PAYMENT_SERVICE;
-    private static final CardPaymentService CARD_PAYMENT_SERVICE;
-    private static final Map<Integer, PaymentMethod> PAYMENT_METHOD;
-    private static final Scanner SCANNER;
-    public int enteredInt;
-    public int pizzaMenu;
-    public int payment;
 
     static {
         PIZZAS = new HashMap<>();
@@ -51,23 +31,9 @@ public class PizzaOrderService {
         PIZZAS.put(4, Pizza.PEPPERONI);
         PIZZAS.put(5, Pizza.VEGETARIAN);
 
-        COOK = new CookService();
-        ORDER = new OrderRepository(new ArrayList<>());
         PIZZA_ORDER_VIEW = new PizzaOrderViewConsole();
         FILE_PATH = Paths.get("src", "main", "resources", "Orders.txt");
         PIZZA_PRICE = new PizzaPriceService();
-        CASH_PAYMENT_SERVICE = new CashPaymentService();
-        CASH_PAYMENT_VIEW_CONSOLE = new CashPaymentViewConsole();
-        CHECK = new Check(new ArrayList<>());
-        CHECK_VIEW = new CheckViewConsole();
-        ONLINE_PAYMENT_SERVICE = new OnlinePaymentService();
-        CARD_PAYMENT_SERVICE = new CardPaymentService();
-        SCANNER = new Scanner(System.in);
-
-        PAYMENT_METHOD = new HashMap<>();
-        PAYMENT_METHOD.put(1, PaymentMethod.CASH);
-        PAYMENT_METHOD.put(2, PaymentMethod.CARD);
-        PAYMENT_METHOD.put(3, PaymentMethod.ONLINE);
     }
 
     public PizzaOrderService() throws IOException {
@@ -79,9 +45,9 @@ public class PizzaOrderService {
 
     public void choosePizza() throws IOException {
         PIZZA_ORDER_VIEW.pizzaMenu();
-        pizzaMenu = checkInt();
+        choice = CHECK_INT.checkInt();
         try {
-            switch (PIZZAS.get(pizzaMenu)) {
+            switch (PIZZAS.get(choice)) {
                 case FOUR_CHEESE:
                     PIZZA_ORDER_VIEW.orderPizzaFourCheese();
                     PIZZA_ORDER_VIEW.displayInfoPizzaFourCheese();
@@ -240,7 +206,7 @@ public class PizzaOrderService {
     public void paymentChoice() {
         PIZZA_ORDER_VIEW.paymentChoice();
         try {
-            payment = checkInt();
+            payment = CHECK_INT.checkInt();
             switch (PAYMENT_METHOD.get(payment)) {
                 case CASH:
                     CHECK_VIEW.displayCheckPizzaOrder();
@@ -267,16 +233,5 @@ public class PizzaOrderService {
                 paymentChoice();
             }
         }
-    }
-
-    public int checkInt() {
-        do {
-            while (!SCANNER.hasNextInt()) {
-                PIZZA_ORDER_VIEW.invalidInput();
-                SCANNER.next();
-            }
-            enteredInt = SCANNER.nextInt();
-        } while (enteredInt <= 0);
-        return enteredInt;
     }
 }
