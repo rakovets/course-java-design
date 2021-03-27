@@ -3,10 +3,10 @@ package com.rakovets.course.design.practice.solid.pizza.view;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PinException;
 
 public class CardPaymentViewConsole implements CardPaymentView {
-    private static final PinException pinException;
+    private static final PinException PIN_EXCEPTION;
 
     static {
-        pinException = new PinException();
+        PIN_EXCEPTION = new PinException();
     }
 
     public void enterPIN() {
@@ -22,6 +22,6 @@ public class CardPaymentViewConsole implements CardPaymentView {
     }
 
     public void pinException() {
-        System.out.println(pinException.toString());
+        System.out.println(PIN_EXCEPTION.toString());
     }
 }

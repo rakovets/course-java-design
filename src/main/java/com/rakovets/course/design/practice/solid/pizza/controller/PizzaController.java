@@ -3,7 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.controller;
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 import com.rakovets.course.design.practice.solid.pizza.service.SupplyService;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.StarterViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewConsole;
 
@@ -12,28 +12,29 @@ import java.util.Scanner;
 
 public class PizzaController {
     private static final StarterViewConsole STARTER_VIEW;
-    private final PizzaOrderService pizzaOrderService = new PizzaOrderService();
-    private static final CreatePizzaService CREATE_PIZZA_SERVICE;
-    private static final OrderStatisticsController ORDER_STATISTICS_CONTROLLER;
+    private static final PizzaOrderService PIZZA_ORDER;
+    private static final CreatePizzaService CREATE_PIZZA;
+    private static final OrderStatisticsController ORDER_STATISTICS;
     private static final StorageUtilityViewConsole STORAGE_UTILITY_VIEW;
-    private static final SupplyService SUPPLY_SERVICE;
-    private static final EmployeeController EMPLOYEE_CONTROLLER;
+    private static final SupplyService SUPPLY;
+    private static final EmployeeController EMPLOYEE;
     public int operationChoice;
     private static boolean programOn;
-    public static final CheckInt CHECK_INT;
+    public static final CheckIntUtil CHECK_INT;
 
     static {
         STARTER_VIEW = new StarterViewConsole();
-        CREATE_PIZZA_SERVICE = new CreatePizzaService();
-        ORDER_STATISTICS_CONTROLLER = new OrderStatisticsController();
+        PIZZA_ORDER = new PizzaOrderService();
+        CREATE_PIZZA = new CreatePizzaService();
+        ORDER_STATISTICS = new OrderStatisticsController();
         STORAGE_UTILITY_VIEW = new StorageUtilityViewConsole();
-        SUPPLY_SERVICE = new SupplyService();
-        EMPLOYEE_CONTROLLER = new EmployeeController();
+        SUPPLY = new SupplyService();
+        EMPLOYEE = new EmployeeController();
         programOn = true;
-        CHECK_INT = new CheckInt();
+        CHECK_INT = new CheckIntUtil();
     }
 
-    public PizzaController() throws IOException {
+    public PizzaController() {
     }
 
     public void start() throws IOException {
@@ -42,20 +43,20 @@ public class PizzaController {
             operationChoice = CHECK_INT.checkInt();
             switch (operationChoice) {
                 case 1:
-                    pizzaOrderService.start();
-                    pizzaOrderService.choosePizza();
-                    pizzaOrderService.addPizzaQuestion();
+                    PIZZA_ORDER.start();
+                    PIZZA_ORDER.choosePizza();
+                    PIZZA_ORDER.addPizzaQuestion();
                     addChoiceQuestion();
                     break;
                 case 2:
-                    CREATE_PIZZA_SERVICE.start();
-                    CREATE_PIZZA_SERVICE.chooseDough();
-                    CREATE_PIZZA_SERVICE.chooseIngredients();
-                    CREATE_PIZZA_SERVICE.addIngredientsQuestion();
+                    CREATE_PIZZA.start();
+                    CREATE_PIZZA.chooseDough();
+                    CREATE_PIZZA.chooseIngredients();
+                    CREATE_PIZZA.addIngredientsQuestion();
                     addChoiceQuestion();
                     break;
                 case 3:
-                    ORDER_STATISTICS_CONTROLLER.start();
+                    ORDER_STATISTICS.start();
                     addChoiceQuestion();
                     break;
                 case 4:
@@ -64,11 +65,11 @@ public class PizzaController {
                     addChoiceQuestion();
                     break;
                 case 5:
-                    SUPPLY_SERVICE.start();
+                    SUPPLY.start();
                     addChoiceQuestion();
                     break;
                 case 6:
-                    EMPLOYEE_CONTROLLER.start();
+                    EMPLOYEE.start();
                     addChoiceQuestion();
                     break;
                 case 7:

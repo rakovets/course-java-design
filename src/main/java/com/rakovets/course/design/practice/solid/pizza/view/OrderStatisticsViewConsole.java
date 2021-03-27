@@ -8,14 +8,14 @@ import com.rakovets.course.design.practice.solid.pizza.service.PizzaCostService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaPriceService;
 
 public class OrderStatisticsViewConsole implements OrderStatisticsView {
-    private static final OrderStatisticsService orderStatisticsService;
-    private static final PizzaPriceService pizzaPriceService;
-    private static final OrderStatisticsException orderStatisticsException;
+    private static final OrderStatisticsService ORDER_STATISTICS;
+    private static final PizzaPriceService PIZZA_PRICE;
+    private static final OrderStatisticsException ORDER_STATISTICS_EXCEPTION;
 
     static {
-        orderStatisticsService = new OrderStatisticsService();
-        pizzaPriceService = new PizzaPriceService();
-        orderStatisticsException = new OrderStatisticsException();
+        ORDER_STATISTICS = new OrderStatisticsService();
+        PIZZA_PRICE = new PizzaPriceService();
+        ORDER_STATISTICS_EXCEPTION = new OrderStatisticsException();
     }
 
     public void enterFourCheese() {
@@ -25,12 +25,12 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
     public void displayFourCheese() {
         System.out.println("\nPizzas 'Four Cheese':");
         System.out.println("Number of sold pizzas: " + OrderStatisticsController.numberOfFourCheeseSold);
-        System.out.println("Revenue: " + orderStatisticsService.getRevenue(Pizza.FOUR_CHEESE,
+        System.out.println("Revenue: " + ORDER_STATISTICS.getRevenue(Pizza.FOUR_CHEESE,
                 OrderStatisticsController.numberOfFourCheeseSold,
-                pizzaPriceService.pricePizzaFourCheeseIncludingVAT()) + "$");
-        System.out.println("Profit: " + orderStatisticsService.getProfit(Pizza.FOUR_CHEESE,
+                PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()) + "$");
+        System.out.println("Profit: " + ORDER_STATISTICS.getProfit(Pizza.FOUR_CHEESE,
                 OrderStatisticsController.numberOfFourCheeseSold,
-                pizzaPriceService.pricePizzaFourCheeseIncludingVAT(),
+                PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT(),
                 PizzaCostService.getCostFourCheese()) + "$");
     }
 
@@ -41,12 +41,12 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
     public void displayMargherita() {
         System.out.println("\nPizzas 'Margherita':");
         System.out.println("Number of sold pizzas: " + OrderStatisticsController.numberOfMargheritaSold);
-        System.out.println("Revenue: " + orderStatisticsService.getRevenue(Pizza.MARGHERITA,
+        System.out.println("Revenue: " + ORDER_STATISTICS.getRevenue(Pizza.MARGHERITA,
                 OrderStatisticsController.numberOfMargheritaSold,
-                pizzaPriceService.pricePizzaMargheritaIncludingVAT()) + "$");
-        System.out.println("Profit: " + orderStatisticsService.getProfit(Pizza.MARGHERITA,
+                PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()) + "$");
+        System.out.println("Profit: " + ORDER_STATISTICS.getProfit(Pizza.MARGHERITA,
                 OrderStatisticsController.numberOfMargheritaSold,
-                pizzaPriceService.pricePizzaMargheritaIncludingVAT(),
+                PIZZA_PRICE.pricePizzaMargheritaIncludingVAT(),
                 PizzaCostService.getCostMargherita()) + "$");
     }
 
@@ -57,12 +57,12 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
     public void displayMeatDelight() {
         System.out.println("\nPizzas 'Meat Delight':");
         System.out.println("Number of sold pizzas: " + OrderStatisticsController.numberOfMeatDelightSold);
-        System.out.println("Revenue: " + orderStatisticsService.getRevenue(Pizza.MEAT_DELIGHT,
+        System.out.println("Revenue: " + ORDER_STATISTICS.getRevenue(Pizza.MEAT_DELIGHT,
                 OrderStatisticsController.numberOfMeatDelightSold,
-                pizzaPriceService.pricePizzaMeatDelightIncludingVAT()) + "$");
-        System.out.println("Profit: " + orderStatisticsService.getProfit(Pizza.MEAT_DELIGHT,
+                PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()) + "$");
+        System.out.println("Profit: " + ORDER_STATISTICS.getProfit(Pizza.MEAT_DELIGHT,
                 OrderStatisticsController.numberOfMeatDelightSold,
-                pizzaPriceService.pricePizzaMeatDelightIncludingVAT(),
+                PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT(),
                 PizzaCostService.getCostMeatDelight()) + "$");
     }
 
@@ -73,12 +73,12 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
     public void displayPepperoni() {
         System.out.println("\nPizzas 'Pepperoni':");
         System.out.println("Number of sold pizzas: " + OrderStatisticsController.numberOfPepperoniSold);
-        System.out.println("Revenue: " + orderStatisticsService.getRevenue(Pizza.PEPPERONI,
+        System.out.println("Revenue: " + ORDER_STATISTICS.getRevenue(Pizza.PEPPERONI,
                 OrderStatisticsController.numberOfPepperoniSold,
-                pizzaPriceService.pricePizzaPepperoniIncludingVAT()) + "$");
-        System.out.println("Profit: " + orderStatisticsService.getProfit(Pizza.PEPPERONI,
+                PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()) + "$");
+        System.out.println("Profit: " + ORDER_STATISTICS.getProfit(Pizza.PEPPERONI,
                 OrderStatisticsController.numberOfPepperoniSold,
-                pizzaPriceService.pricePizzaPepperoniIncludingVAT(),
+                PIZZA_PRICE.pricePizzaPepperoniIncludingVAT(),
                 PizzaCostService.getCostPepperoni()) + "$");
     }
 
@@ -89,16 +89,29 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
     public void displayVegetarian() {
         System.out.println("\nPizzas 'Vegetarian':");
         System.out.println("Number of sold pizzas: " + OrderStatisticsController.numberOfVegetarianSold);
-        System.out.println("Revenue: " + orderStatisticsService.getRevenue(Pizza.VEGETARIAN,
+        System.out.println("Revenue: " + ORDER_STATISTICS.getRevenue(Pizza.VEGETARIAN,
                 OrderStatisticsController.numberOfVegetarianSold,
-                pizzaPriceService.pricePizzaVegetarianIncludingVAT()) + "$");
-        System.out.println("Profit: " + orderStatisticsService.getProfit(Pizza.VEGETARIAN,
+                PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()) + "$");
+        System.out.println("Profit: " + ORDER_STATISTICS.getProfit(Pizza.VEGETARIAN,
                 OrderStatisticsController.numberOfVegetarianSold,
-                pizzaPriceService.pricePizzaVegetarianIncludingVAT(),
+                PIZZA_PRICE.pricePizzaVegetarianIncludingVAT(),
                 PizzaCostService.getCostVegetarian()) + "$");
     }
 
     public void orderStatisticsException() {
-        System.out.println(orderStatisticsException.toString());
+        System.out.println(ORDER_STATISTICS_EXCEPTION.toString());
+    }
+
+    public void totalPizzasSold() {
+        System.out.println();
+        System.out.println("Total pizzas sold: " + ORDER_STATISTICS.totalPizzasSold());
+    }
+
+    public void totalRevenue() {
+        System.out.println("Total revenue is " + ORDER_STATISTICS.totalRevenue() + "$");
+    }
+
+    public void averageCheck() {
+        System.out.println("Average check is " + ORDER_STATISTICS.averageCheck() + "$");
     }
 }

@@ -2,7 +2,7 @@ package com.rakovets.course.design.practice.solid.pizza.util;
 
 import java.util.Scanner;
 
-public class CheckInt {
+public class CheckIntUtil {
     public static final Scanner SCANNER;
     public int enteredInt;
 

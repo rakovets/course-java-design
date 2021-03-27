@@ -8,19 +8,19 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class OnlinePaymentService {
-    private static final OnlinePaymentViewConsole onlinePaymentView;
+    private static final OnlinePaymentViewConsole ONLINE_PAYMENT_VIEW;
 
     static {
-        onlinePaymentView = new OnlinePaymentViewConsole();
+        ONLINE_PAYMENT_VIEW = new OnlinePaymentViewConsole();
     }
 
     public void addCustomer() {
         Scanner scan = new Scanner(System.in);
-        onlinePaymentView.firstName();
+        ONLINE_PAYMENT_VIEW.firstName();
         Customer.firstName = scan.next();
-        onlinePaymentView.lastName();
+        ONLINE_PAYMENT_VIEW.lastName();
         Customer.lastName = scan.next();
-        onlinePaymentView.cardNumber();
+        ONLINE_PAYMENT_VIEW.cardNumber();
         enterCardNumber();
     }
 
@@ -34,18 +34,18 @@ public class OnlinePaymentService {
                 count++;
             }
             if (count != 16) {
-                onlinePaymentView.invalidInput();
-                onlinePaymentView.cardNumber();
+                ONLINE_PAYMENT_VIEW.invalidInput();
+                ONLINE_PAYMENT_VIEW.cardNumber();
                 enterCardNumber();
             } else {
-                onlinePaymentView.displayPayment();
+                ONLINE_PAYMENT_VIEW.displayPayment();
             }
         } catch (InputMismatchException e) {
             try {
                 throw new CardException();
             } catch (CardException ex) {
-                onlinePaymentView.cardException();
-                onlinePaymentView.cardNumber();
+                ONLINE_PAYMENT_VIEW.cardException();
+                ONLINE_PAYMENT_VIEW.cardNumber();
                 enterCardNumber();
             }
         }

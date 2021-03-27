@@ -8,29 +8,30 @@ import java.util.Scanner;
 
 public class CashPaymentService {
     public static double fullAmount;
-    private static final CashPaymentViewConsole cashPaymentServiceView;
+    private static final CashPaymentViewConsole CASH_PAYMENT_VIEW;
 
     static {
-        cashPaymentServiceView = new CashPaymentViewConsole();
+        CASH_PAYMENT_VIEW = new CashPaymentViewConsole();
     }
 
     public double countChange(double amountToPay) {
         if (fullAmount < amountToPay) {
-            cashPaymentServiceView.notEnoughMoney();
+            CASH_PAYMENT_VIEW.notEnoughMoney();
+            getFullAmount();
         }
         return RoundUpService.roundUp(fullAmount - amountToPay);
     }
 
     public void getFullAmount() {
         try {
-            cashPaymentServiceView.fullAmountView();
+            CASH_PAYMENT_VIEW.fullAmountView();
             Scanner scan = new Scanner(System.in);
             fullAmount = scan.nextDouble();
         } catch (InputMismatchException e) {
             try {
                 throw new CashAmountException();
             } catch (CashAmountException ex) {
-                cashPaymentServiceView.cashAmountException();
+                CASH_PAYMENT_VIEW.cashAmountException();
                 getFullAmount();
             }
         }

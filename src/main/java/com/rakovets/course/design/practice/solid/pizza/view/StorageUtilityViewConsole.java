@@ -6,20 +6,20 @@ import com.rakovets.course.design.practice.solid.pizza.repository.StorageReposit
 import java.util.Map;
 
 public class StorageUtilityViewConsole implements StorageUtilityView {
-    private static final StorageRepository storage;
+    private static final StorageRepository STORAGE;
 
     static {
-        storage = new StorageRepository();
+        STORAGE = new StorageRepository();
     }
 
     public void displayStorage() {
-        for (Map.Entry<Ingredient, Integer> entry : storage.entrySet()) {
+        for (Map.Entry<Ingredient, Integer> entry : STORAGE.entrySet()) {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
     }
 
     public void showLackOfIngredients() {
-        for (Map.Entry<Ingredient, Integer> entry : storage.entrySet()) {
+        for (Map.Entry<Ingredient, Integer> entry : STORAGE.entrySet()) {
             Integer value = entry.getValue();
             if (value <= 10)
                 System.out.println("Ingredient " + entry.getKey() + " is running out, quantity is " + entry.getValue());

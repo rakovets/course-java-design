@@ -3,7 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.SupplierNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 import com.rakovets.course.design.practice.solid.pizza.repository.StorageRepository;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.SupplyServiceViewConsole;
 
 import java.util.HashMap;
@@ -15,7 +15,7 @@ public class SupplyService {
     private static final StorageRepository STORAGE;
     private static final SupplyServiceViewConsole SUPPLY_SERVICE_VIEW;
     public int supplierChoice;
-    public static final CheckInt CHECK_INT;
+    public static final CheckIntUtil CHECK_INT;
 
     static {
         SUPPLIERS = new HashMap<>();
@@ -30,7 +30,7 @@ public class SupplyService {
 
         STORAGE = new StorageRepository();
         SUPPLY_SERVICE_VIEW = new SupplyServiceViewConsole();
-        CHECK_INT = new CheckInt();
+        CHECK_INT = new CheckIntUtil();
     }
 
     public void start() {

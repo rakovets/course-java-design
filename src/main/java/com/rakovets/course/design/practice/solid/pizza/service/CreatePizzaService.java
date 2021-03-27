@@ -8,7 +8,7 @@ import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.repository.IngredientCaloriesRepository;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
@@ -26,17 +26,17 @@ public class CreatePizzaService {
     private static final IngredientCaloriesRepository INGREDIENT_CALORIES;
     private static final CookService COOK;
     private static final OrderRepository ORDER;
-    private static final CashPaymentService CASH_PAYMENT_SERVICE;
-    private static final CashPaymentViewConsole CASH_PAYMENT_VIEW_CONSOLE;
+    private static final CashPaymentService CASH_PAYMENT;
+    private static final CashPaymentViewConsole CASH_PAYMENT_VIEW;
     public static final Check CHECK;
     private static final CheckViewConsole CHECK_VIEW;
-    private static final OnlinePaymentService ONLINE_PAYMENT_SERVICE;
-    private static final CardPaymentService CARD_PAYMENT_SERVICE;
+    private static final OnlinePaymentService ONLINE_PAYMENT;
+    private static final CardPaymentService CARD_PAYMENT;
     private static final Map<Integer, PaymentMethod> PAYMENT_METHOD;
     public int payment;
     public char ch;
     public int choice;
-    private static final CheckInt CHECK_INT;
+    private static final CheckIntUtil CHECK_INT;
 
     static {
         DOUGH = new HashMap<>();
@@ -58,14 +58,14 @@ public class CreatePizzaService {
         INGREDIENT_PRICE = new IngredientPriceService();
         INGREDIENT_CALORIES = new IngredientCaloriesRepository(new ArrayList<>());
         COOK = new CookService();
-        CASH_PAYMENT_SERVICE = new CashPaymentService();
-        CASH_PAYMENT_VIEW_CONSOLE = new CashPaymentViewConsole();
+        CASH_PAYMENT = new CashPaymentService();
+        CASH_PAYMENT_VIEW = new CashPaymentViewConsole();
         CHECK = new Check(new ArrayList<>());
         CHECK_VIEW = new CheckViewConsole();
-        ONLINE_PAYMENT_SERVICE = new OnlinePaymentService();
-        CARD_PAYMENT_SERVICE = new CardPaymentService();
+        ONLINE_PAYMENT = new OnlinePaymentService();
+        CARD_PAYMENT = new CardPaymentService();
         ORDER = new OrderRepository(new ArrayList<>());
-        CHECK_INT = new CheckInt();
+        CHECK_INT = new CheckIntUtil();
 
         PAYMENT_METHOD = new HashMap<>();
         PAYMENT_METHOD.put(1, PaymentMethod.CASH);
@@ -207,7 +207,7 @@ public class CreatePizzaService {
     }
 
     public double getChange() {
-        return CASH_PAYMENT_SERVICE.countChange(totalOrder());
+        return CASH_PAYMENT.countChange(totalOrder());
     }
 
     public void addIngredientsQuestion() {
@@ -230,18 +230,18 @@ public class CreatePizzaService {
                 case CASH:
                     CHECK_VIEW.displayCheckCreatePizza();
                     displayTotalOrder();
-                    CASH_PAYMENT_SERVICE.getFullAmount();
-                    CASH_PAYMENT_VIEW_CONSOLE.getChangeCreatePizza();
+                    CASH_PAYMENT.getFullAmount();
+                    CASH_PAYMENT_VIEW.getChangeCreatePizza();
                     break;
                 case CARD:
                     CHECK_VIEW.displayCheckCreatePizza();
                     displayTotalOrder();
-                    CARD_PAYMENT_SERVICE.enterPIN();
+                    CARD_PAYMENT.enterPIN();
                     break;
                 case ONLINE:
                     CHECK_VIEW.displayCheckCreatePizza();
                     displayTotalOrder();
-                    ONLINE_PAYMENT_SERVICE.addCustomer();
+                    ONLINE_PAYMENT.addCustomer();
                     break;
             }
         } catch (NullPointerException e) {

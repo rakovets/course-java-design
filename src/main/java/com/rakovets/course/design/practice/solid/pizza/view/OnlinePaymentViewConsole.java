@@ -4,10 +4,10 @@ import com.rakovets.course.design.practice.solid.pizza.exceptions.CardException;
 import com.rakovets.course.design.practice.solid.pizza.model.Customer;
 
 public class OnlinePaymentViewConsole implements OnlinePaymentView {
-    private static final CardException cardException;
+    private static final CardException CARD_EXCEPTION;
 
     static {
-        cardException = new CardException();
+        CARD_EXCEPTION = new CardException();
     }
 
     public void firstName() {
@@ -31,6 +31,6 @@ public class OnlinePaymentViewConsole implements OnlinePaymentView {
     }
 
     public void cardException() {
-        System.out.println(cardException.toString());
+        System.out.println(CARD_EXCEPTION.toString());
     }
 }

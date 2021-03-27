@@ -6,14 +6,14 @@ import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaServic
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 
 public class CashPaymentViewConsole implements CashPaymentView {
-    private static final PizzaOrderService pizzaOrderService;
-    private static final CreatePizzaService createPizzaService;
-    private static final CashAmountException cashAmountException;
+    private static final PizzaOrderService PIZZA_ORDER;
+    private static final CreatePizzaService CREATE_PIZZA;
+    private static final CashAmountException CASH_AMOUNT_EXCEPTION;
 
     static {
-        pizzaOrderService = new PizzaOrderService();
-        createPizzaService = new CreatePizzaService();
-        cashAmountException = new CashAmountException();
+        PIZZA_ORDER = new PizzaOrderService();
+        CREATE_PIZZA = new CreatePizzaService();
+        CASH_AMOUNT_EXCEPTION = new CashAmountException();
     }
 
     public void fullAmountView() {
@@ -21,15 +21,15 @@ public class CashPaymentViewConsole implements CashPaymentView {
     }
 
     public void getChangePizzaOrder() {
-        if (pizzaOrderService.getChange() >= 0)
+        if (PIZZA_ORDER.getChange() >= 0)
             System.out.println("Your change from " + CashPaymentService.fullAmount + "$ is "
-                    + pizzaOrderService.getChange() + "$");
+                    + PIZZA_ORDER.getChange() + "$");
     }
 
     public void getChangeCreatePizza() {
-        if (createPizzaService.getChange() >= 0)
+        if (CREATE_PIZZA.getChange() >= 0)
             System.out.println("Your change from " + CashPaymentService.fullAmount + "$ is "
-                    + createPizzaService.getChange() + "$");
+                    + CREATE_PIZZA.getChange() + "$");
     }
 
     public void notEnoughMoney() {
@@ -37,6 +37,6 @@ public class CashPaymentViewConsole implements CashPaymentView {
     }
 
     public void cashAmountException() {
-        System.out.println(cashAmountException.toString());
+        System.out.println(CASH_AMOUNT_EXCEPTION.toString());
     }
 }

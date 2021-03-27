@@ -1,7 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Employee;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckInt;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.List;
@@ -13,12 +13,12 @@ public class EmployeeService {
     private static final Scanner SCAN;
     private static final EmployeeViewConsole EMPLOYEE_VIEW;
     private final Employee employee = new Employee();
-    public static final CheckInt CHECK_INT;
+    public static final CheckIntUtil CHECK_INT;
 
     static {
         SCAN = new Scanner(System.in);
         EMPLOYEE_VIEW = new EmployeeViewConsole();
-        CHECK_INT = new CheckInt();
+        CHECK_INT = new CheckIntUtil();
     }
 
     public EmployeeService(String firstName, String lastName, double salary) {
