@@ -11,11 +11,7 @@ import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConso
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.PizzaOrderViewConsole;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,8 +22,6 @@ import java.util.Scanner;
 public class PizzaOrderService {
     private static final Map<Integer, Pizza> PIZZAS;
     private static final PizzaOrderViewConsole PIZZA_ORDER_VIEW;
-    private static final Path FILE_PATH;
-    private final BufferedWriter writer = new BufferedWriter(new FileWriter(String.valueOf(FILE_PATH)));
     private static final PizzaPriceService PIZZA_PRICE;
     private static final CookService COOK;
     private static final OrderRepository ORDER;
@@ -52,7 +46,6 @@ public class PizzaOrderService {
         PIZZAS.put(5, Pizza.VEGETARIAN);
 
         PIZZA_ORDER_VIEW = new PizzaOrderViewConsole();
-        FILE_PATH = Paths.get("src", "main", "resources", "Orders.txt");
         PIZZA_PRICE = new PizzaPriceService();
 
         COOK = new CookService();
@@ -78,7 +71,7 @@ public class PizzaOrderService {
         PIZZA_ORDER_VIEW.greeting();
     }
 
-    public void choosePizza() throws IOException {
+    public void choosePizza() {
         PIZZA_ORDER_VIEW.pizzaMenu();
         choice = CHECK_INT.checkInt();
         try {
@@ -89,11 +82,6 @@ public class PizzaOrderService {
                     COOK.pizzaFourCheese();
                     CHECK.add(PIZZA_ORDER_VIEW.orderPizzaFourCheese());
                     ORDER.add(PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
-                    writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
-                            .append(String.valueOf(Pizza.FOUR_CHEESE)).append("\t")
-                            .append(String.valueOf(RoundUpService.roundUp(PIZZA_PRICE
-                                    .pricePizzaFourCheeseIncludingVAT()))).append("$");
-                    writer.append('\n');
                     break;
                 case MARGHERITA:
                     PIZZA_ORDER_VIEW.orderPizzaMargherita();
@@ -101,11 +89,6 @@ public class PizzaOrderService {
                     COOK.pizzaMargherita();
                     CHECK.add(PIZZA_ORDER_VIEW.orderPizzaMargherita());
                     ORDER.add(PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
-                    writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
-                            .append(String.valueOf(Pizza.MARGHERITA)).append("\t")
-                            .append(String.valueOf(RoundUpService.roundUp(PIZZA_PRICE
-                                    .pricePizzaMargheritaIncludingVAT()))).append("$");
-                    writer.append('\n');
                     break;
                 case MEAT_DELIGHT:
                     PIZZA_ORDER_VIEW.orderPizzaMeatDelight();
@@ -113,11 +96,6 @@ public class PizzaOrderService {
                     COOK.pizzaMeatDelight();
                     CHECK.add(PIZZA_ORDER_VIEW.orderPizzaMeatDelight());
                     ORDER.add(PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
-                    writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
-                            .append(String.valueOf(Pizza.MEAT_DELIGHT)).append("\t")
-                            .append(String.valueOf(RoundUpService.roundUp(PIZZA_PRICE
-                                    .pricePizzaMeatDelightIncludingVAT()))).append("$");
-                    writer.append('\n');
                     break;
                 case PEPPERONI:
                     PIZZA_ORDER_VIEW.orderPizzaPepperoni();
@@ -125,11 +103,6 @@ public class PizzaOrderService {
                     COOK.pizzaPepperoni();
                     CHECK.add(PIZZA_ORDER_VIEW.orderPizzaPepperoni());
                     ORDER.add(PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
-                    writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
-                            .append(String.valueOf(Pizza.PEPPERONI)).append("\t")
-                            .append(String.valueOf(RoundUpService.roundUp(PIZZA_PRICE
-                                    .pricePizzaPepperoniIncludingVAT()))).append("$");
-                    writer.append('\n');
                     break;
                 case VEGETARIAN:
                     PIZZA_ORDER_VIEW.orderPizzaVegetarian();
@@ -137,11 +110,6 @@ public class PizzaOrderService {
                     COOK.pizzaVegetarian();
                     CHECK.add(PIZZA_ORDER_VIEW.orderPizzaVegetarian());
                     ORDER.add(PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
-                    writer.append(DateFormatService.localDatePattern(LocalDateTime.now())).append("\t")
-                            .append(String.valueOf(Pizza.VEGETARIAN)).append("\t")
-                            .append(String.valueOf(RoundUpService.roundUp(PIZZA_PRICE
-                                    .pricePizzaVegetarianIncludingVAT()))).append("$");
-                    writer.append('\n');
                     break;
             }
         } catch (NullPointerException e) {
@@ -156,7 +124,6 @@ public class PizzaOrderService {
         discountForThreeAndMoreItems();
         discountForOrderOnSpecificDay();
         amountToPay(ORDER.totalOrder());
-        writer.flush();
     }
 
     public void totalOrder() {
@@ -238,7 +205,8 @@ public class PizzaOrderService {
         return CASH_PAYMENT_SERVICE.countChange(amountToPay(ORDER.totalOrder()));
     }
 
-    public void paymentChoice() {
+    public void paymentChoice() throws IOException {
+        CHECK.checkInFile();
         PIZZA_ORDER_VIEW.paymentChoice();
         try {
             payment = CHECK_INT.checkInt();
