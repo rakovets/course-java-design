@@ -1,6 +1,5 @@
 package com.rakovets.course.design.practice.solid.pizza;
 
-import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 import org.junit.jupiter.api.Test;
@@ -242,36 +241,6 @@ public class PizzaTests {
                 ORDER_STATISTICS.getProfit(Pizza.VEGETARIAN, 100,
                         PIZZA_PRICE.pricePizzaVegetarianIncludingVAT(),
                         PizzaCostService.getCostVegetarian()));
-    }
-
-    @Test
-    void totalPizzasSold_OrderStatisticsService() {
-        OrderStatisticsController.numberOfFourCheeseSold = 100;
-        OrderStatisticsController.numberOfMargheritaSold = 100;
-        OrderStatisticsController.numberOfMeatDelightSold = 100;
-        OrderStatisticsController.numberOfPepperoniSold = 100;
-        OrderStatisticsController.numberOfVegetarianSold = 100;
-        assertEquals(500, ORDER_STATISTICS.totalPizzasSold());
-    }
-
-    @Test
-    void totalRevenue_OrderStatisticsService() {
-        OrderStatisticsController.numberOfFourCheeseSold = 100;
-        OrderStatisticsController.numberOfMargheritaSold = 100;
-        OrderStatisticsController.numberOfMeatDelightSold = 100;
-        OrderStatisticsController.numberOfPepperoniSold = 100;
-        OrderStatisticsController.numberOfVegetarianSold = 100;
-        assertEquals(14788.8, ORDER_STATISTICS.totalRevenue());
-    }
-
-    @Test
-    void averageCheck_OrderStatisticsService() {
-        OrderStatisticsController.numberOfFourCheeseSold = 100;
-        OrderStatisticsController.numberOfMargheritaSold = 100;
-        OrderStatisticsController.numberOfMeatDelightSold = 100;
-        OrderStatisticsController.numberOfPepperoniSold = 100;
-        OrderStatisticsController.numberOfVegetarianSold = 100;
-        assertEquals(29.58, ORDER_STATISTICS.averageCheck());
     }
 
     @Test

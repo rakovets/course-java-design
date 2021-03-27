@@ -5,23 +5,26 @@ import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsSe
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaPriceService;
 import com.rakovets.course.design.practice.solid.pizza.view.OrderStatisticsViewConsole;
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class OrderStatisticsController {
-    public static int numberOfFourCheeseSold;
-    public static int numberOfMargheritaSold;
-    public static int numberOfMeatDelightSold;
-    public static int numberOfPepperoniSold;
-    public static int numberOfVegetarianSold;
+    public int numberOfFourCheeseSold;
+    public int numberOfMargheritaSold;
+    public int numberOfMeatDelightSold;
+    public int numberOfPepperoniSold;
+    public int numberOfVegetarianSold;
     private static final OrderStatisticsViewConsole ORDER_STATISTICS_VIEW;
-    private static final PizzaPriceService PRICE_SERVICE;
     private static final OrderStatisticsService ORDER_STATISTICS;
+    public static final Map<Integer, Double> soldPizzas = new HashMap<>();
+    private static final PizzaPriceService PIZZA_PRICE;
 
     static {
         ORDER_STATISTICS_VIEW = new OrderStatisticsViewConsole();
-        PRICE_SERVICE = new PizzaPriceService();
         ORDER_STATISTICS = new OrderStatisticsService();
+        PIZZA_PRICE = new PizzaPriceService();
     }
 
     public void start() {
@@ -29,19 +32,19 @@ public class OrderStatisticsController {
             Scanner scan = new Scanner(System.in);
             ORDER_STATISTICS_VIEW.enterFourCheese();
             numberOfFourCheeseSold = scan.nextInt();
+            soldPizzas.put(numberOfFourCheeseSold, PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
             ORDER_STATISTICS_VIEW.enterMargherita();
             numberOfMargheritaSold = scan.nextInt();
+            soldPizzas.put(numberOfMargheritaSold, PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
             ORDER_STATISTICS_VIEW.enterMeatDelight();
             numberOfMeatDelightSold = scan.nextInt();
+            soldPizzas.put(numberOfMeatDelightSold, PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
             ORDER_STATISTICS_VIEW.enterPepperoni();
             numberOfPepperoniSold = scan.nextInt();
+            soldPizzas.put(numberOfPepperoniSold, PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
             ORDER_STATISTICS_VIEW.enterVegetarian();
             numberOfVegetarianSold = scan.nextInt();
-            ORDER_STATISTICS_VIEW.displayFourCheese();
-            ORDER_STATISTICS_VIEW.displayMargherita();
-            ORDER_STATISTICS_VIEW.displayMeatDelight();
-            ORDER_STATISTICS_VIEW.displayPepperoni();
-            ORDER_STATISTICS_VIEW.displayVegetarian();
+            soldPizzas.put(numberOfVegetarianSold, PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
             ORDER_STATISTICS_VIEW.totalPizzasSold();
             ORDER_STATISTICS.totalPizzasSold();
             ORDER_STATISTICS.totalRevenue();

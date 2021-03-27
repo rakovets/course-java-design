@@ -4,11 +4,6 @@ import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatistic
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 
 public class OrderStatisticsService {
-    private static final PizzaPriceService PIZZA_PRICE;
-
-    static {
-        PIZZA_PRICE = new PizzaPriceService();
-    }
 
     public int getNumberOfPizzasSold(Pizza pizza, int numberOfPizzasSold) {
         return numberOfPizzasSold;
@@ -25,24 +20,19 @@ public class OrderStatisticsService {
     }
 
     public int totalPizzasSold() {
-        return OrderStatisticsController.numberOfFourCheeseSold +
-                OrderStatisticsController.numberOfMargheritaSold +
-                OrderStatisticsController.numberOfMeatDelightSold +
-                OrderStatisticsController.numberOfPepperoniSold +
-                OrderStatisticsController.numberOfVegetarianSold;
+        return OrderStatisticsController.soldPizzas
+                .keySet()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .reduce(0, Integer::sum);
     }
 
     public double totalRevenue() {
-        return RoundUpService.roundUp(OrderStatisticsController.numberOfFourCheeseSold *
-                PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT() +
-                OrderStatisticsController.numberOfMargheritaSold *
-                        PIZZA_PRICE.pricePizzaMargheritaIncludingVAT() +
-                OrderStatisticsController.numberOfMeatDelightSold *
-                        PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT() +
-                OrderStatisticsController.numberOfPepperoniSold *
-                        PIZZA_PRICE.pricePizzaPepperoniIncludingVAT() +
-                OrderStatisticsController.numberOfVegetarianSold *
-                        PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
+        return OrderStatisticsController.soldPizzas
+                .entrySet()
+                .stream()
+                .mapToInt((e) -> (int) (e.getKey() * e.getValue()))
+                .sum();
     }
 
     public double averageCheck() {
