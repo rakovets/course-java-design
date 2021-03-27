@@ -18,13 +18,14 @@ public class OrderStatisticsController {
     public int numberOfVegetarianSold;
     private static final OrderStatisticsViewConsole ORDER_STATISTICS_VIEW;
     private static final OrderStatisticsService ORDER_STATISTICS;
-    public static final Map<Integer, Double> soldPizzas = new HashMap<>();
+    public static final Map<Integer, Double> SOLD_PIZZAS;
     private static final PizzaPriceService PIZZA_PRICE;
 
     static {
         ORDER_STATISTICS_VIEW = new OrderStatisticsViewConsole();
         ORDER_STATISTICS = new OrderStatisticsService();
         PIZZA_PRICE = new PizzaPriceService();
+        SOLD_PIZZAS = new HashMap<>();
     }
 
     public void start() {
@@ -32,19 +33,19 @@ public class OrderStatisticsController {
             Scanner scan = new Scanner(System.in);
             ORDER_STATISTICS_VIEW.enterFourCheese();
             numberOfFourCheeseSold = scan.nextInt();
-            soldPizzas.put(numberOfFourCheeseSold, PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
+            SOLD_PIZZAS.put(numberOfFourCheeseSold, PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
             ORDER_STATISTICS_VIEW.enterMargherita();
             numberOfMargheritaSold = scan.nextInt();
-            soldPizzas.put(numberOfMargheritaSold, PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
+            SOLD_PIZZAS.put(numberOfMargheritaSold, PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
             ORDER_STATISTICS_VIEW.enterMeatDelight();
             numberOfMeatDelightSold = scan.nextInt();
-            soldPizzas.put(numberOfMeatDelightSold, PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
+            SOLD_PIZZAS.put(numberOfMeatDelightSold, PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
             ORDER_STATISTICS_VIEW.enterPepperoni();
             numberOfPepperoniSold = scan.nextInt();
-            soldPizzas.put(numberOfPepperoniSold, PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
+            SOLD_PIZZAS.put(numberOfPepperoniSold, PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
             ORDER_STATISTICS_VIEW.enterVegetarian();
             numberOfVegetarianSold = scan.nextInt();
-            soldPizzas.put(numberOfVegetarianSold, PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
+            SOLD_PIZZAS.put(numberOfVegetarianSold, PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
             ORDER_STATISTICS_VIEW.totalPizzasSold();
             ORDER_STATISTICS.totalPizzasSold();
             ORDER_STATISTICS.totalRevenue();

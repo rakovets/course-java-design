@@ -20,7 +20,7 @@ public class OrderStatisticsService {
     }
 
     public int totalPizzasSold() {
-        return OrderStatisticsController.soldPizzas
+        return OrderStatisticsController.SOLD_PIZZAS
                 .keySet()
                 .stream()
                 .mapToInt(Integer::intValue)
@@ -28,11 +28,11 @@ public class OrderStatisticsService {
     }
 
     public double totalRevenue() {
-        return OrderStatisticsController.soldPizzas
+        return RoundUpService.roundUp(OrderStatisticsController.SOLD_PIZZAS
                 .entrySet()
                 .stream()
-                .mapToInt((e) -> (int) (e.getKey() * e.getValue()))
-                .sum();
+                .mapToDouble((e) -> (e.getKey() * e.getValue()))
+                .sum());
     }
 
     public double averageCheck() {
