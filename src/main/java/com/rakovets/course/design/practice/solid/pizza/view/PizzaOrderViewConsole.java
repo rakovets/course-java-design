@@ -5,22 +5,15 @@ import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberExc
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
     private static final PizzaPriceService PIZZA_PRICE;
-    public static PizzaOrderService pizzaOrderService;
     private static final PizzaCaloriesService PIZZA_CALORIES_SERVICE;
     private static final PizzaNumberException PIZZA_NUMBER_EXCEPTION;
     private static final PaymentChoiceException PAYMENT_CHOICE_EXCEPTION;
 
     static {
-        try {
-            pizzaOrderService = new PizzaOrderService();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         PIZZA_PRICE = new PizzaPriceService();
         PIZZA_CALORIES_SERVICE = new PizzaCaloriesService();
         PIZZA_NUMBER_EXCEPTION = new PizzaNumberException();

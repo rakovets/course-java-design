@@ -14,7 +14,6 @@ public class SupplyService {
     private static final Map<Integer, Supplier> SUPPLIERS;
     private static final StorageRepository STORAGE;
     private static final SupplyServiceViewConsole SUPPLY_SERVICE_VIEW;
-    private static final Scanner SCANNER;
     public int supplierChoice;
     public static final CheckInt CHECK_INT;
 
@@ -31,7 +30,6 @@ public class SupplyService {
 
         STORAGE = new StorageRepository();
         SUPPLY_SERVICE_VIEW = new SupplyServiceViewConsole();
-        SCANNER = new Scanner(System.in);
         CHECK_INT = new CheckInt();
     }
 
@@ -43,72 +41,56 @@ public class SupplyService {
                 case SUPPLIER_1:
                     SUPPLY_SERVICE_VIEW.supplier1IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_1.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_1.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_1);
                     SUPPLY_SERVICE_VIEW.supplier1IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_2:
                     SUPPLY_SERVICE_VIEW.supplier2IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_2.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_2.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_2);
                     SUPPLY_SERVICE_VIEW.supplier2IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_3:
                     SUPPLY_SERVICE_VIEW.supplier3IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_3.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_3.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_3);
                     SUPPLY_SERVICE_VIEW.supplier3IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_4:
                     SUPPLY_SERVICE_VIEW.supplier4IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_4.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_4.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_4);
                     SUPPLY_SERVICE_VIEW.supplier4IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_5:
                     SUPPLY_SERVICE_VIEW.supplier5IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_5.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_5.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_5);
                     SUPPLY_SERVICE_VIEW.supplier5IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_6:
                     SUPPLY_SERVICE_VIEW.supplier6IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_6.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_6.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_6);
                     SUPPLY_SERVICE_VIEW.supplier6IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_7:
                     SUPPLY_SERVICE_VIEW.supplier7IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_7.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_7.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_7);
                     SUPPLY_SERVICE_VIEW.supplier7IngredientAfter();
                     addChoiceQuestion();
                     break;
                 case SUPPLIER_8:
                     SUPPLY_SERVICE_VIEW.supplier8IngredientBefore();
                     SUPPLY_SERVICE_VIEW.supplierDeliveredQuantity();
-                    STORAGE.changeIngredientQuantity(Supplier.SUPPLIER_8.getIngredient(),
-                            STORAGE.getIngredientQuantity(Supplier.SUPPLIER_8.getIngredient())
-                                    + SCANNER.nextInt());
+                    STORAGE.changeDeliveredIngredient(Supplier.SUPPLIER_8);
                     SUPPLY_SERVICE_VIEW.supplier8IngredientAfter();
                     addChoiceQuestion();
                     break;

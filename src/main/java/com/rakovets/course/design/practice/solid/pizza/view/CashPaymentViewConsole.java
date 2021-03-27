@@ -5,19 +5,13 @@ import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentServic
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 
-import java.io.IOException;
-
 public class CashPaymentViewConsole implements CashPaymentView {
-    private static PizzaOrderService pizzaOrderService;
+    private static final PizzaOrderService pizzaOrderService;
     private static final CreatePizzaService createPizzaService;
     private static final CashAmountException cashAmountException;
 
     static {
-        try {
-            pizzaOrderService = new PizzaOrderService();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        pizzaOrderService = new PizzaOrderService();
         createPizzaService = new CreatePizzaService();
         cashAmountException = new CashAmountException();
     }

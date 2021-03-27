@@ -2,15 +2,19 @@ package com.rakovets.course.design.practice.solid.pizza.repository;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
+import com.rakovets.course.design.practice.solid.pizza.model.Supplier;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class StorageRepository implements IngredientStorageRepository {
     private static final Map<Ingredient, Integer> STORAGE;
+    private static final Scanner SCANNER;
 
     static {
         STORAGE = new HashMap<>();
+        SCANNER = new Scanner(System.in);
     }
 
     public StorageRepository() {
@@ -48,6 +52,11 @@ public class StorageRepository implements IngredientStorageRepository {
 
     public void removeOneIngredient(Ingredient ingredient) {
         changeIngredientQuantity(ingredient, getIngredientQuantity(ingredient) - 1);
+    }
+
+    public void changeDeliveredIngredient(Supplier supplier) {
+        changeIngredientQuantity(supplier.getIngredient(), getIngredientQuantity(supplier.getIngredient())
+                        + SCANNER.nextInt());
     }
 
     public Iterable<Map.Entry<Ingredient, Integer>> entrySet() {

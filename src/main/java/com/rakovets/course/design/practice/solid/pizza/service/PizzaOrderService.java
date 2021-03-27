@@ -64,7 +64,7 @@ public class PizzaOrderService {
         PAYMENT_METHOD.put(3, PaymentMethod.ONLINE);
     }
 
-    public PizzaOrderService() throws IOException {
+    public PizzaOrderService() {
     }
 
     public void start() {
