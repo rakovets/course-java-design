@@ -9,6 +9,7 @@ import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.repository.IngredientCaloriesRepository;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
 import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CreatePizzaViewConsole;
@@ -198,11 +199,11 @@ public class CreatePizzaService {
     }
 
     public double totalOrder() {
-        return RoundUpService.roundUp(ORDER.totalOrder());
+        return RoundUtil.up(ORDER.totalOrder());
     }
 
     public void displayTotalOrder() {
-        double totalOrder = RoundUpService.roundUp(ORDER.totalOrder());
+        double totalOrder = RoundUtil.up(ORDER.totalOrder());
         CREATE_PIZZA_VIEW.totalOrder(totalOrder);
     }
 

@@ -5,6 +5,7 @@ import com.rakovets.course.design.practice.solid.pizza.exceptions.IngredientNumb
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 import java.time.LocalDateTime;
 
@@ -47,57 +48,57 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
 
     public String orderThinDough() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.THIN_DOUGH +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceThinDoughIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceThinDoughIncludingVAT()) + "$";
     }
 
     public String orderTraditionalDough() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TRADITIONAL_DOUGH +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT()) + "$";
     }
 
     public String orderCheese() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CHEESE +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceCheeseIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceCheeseIncludingVAT()) + "$";
     }
 
     public String orderMeat() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.MEAT +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceMeatIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceMeatIncludingVAT()) + "$";
     }
 
     public String orderSausages() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUSAGES +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceSausagesIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceSausagesIncludingVAT()) + "$";
     }
 
     public String orderOlives() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OLIVES +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceOlivesIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceOlivesIncludingVAT()) + "$";
     }
 
     public String orderTomatoes() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TOMATOES +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceTomatoesIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceTomatoesIncludingVAT()) + "$";
     }
 
     public String orderPepper() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.PEPPER +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.pricePepperIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.pricePepperIncludingVAT()) + "$";
     }
 
     public String orderOregano() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OREGANO +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceOreganoIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceOreganoIncludingVAT()) + "$";
     }
 
     public String orderSauce() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUCE +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceSauceIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceSauceIncludingVAT()) + "$";
     }
 
     public String orderCrust() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
-                "\t" + RoundUpService.roundUp(INGREDIENT_PRICE.priceCrustIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceCrustIncludingVAT()) + "$";
     }
 
     public void displayCaloriesThinDough() {

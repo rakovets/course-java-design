@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.CashAmountException;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 
 import java.util.InputMismatchException;
@@ -19,7 +20,7 @@ public class CashPaymentService {
             CASH_PAYMENT_VIEW.notEnoughMoney();
             getFullAmount();
         }
-        return RoundUpService.roundUp(fullAmount - amountToPay);
+        return RoundUtil.up(fullAmount - amountToPay);
     }
 
     public void getFullAmount() {

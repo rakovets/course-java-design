@@ -1,11 +1,11 @@
-package com.rakovets.course.design.practice.solid.pizza.service;
+package com.rakovets.course.design.practice.solid.pizza.util;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class RoundUpService {
+public class RoundUtil {
 
-    public static double roundUp(double value) {
+    public static double up(double value) {
         return BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
     }
 }

@@ -2,6 +2,7 @@ package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 public class OrderStatisticsService {
 
@@ -10,11 +11,11 @@ public class OrderStatisticsService {
     }
 
     public double getRevenue(Pizza pizza, int numberOfPizzasSold, double price) {
-        return RoundUpService.roundUp(getNumberOfPizzasSold(pizza, numberOfPizzasSold) * price);
+        return RoundUtil.up(getNumberOfPizzasSold(pizza, numberOfPizzasSold) * price);
     }
 
     public double getProfit(Pizza pizza, int numberOfPizzasSold, double price, double expenses) {
-        return RoundUpService.roundUp(getNumberOfPizzasSold(pizza, numberOfPizzasSold) * price
+        return RoundUtil.up(getNumberOfPizzasSold(pizza, numberOfPizzasSold) * price
                 - getNumberOfPizzasSold(pizza, numberOfPizzasSold)
                 * expenses);
     }
@@ -28,7 +29,7 @@ public class OrderStatisticsService {
     }
 
     public double totalRevenue() {
-        return RoundUpService.roundUp(OrderStatisticsController.SOLD_PIZZAS
+        return RoundUtil.up(OrderStatisticsController.SOLD_PIZZAS
                 .entrySet()
                 .stream()
                 .mapToDouble((e) -> (e.getKey() * e.getValue()))
@@ -36,6 +37,6 @@ public class OrderStatisticsService {
     }
 
     public double averageCheck() {
-        return RoundUpService.roundUp(totalRevenue() / totalPizzasSold());
+        return RoundUtil.up(totalRevenue() / totalPizzasSold());
     }
 }

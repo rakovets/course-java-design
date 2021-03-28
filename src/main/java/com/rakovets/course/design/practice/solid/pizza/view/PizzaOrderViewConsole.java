@@ -4,6 +4,7 @@ import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceE
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 import java.time.LocalDateTime;
 
@@ -35,27 +36,27 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public String orderPizzaFourCheese() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.FOUR_CHEESE +
-                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()) + "$";
     }
 
     public String orderPizzaMargherita() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MARGHERITA +
-                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()) + "$";
     }
 
     public String orderPizzaMeatDelight() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.MEAT_DELIGHT +
-                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()) + "$";
     }
 
     public String orderPizzaPepperoni() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.PEPPERONI +
-                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()) + "$";
     }
 
     public String orderPizzaVegetarian() {
         return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Pizza.VEGETARIAN +
-                "\t" + RoundUpService.roundUp(PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()) + "$";
+                "\t" + RoundUtil.up(PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()) + "$";
     }
 
     public void displayInfoPizzaFourCheese() {
@@ -89,29 +90,29 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
     }
 
     public void totalOrder(double totalOrder, int size) {
-        System.out.println("Order is " + RoundUpService.roundUp(totalOrder) + "$\nNumber of pizzas: " + size);
+        System.out.println("Order is " + RoundUtil.up(totalOrder) + "$\nNumber of pizzas: " + size);
     }
 
     public void discountFor2Pizzas(double totalOrder) {
         System.out.println("Discount for ordering 2 pizzas: "
-                + RoundUpService.roundUp(totalOrder -
+                + RoundUtil.up(totalOrder -
                 DiscountService.discountForTwoItems(totalOrder)) + "$");
     }
 
     public void discountFor3AndMorePizzas(double totalOrder) {
         System.out.println("Discount for ordering 3 & more pizzas: "
-                + RoundUpService.roundUp(totalOrder -
+                + RoundUtil.up(totalOrder -
                 DiscountService.discountForThreeAndMoreItems(totalOrder)) + "$");
     }
 
     public void discountForOrderOnSpecificDay(double totalOrder) {
         System.out.println("Discount for ordering on Discount Day: "
-                + RoundUpService.roundUp(totalOrder -
+                + RoundUtil.up(totalOrder -
                 DiscountService.discountForOrderOnSpecificDay(totalOrder)) + "$");
     }
 
     public void amountToPay(double totalOrder) {
-        System.out.println("Amount to pay: " + RoundUpService.roundUp(totalOrder) + "$");
+        System.out.println("Amount to pay: " + RoundUtil.up(totalOrder) + "$");
     }
 
     public void addPizzaQuestion() {
