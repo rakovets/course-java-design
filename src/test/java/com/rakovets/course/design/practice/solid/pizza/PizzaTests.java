@@ -160,46 +160,41 @@ public class PizzaTests {
     }
 
     public void putToMaps() {
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(1, PizzaPriceUtil.pricePizzaFourCheeseIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(2, PizzaPriceUtil.pricePizzaMargheritaIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(3, PizzaPriceUtil.pricePizzaMeatDelightIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(4, PizzaPriceUtil.pricePizzaPepperoniIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(5, PizzaPriceUtil.pricePizzaVegetarianIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(1, PizzaCostUtil.getCostFourCheese());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(2, PizzaCostUtil.getCostMargherita());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(3, PizzaCostUtil.getCostMeatDelight());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(4, PizzaCostUtil.getCostPepperoni());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(5, PizzaCostUtil.getCostVegetarian());
+        OrderStatisticsController.SOLD_PIZZAS.put(1, 5);
+        OrderStatisticsController.SOLD_PIZZAS.put(2, 5);
+        OrderStatisticsController.SOLD_PIZZAS.put(3, 11);
+        OrderStatisticsController.SOLD_PIZZAS.put(4, 1);
+        OrderStatisticsController.SOLD_PIZZAS.put(5, 20);
     }
 
     @Test
     void totalPizzasSold_OrderStatisticsService() {
         putToMaps();
-        assertEquals(15, ORDER_STATISTICS.totalPizzasSold());
+        assertEquals(42, ORDER_STATISTICS.totalPizzasSold());
     }
 
     @Test
     void totalRevenue_OrderStatisticsService() {
         putToMaps();
-        assertEquals(467.06, ORDER_STATISTICS.totalRevenue());
+        assertEquals(1282.32, ORDER_STATISTICS.totalRevenue());
     }
 
     @Test
     void averageCheck_OrderStatisticsService() {
         putToMaps();
-        assertEquals(31.14, ORDER_STATISTICS.averageCheck());
+        assertEquals(30.53, ORDER_STATISTICS.averageCheck());
     }
 
     @Test
     void totalCost_OrderStatisticsService() {
         putToMaps();
-        assertEquals(299.4, ORDER_STATISTICS.totalCost());
+        assertEquals(822.0, ORDER_STATISTICS.totalCost());
     }
 
     @Test
     void totalProfit_OrderStatisticsService() {
         putToMaps();
-        assertEquals(167.66, ORDER_STATISTICS.totalProfit());
+        assertEquals(460.32, ORDER_STATISTICS.totalProfit());
     }
 
     @Test

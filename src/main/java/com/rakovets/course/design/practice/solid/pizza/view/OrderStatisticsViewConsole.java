@@ -2,7 +2,6 @@ package com.rakovets.course.design.practice.solid.pizza.view;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.OrderStatisticsException;
 import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsService;
-import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 public class OrderStatisticsViewConsole implements OrderStatisticsView {
     private static final OrderStatisticsService ORDER_STATISTICS;
@@ -35,19 +34,6 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
 
     public void orderStatisticsException() {
         System.out.println(ORDER_STATISTICS_EXCEPTION.toString());
-    }
-
-    public void pizzasRevenue() {
-        System.out.println("Revenue of Pizzas 'Four Cheese': " +
-                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[0]) + "$");
-        System.out.println("Revenue of Pizzas: 'Margherita': " +
-                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[1]) + "$");
-        System.out.println("Revenue of Pizzas: 'Meat Delight': " +
-                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[2]) + "$");
-        System.out.println("Revenue of Pizzas: 'Pepperoni': " +
-                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[3]) + "$");
-        System.out.println("Revenue of Pizzas: 'Vegetarian': " +
-                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[4]) + "$");
     }
 
     public void totalPizzasSold() {
