@@ -24,8 +24,6 @@ public interface EmployeeView {
 
     void employeeSalary();
 
-    void invalidInput();
-
     void operationsMenu();
 
     void selectOption();

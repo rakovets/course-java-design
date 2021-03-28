@@ -1,6 +1,7 @@
 package com.rakovets.course.design.practice.solid.pizza.controller;
 
 import com.rakovets.course.design.practice.solid.pizza.service.EmployeeService;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.ArrayList;
@@ -28,21 +29,21 @@ public class EmployeeController {
         EMPLOYEE_VIEW.operationsMenu();
         while (programOn) {
             EMPLOYEE_VIEW.showMenu();
-            userMenuOption = EmployeeService.CHECK_INT.checkInt();
+            userMenuOption = CheckUtil.checkInt();
             switch (userMenuOption) {
                 case 1:
                     EMPLOYEE_SERVICE.createNewEmployee(EMPLOYEE_LIST);
                     break;
                 case 2:
                     EMPLOYEE_VIEW.idForChangingSalary();
-                    employeeID = EmployeeService.CHECK_INT.checkInt();
+                    employeeID = CheckUtil.checkInt();
                     if (employeeID > EMPLOYEE_LIST.size()) {
                         EMPLOYEE_VIEW.notValidID();
                         break;
                     } else {
                         employeeID -= 1;
                         EMPLOYEE_VIEW.changeSalary();
-                        amount = EMPLOYEE_SERVICE.checkDouble();
+                        amount = CheckUtil.checkDouble();
                     }
                     EMPLOYEE_LIST.get(employeeID).salaryChange(amount);
                     break;

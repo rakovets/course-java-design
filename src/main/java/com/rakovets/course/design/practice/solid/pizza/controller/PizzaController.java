@@ -3,7 +3,7 @@ package com.rakovets.course.design.practice.solid.pizza.controller;
 import com.rakovets.course.design.practice.solid.pizza.service.CreatePizzaService;
 import com.rakovets.course.design.practice.solid.pizza.service.PizzaOrderService;
 import com.rakovets.course.design.practice.solid.pizza.service.SupplyService;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.StarterViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.StorageUtilityViewConsole;
 
@@ -20,7 +20,6 @@ public class PizzaController {
     private static final EmployeeController EMPLOYEE;
     public int operationChoice;
     private static boolean programOn;
-    public static final CheckIntUtil CHECK_INT;
 
     static {
         STARTER_VIEW = new StarterViewConsole();
@@ -31,7 +30,6 @@ public class PizzaController {
         SUPPLY = new SupplyService();
         EMPLOYEE = new EmployeeController();
         programOn = true;
-        CHECK_INT = new CheckIntUtil();
     }
 
     public PizzaController() {
@@ -40,7 +38,7 @@ public class PizzaController {
     public void start() throws IOException {
         while (programOn) {
             STARTER_VIEW.displayOperations();
-            operationChoice = CHECK_INT.checkInt();
+            operationChoice = CheckUtil.checkInt();
             switch (operationChoice) {
                 case 1:
                     PIZZA_ORDER.start();

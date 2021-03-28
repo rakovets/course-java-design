@@ -4,19 +4,18 @@ import com.rakovets.course.design.practice.solid.pizza.exceptions.DoughException
 import com.rakovets.course.design.practice.solid.pizza.exceptions.IngredientNumberException;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
-import com.rakovets.course.design.practice.solid.pizza.service.*;
+import com.rakovets.course.design.practice.solid.pizza.util.DateFormatUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.IngredientPriceUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 import java.time.LocalDateTime;
 
 public class CreatePizzaViewConsole implements CreatePizzaView {
-    private static final IngredientPriceService INGREDIENT_PRICE;
     private static final DoughException DOUGH_EXCEPTION;
     private static final IngredientNumberException INGREDIENT_NUMBER_EXCEPTION;
     private static final PaymentChoiceException PAYMENT_CHOICE_EXCEPTION;
 
     static {
-        INGREDIENT_PRICE = new IngredientPriceService();
         DOUGH_EXCEPTION = new DoughException();
         INGREDIENT_NUMBER_EXCEPTION = new IngredientNumberException();
         PAYMENT_CHOICE_EXCEPTION = new PaymentChoiceException();
@@ -47,58 +46,58 @@ public class CreatePizzaViewConsole implements CreatePizzaView {
     }
 
     public String orderThinDough() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.THIN_DOUGH +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceThinDoughIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.THIN_DOUGH +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceThinDoughIncludingVAT()) + "$";
     }
 
     public String orderTraditionalDough() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TRADITIONAL_DOUGH +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TRADITIONAL_DOUGH +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceTraditionalDoughIncludingVAT()) + "$";
     }
 
     public String orderCheese() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CHEESE +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceCheeseIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CHEESE +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceCheeseIncludingVAT()) + "$";
     }
 
     public String orderMeat() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.MEAT +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceMeatIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.MEAT +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceMeatIncludingVAT()) + "$";
     }
 
     public String orderSausages() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUSAGES +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceSausagesIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUSAGES +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceSausagesIncludingVAT()) + "$";
     }
 
     public String orderOlives() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OLIVES +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceOlivesIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OLIVES +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceOlivesIncludingVAT()) + "$";
     }
 
     public String orderTomatoes() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TOMATOES +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceTomatoesIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.TOMATOES +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceTomatoesIncludingVAT()) + "$";
     }
 
     public String orderPepper() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.PEPPER +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.pricePepperIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.PEPPER +
+                "\t" + RoundUtil.up(IngredientPriceUtil.pricePepperIncludingVAT()) + "$";
     }
 
     public String orderOregano() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OREGANO +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceOreganoIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.OREGANO +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceOreganoIncludingVAT()) + "$";
     }
 
     public String orderSauce() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUCE +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceSauceIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.SAUCE +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceSauceIncludingVAT()) + "$";
     }
 
     public String orderCrust() {
-        return DateFormatService.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
-                "\t" + RoundUtil.up(INGREDIENT_PRICE.priceCrustIncludingVAT()) + "$";
+        return DateFormatUtil.localDatePattern(LocalDateTime.now()) + "\t" + Ingredient.CRUST +
+                "\t" + RoundUtil.up(IngredientPriceUtil.priceCrustIncludingVAT()) + "$";
     }
 
     public void displayCaloriesThinDough() {

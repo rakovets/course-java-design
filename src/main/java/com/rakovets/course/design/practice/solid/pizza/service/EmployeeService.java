@@ -1,24 +1,21 @@
 package com.rakovets.course.design.practice.solid.pizza.service;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Employee;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.EmployeeViewConsole;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeService {
-    public double enteredDouble;
     public int employeeID;
     private static final Scanner SCAN;
     private static final EmployeeViewConsole EMPLOYEE_VIEW;
     private final Employee employee = new Employee();
-    public static final CheckIntUtil CHECK_INT;
 
     static {
         SCAN = new Scanner(System.in);
         EMPLOYEE_VIEW = new EmployeeViewConsole();
-        CHECK_INT = new CheckIntUtil();
     }
 
     public EmployeeService(String firstName, String lastName, double salary) {
@@ -38,7 +35,7 @@ public class EmployeeService {
 
     public void quitEmployee(List<EmployeeService> employeeList) {
         EMPLOYEE_VIEW.quitEmployee();
-        employeeID = CHECK_INT.checkInt();
+        employeeID = CheckUtil.checkInt();
         if (employeeID > employeeList.size())
             EMPLOYEE_VIEW.notValidID();
         else
@@ -54,25 +51,16 @@ public class EmployeeService {
 
     public void createNewEmployee(List<EmployeeService> employeeList) {
         EMPLOYEE_VIEW.employeeQuantity();
-        employeeID = CHECK_INT.checkInt();
+        employeeID = CheckUtil.checkInt();
         for (int i = 0; i < employeeID; i++) {
             EMPLOYEE_VIEW.employeeFirstName();
             employee.firstName = SCAN.next();
             EMPLOYEE_VIEW.employeeLastName();
             employee.lastName = SCAN.next();
             EMPLOYEE_VIEW.employeeSalary();
-            employee.salary = checkDouble();
+            employee.salary = CheckUtil.checkDouble();
             employeeList.add(new EmployeeService(employee.firstName, employee.lastName, employee.salary));
         }
-    }
-
-    public double checkDouble() {
-        while (!SCAN.hasNextDouble()) {
-            EMPLOYEE_VIEW.invalidInput();
-            SCAN.next();
-        }
-        enteredDouble = SCAN.nextDouble();
-        return enteredDouble;
     }
 
     public double getSalary() {

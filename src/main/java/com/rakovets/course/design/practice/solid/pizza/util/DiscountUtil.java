@@ -1,6 +1,9 @@
-package com.rakovets.course.design.practice.solid.pizza.service;
+package com.rakovets.course.design.practice.solid.pizza.util;
 
-public class DiscountService {
+public final class DiscountUtil {
+
+    private DiscountUtil() {
+    }
 
     public static double discountForTwoItems(double totalOrder) { return totalOrder * 0.9; }
 

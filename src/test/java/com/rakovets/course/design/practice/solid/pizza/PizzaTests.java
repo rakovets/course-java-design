@@ -2,22 +2,18 @@ package com.rakovets.course.design.practice.solid.pizza;
 
 import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
-import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PizzaTests {
     private static final CashPaymentService CASH_PAYMENT;
-    private static final IngredientPriceService INGREDIENT_PRICE;
-    private static final PizzaPriceService PIZZA_PRICE;
     private static final OrderStatisticsService ORDER_STATISTICS;
     private static final PizzaCaloriesService PIZZA_CALORIES;
 
     static {
         CASH_PAYMENT = new CashPaymentService();
-        INGREDIENT_PRICE = new IngredientPriceService();
-        PIZZA_PRICE = new PizzaPriceService();
         ORDER_STATISTICS = new OrderStatisticsService();
         PIZZA_CALORIES = new PizzaCaloriesService();
     }
@@ -30,156 +26,156 @@ public class PizzaTests {
 
     @Test
     void discountForTwoItems_DiscountService() {
-        assertEquals(90, DiscountService.discountForTwoItems(100));
+        assertEquals(90, DiscountUtil.discountForTwoItems(100));
     }
 
     @Test
     void discountForThreeAndMoreItems_DiscountService() {
-        assertEquals(80, DiscountService.discountForThreeAndMoreItems(100));
+        assertEquals(80, DiscountUtil.discountForThreeAndMoreItems(100));
     }
 
     @Test
     void discountForOrderOnSpecificDay_DiscountService() {
-        assertEquals(85, DiscountService.discountForOrderOnSpecificDay(100));
+        assertEquals(85, DiscountUtil.discountForOrderOnSpecificDay(100));
     }
 
     @Test
     void amountToPayFor2PizzasOnSpecificDay_DiscountService() {
-        assertEquals(75, DiscountService.amountToPayFor2PizzasOnSpecificDay(100));
+        assertEquals(75, DiscountUtil.amountToPayFor2PizzasOnSpecificDay(100));
     }
 
     @Test
     void amountToPayFor3AndMorePizzasOnSpecificDay_DiscountService() {
-        assertEquals(65, DiscountService.amountToPayFor3AndMorePizzasOnSpecificDay(100));
+        assertEquals(65, DiscountUtil.amountToPayFor3AndMorePizzasOnSpecificDay(100));
     }
 
     @Test
     void priceThinDoughWithoutVAT_IngredientPriceService() {
-        assertEquals(2.47, RoundUtil.up(INGREDIENT_PRICE.priceThinDoughWithoutVAT()));
+        assertEquals(2.47, RoundUtil.up(IngredientPriceUtil.priceThinDoughWithoutVAT()));
     }
 
     @Test
     void priceThinDoughIncludingVAT_IngredientPriceService() {
-        assertEquals(2.96, RoundUtil.up(INGREDIENT_PRICE.priceThinDoughIncludingVAT()));
+        assertEquals(2.96, RoundUtil.up(IngredientPriceUtil.priceThinDoughIncludingVAT()));
     }
 
     @Test
     void priceTraditionalDoughWithoutVAT_IngredientPriceService() {
-        assertEquals(3.25, RoundUtil.up(INGREDIENT_PRICE.priceTraditionalDoughWithoutVAT()));
+        assertEquals(3.25, RoundUtil.up(IngredientPriceUtil.priceTraditionalDoughWithoutVAT()));
     }
 
     @Test
     void priceTraditionalDoughIncludingVAT_IngredientPriceService() {
-        assertEquals(3.9, RoundUtil.up(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT()));
+        assertEquals(3.9, RoundUtil.up(IngredientPriceUtil.priceTraditionalDoughIncludingVAT()));
     }
 
     @Test
     void priceCheeseWithoutVAT_IngredientPriceService() {
-        assertEquals(3.25, RoundUtil.up(INGREDIENT_PRICE.priceCheeseWithoutVAT()));
+        assertEquals(3.25, RoundUtil.up(IngredientPriceUtil.priceCheeseWithoutVAT()));
     }
 
     @Test
     void priceCheeseIncludingVAT_IngredientPriceService() {
-        assertEquals(3.9, RoundUtil.up(INGREDIENT_PRICE.priceCheeseIncludingVAT()));
+        assertEquals(3.9, RoundUtil.up(IngredientPriceUtil.priceCheeseIncludingVAT()));
     }
 
     @Test
     void priceMeatWithoutVAT_IngredientPriceService() {
-        assertEquals(6.76, RoundUtil.up(INGREDIENT_PRICE.priceMeatWithoutVAT()));
+        assertEquals(6.76, RoundUtil.up(IngredientPriceUtil.priceMeatWithoutVAT()));
     }
 
     @Test
     void priceMeatIncludingVAT_IngredientPriceService() {
-        assertEquals(8.11, RoundUtil.up(INGREDIENT_PRICE.priceMeatIncludingVAT()));
+        assertEquals(8.11, RoundUtil.up(IngredientPriceUtil.priceMeatIncludingVAT()));
     }
 
     @Test
     void priceSausagesWithoutVAT_IngredientPriceService() {
-        assertEquals(7.8, RoundUtil.up(INGREDIENT_PRICE.priceSausagesWithoutVAT()));
+        assertEquals(7.8, RoundUtil.up(IngredientPriceUtil.priceSausagesWithoutVAT()));
     }
 
     @Test
     void priceSausagesIncludingVAT_IngredientPriceService() {
-        assertEquals(9.36, RoundUtil.up(INGREDIENT_PRICE.priceSausagesIncludingVAT()));
+        assertEquals(9.36, RoundUtil.up(IngredientPriceUtil.priceSausagesIncludingVAT()));
     }
 
     @Test
     void priceOlivesWithoutVAT_IngredientPriceService() {
-        assertEquals(3.25, RoundUtil.up(INGREDIENT_PRICE.priceOlivesWithoutVAT()));
+        assertEquals(3.25, RoundUtil.up(IngredientPriceUtil.priceOlivesWithoutVAT()));
     }
 
     @Test
     void priceOlivesIncludingVAT_IngredientPriceService() {
-        assertEquals(3.9, RoundUtil.up(INGREDIENT_PRICE.priceOlivesIncludingVAT()));
+        assertEquals(3.9, RoundUtil.up(IngredientPriceUtil.priceOlivesIncludingVAT()));
     }
 
     @Test
     void priceTomatoesWithoutVAT_IngredientPriceService() {
-        assertEquals(1.95, RoundUtil.up(INGREDIENT_PRICE.priceTomatoesWithoutVAT()));
+        assertEquals(1.95, RoundUtil.up(IngredientPriceUtil.priceTomatoesWithoutVAT()));
     }
 
     @Test
     void priceTomatoesIncludingVAT_IngredientPriceService() {
-        assertEquals(2.34, RoundUtil.up(INGREDIENT_PRICE.priceTomatoesIncludingVAT()));
+        assertEquals(2.34, RoundUtil.up(IngredientPriceUtil.priceTomatoesIncludingVAT()));
     }
 
     @Test
     void pricePepperWithoutVAT_IngredientPriceService() {
-        assertEquals(2.34, RoundUtil.up(INGREDIENT_PRICE.pricePepperWithoutVAT()));
+        assertEquals(2.34, RoundUtil.up(IngredientPriceUtil.pricePepperWithoutVAT()));
     }
 
     @Test
     void pricePepperIncludingVAT_IngredientPriceService() {
-        assertEquals(2.81, RoundUtil.up(INGREDIENT_PRICE.pricePepperIncludingVAT()));
+        assertEquals(2.81, RoundUtil.up(IngredientPriceUtil.pricePepperIncludingVAT()));
     }
 
     @Test
     void priceOreganoWithoutVAT_IngredientPriceService() {
-        assertEquals(1.43, RoundUtil.up(INGREDIENT_PRICE.priceOreganoWithoutVAT()));
+        assertEquals(1.43, RoundUtil.up(IngredientPriceUtil.priceOreganoWithoutVAT()));
     }
 
     @Test
     void priceOreganoIncludingVAT_IngredientPriceService() {
-        assertEquals(1.72, RoundUtil.up(INGREDIENT_PRICE.priceOreganoIncludingVAT()));
+        assertEquals(1.72, RoundUtil.up(IngredientPriceUtil.priceOreganoIncludingVAT()));
     }
 
     @Test
     void priceSauceWithoutVAT_IngredientPriceService() {
-        assertEquals(1.3, RoundUtil.up(INGREDIENT_PRICE.priceSauceWithoutVAT()));
+        assertEquals(1.3, RoundUtil.up(IngredientPriceUtil.priceSauceWithoutVAT()));
     }
 
     @Test
     void priceSauceIncludingVAT_IngredientPriceService() {
-        assertEquals(1.56, RoundUtil.up(INGREDIENT_PRICE.priceSauceIncludingVAT()));
+        assertEquals(1.56, RoundUtil.up(IngredientPriceUtil.priceSauceIncludingVAT()));
     }
 
     @Test
     void priceCrustWithoutVAT_IngredientPriceService() {
-        assertEquals(2.6, RoundUtil.up(INGREDIENT_PRICE.priceCrustWithoutVAT()));
+        assertEquals(2.6, RoundUtil.up(IngredientPriceUtil.priceCrustWithoutVAT()));
     }
 
     @Test
     void priceCrustIncludingVAT_IngredientPriceService() {
-        assertEquals(3.12, RoundUtil.up(INGREDIENT_PRICE.priceCrustIncludingVAT()));
+        assertEquals(3.12, RoundUtil.up(IngredientPriceUtil.priceCrustIncludingVAT()));
     }
 
     public void putToMaps() {
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(1, PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(2, PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(3, PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(4, PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(5, PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(1, PizzaCostService.getCostFourCheese());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(2, PizzaCostService.getCostMargherita());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(3, PizzaCostService.getCostMeatDelight());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(4, PizzaCostService.getCostPepperoni());
-        OrderStatisticsController.SOLD_PIZZAS_COST.put(5, PizzaCostService.getCostVegetarian());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(1, PizzaPriceUtil.pricePizzaFourCheeseIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(2, PizzaPriceUtil.pricePizzaMargheritaIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(3, PizzaPriceUtil.pricePizzaMeatDelightIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(4, PizzaPriceUtil.pricePizzaPepperoniIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(5, PizzaPriceUtil.pricePizzaVegetarianIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(1, PizzaCostUtil.getCostFourCheese());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(2, PizzaCostUtil.getCostMargherita());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(3, PizzaCostUtil.getCostMeatDelight());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(4, PizzaCostUtil.getCostPepperoni());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(5, PizzaCostUtil.getCostVegetarian());
     }
 
     @Test
     void totalPizzasSold_OrderStatisticsService() {
         putToMaps();
-        assertEquals(15, RoundUtil.up(ORDER_STATISTICS.totalPizzasSold()));
+        assertEquals(15, ORDER_STATISTICS.totalPizzasSold());
     }
 
     @Test
@@ -239,86 +235,86 @@ public class PizzaTests {
 
     @Test
     void getCostFourCheese_PizzaCostService() {
-        assertEquals(14.6, PizzaCostService.getCostFourCheese());
+        assertEquals(14.6, PizzaCostUtil.getCostFourCheese());
     }
 
     @Test
     void getCostMargherita_PizzaCostService() {
-        assertEquals(12.6, PizzaCostService.getCostMargherita());
+        assertEquals(12.6, PizzaCostUtil.getCostMargherita());
     }
 
     @Test
     void getCostMeatDelight_PizzaCostService() {
-        assertEquals(28.4, PizzaCostService.getCostMeatDelight());
+        assertEquals(28.4, PizzaCostUtil.getCostMeatDelight());
     }
 
     @Test
     void getCostPepperoni_PizzaCostService() {
-        assertEquals(21.6, PizzaCostService.getCostPepperoni());
+        assertEquals(21.6, PizzaCostUtil.getCostPepperoni());
     }
 
     @Test
     void getCostVegetarian_PizzaCostService() {
-        assertEquals(17.6, PizzaCostService.getCostVegetarian());
+        assertEquals(17.6, PizzaCostUtil.getCostVegetarian());
     }
 
     @Test
     void pricePizzaFourCheeseWithoutVAT_PizzaPriceService() {
-        assertEquals(18.98, RoundUtil.up(PIZZA_PRICE.pricePizzaFourCheeseWithoutVAT()));
+        assertEquals(18.98, RoundUtil.up(PizzaPriceUtil.pricePizzaFourCheeseWithoutVAT()));
     }
 
     @Test
     void pricePizzaFourCheeseIncludingVAT_PizzaPriceService() {
-        assertEquals(22.78, RoundUtil.up(PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()));
+        assertEquals(22.78, RoundUtil.up(PizzaPriceUtil.pricePizzaFourCheeseIncludingVAT()));
     }
 
     @Test
     void pricePizzaMargheritaWithoutVAT_PizzaPriceService() {
-        assertEquals(16.38, RoundUtil.up(PIZZA_PRICE.pricePizzaMargheritaWithoutVAT()));
+        assertEquals(16.38, RoundUtil.up(PizzaPriceUtil.pricePizzaMargheritaWithoutVAT()));
     }
 
     @Test
     void pricePizzaMargheritaIncludingVAT_PizzaPriceService() {
-        assertEquals(19.66, RoundUtil.up(PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()));
+        assertEquals(19.66, RoundUtil.up(PizzaPriceUtil.pricePizzaMargheritaIncludingVAT()));
     }
 
     @Test
     void pricePizzaMeatDelightWithoutVAT_PizzaPriceService() {
-        assertEquals(36.92, RoundUtil.up(PIZZA_PRICE.pricePizzaMeatDelightWithoutVAT()));
+        assertEquals(36.92, RoundUtil.up(PizzaPriceUtil.pricePizzaMeatDelightWithoutVAT()));
     }
 
     @Test
     void pricePizzaMeatDelightIncludingVAT_PizzaPriceService() {
-        assertEquals(44.3, RoundUtil.up(PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()));
+        assertEquals(44.3, RoundUtil.up(PizzaPriceUtil.pricePizzaMeatDelightIncludingVAT()));
     }
 
     @Test
     void pricePizzaPepperoniWithoutVAT_PizzaPriceService() {
-        assertEquals(28.08, RoundUtil.up(PIZZA_PRICE.pricePizzaPepperoniWithoutVAT()));
+        assertEquals(28.08, RoundUtil.up(PizzaPriceUtil.pricePizzaPepperoniWithoutVAT()));
     }
 
     @Test
     void pricePizzaPepperoniIncludingVAT_PizzaPriceService() {
-        assertEquals(33.7, RoundUtil.up(PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()));
+        assertEquals(33.7, RoundUtil.up(PizzaPriceUtil.pricePizzaPepperoniIncludingVAT()));
     }
 
     @Test
     void pricePizzaVegetarianWithoutVAT_PizzaPriceService() {
-        assertEquals(22.88, RoundUtil.up(PIZZA_PRICE.pricePizzaVegetarianWithoutVAT()));
+        assertEquals(22.88, RoundUtil.up(PizzaPriceUtil.pricePizzaVegetarianWithoutVAT()));
     }
 
     @Test
     void pricePizzaVegetarianIncludingVAT_PizzaPriceService() {
-        assertEquals(27.46, RoundUtil.up(PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()));
+        assertEquals(27.46, RoundUtil.up(PizzaPriceUtil.pricePizzaVegetarianIncludingVAT()));
     }
 
     @Test
     void profitPercentage_ProfitService() {
-        assertEquals(130, ProfitService.profitPercentage(100));
+        assertEquals(130, ProfitUtil.profitPercentage(100));
     }
 
     @Test
     void VAT_TaxService() {
-        assertEquals(20, TaxService.VAT(100));
+        assertEquals(20, TaxUtil.VAT(100));
     }
 }

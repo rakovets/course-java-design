@@ -8,7 +8,8 @@ import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.PaymentMethod;
 import com.rakovets.course.design.practice.solid.pizza.repository.IngredientCaloriesRepository;
 import com.rakovets.course.design.practice.solid.pizza.repository.OrderRepository;
-import com.rakovets.course.design.practice.solid.pizza.util.CheckIntUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.CheckUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.IngredientPriceUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 import com.rakovets.course.design.practice.solid.pizza.view.CashPaymentViewConsole;
 import com.rakovets.course.design.practice.solid.pizza.view.CheckViewConsole;
@@ -23,7 +24,6 @@ public class CreatePizzaService {
     private static final CreatePizzaViewConsole CREATE_PIZZA_VIEW;
     private static final Map<Integer, Ingredient> DOUGH;
     private static final Map<Integer, Ingredient> INGREDIENTS;
-    private static final IngredientPriceService INGREDIENT_PRICE;
     private static final IngredientCaloriesRepository INGREDIENT_CALORIES;
     private static final CookService COOK;
     private static final OrderRepository ORDER;
@@ -37,7 +37,6 @@ public class CreatePizzaService {
     public int payment;
     public char ch;
     public int choice;
-    private static final CheckIntUtil CHECK_INT;
 
     static {
         DOUGH = new HashMap<>();
@@ -56,7 +55,6 @@ public class CreatePizzaService {
         INGREDIENTS.put(9, Ingredient.CRUST);
 
         CREATE_PIZZA_VIEW = new CreatePizzaViewConsole();
-        INGREDIENT_PRICE = new IngredientPriceService();
         INGREDIENT_CALORIES = new IngredientCaloriesRepository(new ArrayList<>());
         COOK = new CookService();
         CASH_PAYMENT = new CashPaymentService();
@@ -66,7 +64,6 @@ public class CreatePizzaService {
         ONLINE_PAYMENT = new OnlinePaymentService();
         CARD_PAYMENT = new CardPaymentService();
         ORDER = new OrderRepository(new ArrayList<>());
-        CHECK_INT = new CheckIntUtil();
 
         PAYMENT_METHOD = new HashMap<>();
         PAYMENT_METHOD.put(1, PaymentMethod.CASH);
@@ -81,17 +78,17 @@ public class CreatePizzaService {
     public void chooseDough() {
         CREATE_PIZZA_VIEW.menuDough();
         try {
-            choice = CHECK_INT.checkInt();
+            choice = CheckUtil.checkInt();
             switch (DOUGH.get(choice)) {
                 case THIN_DOUGH:
-                    ORDER.add(INGREDIENT_PRICE.priceThinDoughIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceThinDoughIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesThinDough();
                     INGREDIENT_CALORIES.add(Ingredient.THIN_DOUGH.getCalories());
                     COOK.thinDough();
                     CHECK.add(CREATE_PIZZA_VIEW.orderThinDough());
                     break;
                 case TRADITIONAL_DOUGH:
-                    ORDER.add(INGREDIENT_PRICE.priceTraditionalDoughIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceTraditionalDoughIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesTraditionalDough();
                     INGREDIENT_CALORIES.add(Ingredient.TRADITIONAL_DOUGH.getCalories());
                     COOK.traditionalDough();
@@ -122,66 +119,66 @@ public class CreatePizzaService {
     public void chooseIngredients() {
         CREATE_PIZZA_VIEW.menuIngredients();
         try {
-            choice = CHECK_INT.checkInt();
+            choice = CheckUtil.checkInt();
             switch (INGREDIENTS.get(choice)) {
                 case CHEESE:
-                    ORDER.add(INGREDIENT_PRICE.priceCheeseIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceCheeseIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesCheese();
                     INGREDIENT_CALORIES.add(Ingredient.CHEESE.getCalories());
                     COOK.cheese();
                     CHECK.add(CREATE_PIZZA_VIEW.orderCheese());
                     break;
                 case MEAT:
-                    ORDER.add(INGREDIENT_PRICE.priceMeatIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceMeatIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesMeat();
                     INGREDIENT_CALORIES.add(Ingredient.MEAT.getCalories());
                     COOK.meat();
                     CHECK.add(CREATE_PIZZA_VIEW.orderMeat());
                     break;
                 case SAUSAGES:
-                    ORDER.add(INGREDIENT_PRICE.priceSausagesIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceSausagesIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesSausages();
                     INGREDIENT_CALORIES.add(Ingredient.SAUSAGES.getCalories());
                     COOK.sausages();
                     CHECK.add(CREATE_PIZZA_VIEW.orderSausages());
                     break;
                 case OLIVES:
-                    ORDER.add(INGREDIENT_PRICE.priceOlivesIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceOlivesIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesOlives();
                     INGREDIENT_CALORIES.add(Ingredient.OLIVES.getCalories());
                     COOK.olives();
                     CHECK.add(CREATE_PIZZA_VIEW.orderOlives());
                     break;
                 case TOMATOES:
-                    ORDER.add(INGREDIENT_PRICE.priceTomatoesIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceTomatoesIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesTomatoes();
                     INGREDIENT_CALORIES.add(Ingredient.TOMATOES.getCalories());
                     COOK.tomatoes();
                     CHECK.add(CREATE_PIZZA_VIEW.orderTomatoes());
                     break;
                 case PEPPER:
-                    ORDER.add(INGREDIENT_PRICE.pricePepperIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.pricePepperIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesPepper();
                     INGREDIENT_CALORIES.add(Ingredient.PEPPER.getCalories());
                     COOK.pepper();
                     CHECK.add(CREATE_PIZZA_VIEW.orderPepper());
                     break;
                 case OREGANO:
-                    ORDER.add(INGREDIENT_PRICE.priceOreganoIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceOreganoIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesOregano();
                     INGREDIENT_CALORIES.add(Ingredient.OREGANO.getCalories());
                     COOK.oregano();
                     CHECK.add(CREATE_PIZZA_VIEW.orderOregano());
                     break;
                 case SAUCE:
-                    ORDER.add(INGREDIENT_PRICE.priceSauceIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceSauceIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesSauce();
                     INGREDIENT_CALORIES.add(Ingredient.SAUCE.getCalories());
                     COOK.sauce();
                     CHECK.add(CREATE_PIZZA_VIEW.orderSauce());
                     break;
                 case CRUST:
-                    ORDER.add(INGREDIENT_PRICE.priceCrustIncludingVAT());
+                    ORDER.add(IngredientPriceUtil.priceCrustIncludingVAT());
                     CREATE_PIZZA_VIEW.displayCaloriesCrust();
                     INGREDIENT_CALORIES.add(Ingredient.CRUST.getCalories());
                     CHECK.add(CREATE_PIZZA_VIEW.orderCrust());
@@ -226,7 +223,7 @@ public class CreatePizzaService {
     public void paymentChoice() {
         CREATE_PIZZA_VIEW.paymentChoice();
         try {
-            payment = CHECK_INT.checkInt();
+            payment = CheckUtil.checkInt();
             switch (PAYMENT_METHOD.get(payment)) {
                 case CASH:
                     CHECK_VIEW.displayCheckCreatePizza();

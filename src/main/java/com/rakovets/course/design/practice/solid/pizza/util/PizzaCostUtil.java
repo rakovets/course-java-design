@@ -1,9 +1,12 @@
-package com.rakovets.course.design.practice.solid.pizza.service;
+package com.rakovets.course.design.practice.solid.pizza.util;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 
-public final class PizzaCostService {
+public final class PizzaCostUtil {
+
+    private PizzaCostUtil() {
+    }
 
     public static double getCostFourCheese() {
         return Ingredient.TRADITIONAL_DOUGH.getCostPerUnit() *

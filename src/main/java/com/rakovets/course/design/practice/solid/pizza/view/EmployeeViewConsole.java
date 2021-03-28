@@ -46,10 +46,6 @@ public class EmployeeViewConsole implements EmployeeView {
         System.out.println("Enter Employee salary:");
     }
 
-    public void invalidInput() {
-        System.out.println("Your input is invalid");
-    }
-
     public void operationsMenu() {
         System.out.println("1. Create New Employee");
         System.out.println("2. Change Employee Salary");
