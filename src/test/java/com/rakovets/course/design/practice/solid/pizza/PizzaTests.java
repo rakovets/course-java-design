@@ -1,6 +1,6 @@
 package com.rakovets.course.design.practice.solid.pizza;
 
-import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
+import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
 import com.rakovets.course.design.practice.solid.pizza.service.*;
 import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 import org.junit.jupiter.api.Test;
@@ -163,85 +163,53 @@ public class PizzaTests {
         assertEquals(3.12, RoundUtil.up(INGREDIENT_PRICE.priceCrustIncludingVAT()));
     }
 
-    @Test
-    void getNumberOfPizzasSold_OrderStatisticsService() {
-        assertEquals(100, ORDER_STATISTICS.getNumberOfPizzasSold(
-                Pizza.FOUR_CHEESE, 100));
+    public void putToMaps() {
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(1, PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(2, PIZZA_PRICE.pricePizzaMargheritaIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(3, PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(4, PIZZA_PRICE.pricePizzaPepperoniIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_REVENUE.put(5, PIZZA_PRICE.pricePizzaVegetarianIncludingVAT());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(1, PizzaCostService.getCostFourCheese());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(2, PizzaCostService.getCostMargherita());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(3, PizzaCostService.getCostMeatDelight());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(4, PizzaCostService.getCostPepperoni());
+        OrderStatisticsController.SOLD_PIZZAS_COST.put(5, PizzaCostService.getCostVegetarian());
     }
 
     @Test
-    void getRevenue_PizzaFourCheese_OrderStatisticsService() {
-        assertEquals(2277.6,
-                ORDER_STATISTICS.getRevenue(Pizza.FOUR_CHEESE, 100,
-                        PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT()));
+    void totalPizzasSold_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(15, RoundUtil.up(ORDER_STATISTICS.totalPizzasSold()));
     }
 
     @Test
-    void getRevenue_PizzaMargherita_OrderStatisticsService() {
-        assertEquals(1965.6,
-                ORDER_STATISTICS.getRevenue(Pizza.MARGHERITA, 100,
-                        PIZZA_PRICE.pricePizzaMargheritaIncludingVAT()));
+    void totalRevenue_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(467.06, ORDER_STATISTICS.totalRevenue());
     }
 
     @Test
-    void getRevenue_PizzaMeatDelight_OrderStatisticsService() {
-        assertEquals(4430.4,
-                ORDER_STATISTICS.getRevenue(Pizza.MEAT_DELIGHT, 100,
-                        PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT()));
+    void averageCheck_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(31.14, ORDER_STATISTICS.averageCheck());
     }
 
     @Test
-    void getRevenue_PizzaPepperoni_OrderStatisticsService() {
-        assertEquals(3369.6,
-                ORDER_STATISTICS.getRevenue(Pizza.PEPPERONI, 100,
-                        PIZZA_PRICE.pricePizzaPepperoniIncludingVAT()));
+    void totalCost_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(299.4, ORDER_STATISTICS.totalCost());
     }
 
     @Test
-    void getRevenue_PizzaVegetarian_OrderStatisticsService() {
-        assertEquals(2745.6,
-                ORDER_STATISTICS.getRevenue(Pizza.VEGETARIAN, 100,
-                        PIZZA_PRICE.pricePizzaVegetarianIncludingVAT()));
+    void totalProfit_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(167.66, ORDER_STATISTICS.totalProfit());
     }
 
     @Test
-    void getProfit_PizzaFourCheese_OrderStatisticsService() {
-        assertEquals(817.6,
-                ORDER_STATISTICS.getProfit(Pizza.FOUR_CHEESE, 100,
-                        PIZZA_PRICE.pricePizzaFourCheeseIncludingVAT(),
-                        PizzaCostService.getCostFourCheese()));
-    }
-
-    @Test
-    void getProfit_PizzaMargherita_OrderStatisticsService() {
-        assertEquals(705.6,
-                ORDER_STATISTICS.getProfit(Pizza.MARGHERITA, 100,
-                        PIZZA_PRICE.pricePizzaMargheritaIncludingVAT(),
-                        PizzaCostService.getCostMargherita()));
-    }
-
-    @Test
-    void getProfit_PizzaMeatDelight_OrderStatisticsService() {
-        assertEquals(1590.4,
-                ORDER_STATISTICS.getProfit(Pizza.MEAT_DELIGHT, 100,
-                        PIZZA_PRICE.pricePizzaMeatDelightIncludingVAT(),
-                        PizzaCostService.getCostMeatDelight()));
-    }
-
-    @Test
-    void getProfit_PizzaPepperoni_OrderStatisticsService() {
-        assertEquals(1209.6,
-                ORDER_STATISTICS.getProfit(Pizza.PEPPERONI, 100,
-                        PIZZA_PRICE.pricePizzaPepperoniIncludingVAT(),
-                        PizzaCostService.getCostPepperoni()));
-    }
-
-    @Test
-    void getProfit_PizzaVegetarian_OrderStatisticsService() {
-        assertEquals(985.6,
-                ORDER_STATISTICS.getProfit(Pizza.VEGETARIAN, 100,
-                        PIZZA_PRICE.pricePizzaVegetarianIncludingVAT(),
-                        PizzaCostService.getCostVegetarian()));
+    void profitMargin_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(35.9, ORDER_STATISTICS.profitMargin());
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.rakovets.course.design.practice.solid.pizza.view;
 
 import com.rakovets.course.design.practice.solid.pizza.exceptions.OrderStatisticsException;
 import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsService;
+import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
 public class OrderStatisticsViewConsole implements OrderStatisticsView {
     private static final OrderStatisticsService ORDER_STATISTICS;
@@ -36,6 +37,19 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
         System.out.println(ORDER_STATISTICS_EXCEPTION.toString());
     }
 
+    public void pizzasRevenue() {
+        System.out.println("Revenue of Pizzas 'Four Cheese': " +
+                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[0]) + "$");
+        System.out.println("Revenue of Pizzas: 'Margherita': " +
+                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[1]) + "$");
+        System.out.println("Revenue of Pizzas: 'Meat Delight': " +
+                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[2]) + "$");
+        System.out.println("Revenue of Pizzas: 'Pepperoni': " +
+                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[3]) + "$");
+        System.out.println("Revenue of Pizzas: 'Vegetarian': " +
+                RoundUtil.up(ORDER_STATISTICS.pizzasRevenue()[4]) + "$");
+    }
+
     public void totalPizzasSold() {
         System.out.println("Total pizzas sold: " + ORDER_STATISTICS.totalPizzasSold());
     }
@@ -46,5 +60,13 @@ public class OrderStatisticsViewConsole implements OrderStatisticsView {
 
     public void averageCheck() {
         System.out.println("Average check is " + ORDER_STATISTICS.averageCheck() + "$");
+    }
+
+    public void totalProfit() {
+        System.out.println("Total profit is " + ORDER_STATISTICS.totalProfit() + "$");
+    }
+
+    public void profitMargin() {
+        System.out.println("Profit margin is " + ORDER_STATISTICS.profitMargin() + "%");
     }
 }
