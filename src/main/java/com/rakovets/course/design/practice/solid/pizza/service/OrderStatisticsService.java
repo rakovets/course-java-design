@@ -80,7 +80,8 @@ public class OrderStatisticsService {
     }
 
     public double totalProfit() {
-        return RoundUtil.up(totalRevenue() - TaxUtil.VATonRevenue(totalRevenue()) - totalCost());
+        return RoundUtil.up(TaxUtil.CorporateIncomeTax(totalRevenue() -
+                TaxUtil.VATonRevenue(totalRevenue()) - totalCost()));
     }
 
     public double profitMargin() {

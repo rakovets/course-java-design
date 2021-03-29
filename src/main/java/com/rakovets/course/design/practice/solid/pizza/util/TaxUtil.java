@@ -9,4 +9,6 @@ public final class TaxUtil {
 
     public static double VATonRevenue(double revenue) { return revenue * 20 / 120; }
 
+    public static double CorporateIncomeTax(double profit) { return profit * 0.82; }
+
 }

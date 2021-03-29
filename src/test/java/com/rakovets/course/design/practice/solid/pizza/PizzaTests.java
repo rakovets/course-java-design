@@ -212,13 +212,13 @@ public class PizzaTests {
     @Test
     void totalProfit_OrderStatisticsService() {
         putToMaps();
-        assertEquals(246.6, ORDER_STATISTICS.totalProfit());
+        assertEquals(202.21, ORDER_STATISTICS.totalProfit());
     }
 
     @Test
     void profitMargin_OrderStatisticsService() {
         putToMaps();
-        assertEquals(19.23, ORDER_STATISTICS.profitMargin());
+        assertEquals(15.77, ORDER_STATISTICS.profitMargin());
     }
 
     @Test
@@ -329,5 +329,15 @@ public class PizzaTests {
     @Test
     void VAT_TaxService() {
         assertEquals(20, TaxUtil.VAT(100));
+    }
+
+    @Test
+    void VATonRevenue_TaxService() {
+        assertEquals(20, TaxUtil.VATonRevenue(120));
+    }
+
+    @Test
+    void CorporateIncomeTax_TaxService() {
+        assertEquals(82, TaxUtil.CorporateIncomeTax(100));
     }
 }
