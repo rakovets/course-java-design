@@ -212,13 +212,13 @@ public class PizzaTests {
     @Test
     void totalProfit_OrderStatisticsService() {
         putToMaps();
-        assertEquals(460.32, ORDER_STATISTICS.totalProfit());
+        assertEquals(246.6, ORDER_STATISTICS.totalProfit());
     }
 
     @Test
     void profitMargin_OrderStatisticsService() {
         putToMaps();
-        assertEquals(35.9, ORDER_STATISTICS.profitMargin());
+        assertEquals(19.23, ORDER_STATISTICS.profitMargin());
     }
 
     @Test

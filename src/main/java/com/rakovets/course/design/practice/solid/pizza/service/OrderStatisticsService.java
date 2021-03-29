@@ -4,6 +4,7 @@ import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatistic
 import com.rakovets.course.design.practice.solid.pizza.util.PizzaCostUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.PizzaPriceUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.TaxUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +80,7 @@ public class OrderStatisticsService {
     }
 
     public double totalProfit() {
-        return RoundUtil.up(totalRevenue() - totalCost());
+        return RoundUtil.up(totalRevenue() - TaxUtil.VATonRevenue(totalRevenue()) - totalCost());
     }
 
     public double profitMargin() {

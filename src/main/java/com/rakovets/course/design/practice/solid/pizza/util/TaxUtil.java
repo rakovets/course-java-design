@@ -7,4 +7,6 @@ public final class TaxUtil {
 
     public static double VAT(double priceWithoutVAT) { return priceWithoutVAT * 0.2; }
 
+    public static double VATonRevenue(double revenue) { return revenue * 20 / 120; }
+
 }
