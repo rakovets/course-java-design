@@ -39,8 +39,12 @@ public class OrderStatisticsController {
             ORDER_STATISTICS_VIEW.enterVegetarian();
             numberOfVegetarianSold = scan.nextInt();
             createMapOfSoldPizzas();
+            ORDER_STATISTICS.pizzasSold();
+            ORDER_STATISTICS_VIEW.pizzasSold();
             ORDER_STATISTICS.totalPizzasSold();
             ORDER_STATISTICS_VIEW.totalPizzasSold();
+            ORDER_STATISTICS.pizzasRevenue();
+            ORDER_STATISTICS_VIEW.pizzasRevenue();
             ORDER_STATISTICS.totalRevenue();
             ORDER_STATISTICS_VIEW.totalRevenue();
             ORDER_STATISTICS.averageCheck();

@@ -5,7 +5,9 @@ import com.rakovets.course.design.practice.solid.pizza.util.PizzaCostUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.PizzaPriceUtil;
 import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class OrderStatisticsService {
@@ -28,12 +30,28 @@ public class OrderStatisticsService {
         PIZZAS_COST.put(5, PizzaCostUtil.getCostVegetarian());
     }
 
+    public List<Integer> pizzasSold() {
+        return new ArrayList<>(OrderStatisticsController.SOLD_PIZZAS
+                .values());
+    }
+
     public int totalPizzasSold() {
         return OrderStatisticsController.SOLD_PIZZAS
                 .values()
                 .stream()
                 .mapToInt(Integer::intValue)
                 .reduce(0, Integer::sum);
+    }
+
+    public List<Double> pizzasPrices() {
+        return new ArrayList<>(PIZZAS_PRICES
+                .values());
+    }
+
+    public void pizzasRevenue() {
+        for (int i = 0; i < pizzasSold().size(); i++) {
+            pizzasPrices().set(i, (pizzasSold().get(i) * pizzasPrices().get(i)));
+        }
     }
 
     public double totalRevenue() {

@@ -14,7 +14,11 @@ public interface OrderStatisticsView {
 
     void orderStatisticsException();
 
+    void pizzasSold();
+
     void totalPizzasSold();
+
+    void pizzasRevenue();
 
     void totalRevenue();
 

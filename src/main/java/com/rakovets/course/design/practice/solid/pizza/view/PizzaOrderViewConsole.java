@@ -3,21 +3,15 @@ package com.rakovets.course.design.practice.solid.pizza.view;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PaymentChoiceException;
 import com.rakovets.course.design.practice.solid.pizza.exceptions.PizzaNumberException;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
-import com.rakovets.course.design.practice.solid.pizza.service.*;
-import com.rakovets.course.design.practice.solid.pizza.util.DateFormatUtil;
-import com.rakovets.course.design.practice.solid.pizza.util.DiscountUtil;
-import com.rakovets.course.design.practice.solid.pizza.util.PizzaPriceUtil;
-import com.rakovets.course.design.practice.solid.pizza.util.RoundUtil;
+import com.rakovets.course.design.practice.solid.pizza.util.*;
 
 import java.time.LocalDateTime;
 
 public class PizzaOrderViewConsole implements PizzaOrderView {
-    private static final PizzaCaloriesService PIZZA_CALORIES_SERVICE;
     private static final PizzaNumberException PIZZA_NUMBER_EXCEPTION;
     private static final PaymentChoiceException PAYMENT_CHOICE_EXCEPTION;
 
     static {
-        PIZZA_CALORIES_SERVICE = new PizzaCaloriesService();
         PIZZA_NUMBER_EXCEPTION = new PizzaNumberException();
         PAYMENT_CHOICE_EXCEPTION = new PaymentChoiceException();
     }
@@ -62,31 +56,31 @@ public class PizzaOrderViewConsole implements PizzaOrderView {
 
     public void displayInfoPizzaFourCheese() {
         System.out.println("Pizza " + Pizza.FOUR_CHEESE + " Calories: " +
-                PIZZA_CALORIES_SERVICE.caloriesPizzaFourCheese() +
+                PizzaCaloriesUtil.caloriesPizzaFourCheese() +
                 ", Ingredients: " + Pizza.FOUR_CHEESE.getIngredients());
     }
 
     public void displayInfoPizzaMargherita() {
         System.out.println("Pizza " + Pizza.MARGHERITA + " Calories: " +
-                PIZZA_CALORIES_SERVICE.caloriesPizzaMargherita() +
+                PizzaCaloriesUtil.caloriesPizzaMargherita() +
                 ", Ingredients: " + Pizza.MARGHERITA.getIngredients());
     }
 
     public void displayInfoPizzaMeatDelight() {
         System.out.println("Pizza " + Pizza.MEAT_DELIGHT + " Calories: " +
-                PIZZA_CALORIES_SERVICE.caloriesPizzaMeatDelight() +
+                PizzaCaloriesUtil.caloriesPizzaMeatDelight() +
                 ", Ingredients: " + Pizza.MEAT_DELIGHT.getIngredients());
     }
 
     public void displayInfoPizzaPepperoni() {
         System.out.println("Pizza " + Pizza.PEPPERONI + " Calories: " +
-                PIZZA_CALORIES_SERVICE.caloriesPizzaPepperoni() +
+                PizzaCaloriesUtil.caloriesPizzaPepperoni() +
                 ", Ingredients: " + Pizza.PEPPERONI.getIngredients());
     }
 
     public void displayInfoPizzaVegetarian() {
         System.out.println("Pizza " + Pizza.VEGETARIAN + " Calories: " +
-                PIZZA_CALORIES_SERVICE.caloriesPizzaVegetarian() +
+                PizzaCaloriesUtil.caloriesPizzaVegetarian() +
                 ", Ingredients: " + Pizza.VEGETARIAN.getIngredients());
     }
 

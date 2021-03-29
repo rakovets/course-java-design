@@ -1,21 +1,22 @@
 package com.rakovets.course.design.practice.solid.pizza;
 
 import com.rakovets.course.design.practice.solid.pizza.controller.OrderStatisticsController;
-import com.rakovets.course.design.practice.solid.pizza.service.*;
+import com.rakovets.course.design.practice.solid.pizza.service.CashPaymentService;
+import com.rakovets.course.design.practice.solid.pizza.service.OrderStatisticsService;
 import com.rakovets.course.design.practice.solid.pizza.util.*;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PizzaTests {
     private static final CashPaymentService CASH_PAYMENT;
     private static final OrderStatisticsService ORDER_STATISTICS;
-    private static final PizzaCaloriesService PIZZA_CALORIES;
 
     static {
         CASH_PAYMENT = new CashPaymentService();
         ORDER_STATISTICS = new OrderStatisticsService();
-        PIZZA_CALORIES = new PizzaCaloriesService();
     }
 
     @Test
@@ -168,9 +169,26 @@ public class PizzaTests {
     }
 
     @Test
+    void pizzasSold_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(List.of(5, 5, 11, 1, 20), ORDER_STATISTICS.pizzasSold());
+    }
+
+    @Test
     void totalPizzasSold_OrderStatisticsService() {
         putToMaps();
         assertEquals(42, ORDER_STATISTICS.totalPizzasSold());
+    }
+
+    @Test
+    void pizzasPrices_OrderStatisticsService() {
+        putToMaps();
+        assertEquals(List.of(PizzaPriceUtil.pricePizzaFourCheeseIncludingVAT(),
+                PizzaPriceUtil.pricePizzaMargheritaIncludingVAT(),
+                PizzaPriceUtil.pricePizzaMeatDelightIncludingVAT(),
+                PizzaPriceUtil.pricePizzaPepperoniIncludingVAT(),
+                PizzaPriceUtil.pricePizzaVegetarianIncludingVAT()),
+                ORDER_STATISTICS.pizzasPrices());
     }
 
     @Test
@@ -205,27 +223,27 @@ public class PizzaTests {
 
     @Test
     void caloriesPizzaFourCheese_PizzaCaloriesService() {
-        assertEquals(1750, PIZZA_CALORIES.caloriesPizzaFourCheese());
+        assertEquals(1750, PizzaCaloriesUtil.caloriesPizzaFourCheese());
     }
 
     @Test
     void caloriesPizzaMargherita_PizzaCaloriesService() {
-        assertEquals(1420, PIZZA_CALORIES.caloriesPizzaMargherita());
+        assertEquals(1420, PizzaCaloriesUtil.caloriesPizzaMargherita());
     }
 
     @Test
     void caloriesPizzaMeatDelight_PizzaCaloriesService() {
-        assertEquals(1740, PIZZA_CALORIES.caloriesPizzaMeatDelight());
+        assertEquals(1740, PizzaCaloriesUtil.caloriesPizzaMeatDelight());
     }
 
     @Test
     void caloriesPizzaPepperoni_PizzaCaloriesService() {
-        assertEquals(1320, PIZZA_CALORIES.caloriesPizzaPepperoni());
+        assertEquals(1320, PizzaCaloriesUtil.caloriesPizzaPepperoni());
     }
 
     @Test
     void caloriesPizzaVegetarian_PizzaCaloriesService() {
-        assertEquals(990, PIZZA_CALORIES.caloriesPizzaVegetarian());
+        assertEquals(990, PizzaCaloriesUtil.caloriesPizzaVegetarian());
     }
 
     @Test

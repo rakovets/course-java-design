@@ -1,11 +1,14 @@
-package com.rakovets.course.design.practice.solid.pizza.service;
+package com.rakovets.course.design.practice.solid.pizza.util;
 
 import com.rakovets.course.design.practice.solid.pizza.model.Ingredient;
 import com.rakovets.course.design.practice.solid.pizza.model.Pizza;
 
-public class PizzaCaloriesService {
+public final class PizzaCaloriesUtil {
 
-    public int caloriesPizzaFourCheese() {
+    private PizzaCaloriesUtil() {
+    }
+
+    public static int caloriesPizzaFourCheese() {
         return Pizza.FOUR_CHEESE.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) *
                 Ingredient.TRADITIONAL_DOUGH.getCalories() +
                 Pizza.FOUR_CHEESE.getIngredientQuantity(Ingredient.SAUCE) *
@@ -16,7 +19,7 @@ public class PizzaCaloriesService {
                         Ingredient.OREGANO.getCalories();
     }
 
-    public int caloriesPizzaMargherita() {
+    public static int caloriesPizzaMargherita() {
         return Pizza.MARGHERITA.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) *
                 Ingredient.TRADITIONAL_DOUGH.getCalories() +
                 Pizza.MARGHERITA.getIngredientQuantity(Ingredient.SAUCE) *
@@ -29,7 +32,7 @@ public class PizzaCaloriesService {
                         Ingredient.OREGANO.getCalories();
     }
 
-    public int caloriesPizzaMeatDelight() {
+    public static int caloriesPizzaMeatDelight() {
         return Pizza.MEAT_DELIGHT.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) *
                 Ingredient.TRADITIONAL_DOUGH.getCalories() +
                 Pizza.MEAT_DELIGHT.getIngredientQuantity(Ingredient.SAUCE) *
@@ -42,7 +45,7 @@ public class PizzaCaloriesService {
                         Ingredient.SAUSAGES.getCalories();
     }
 
-    public int caloriesPizzaPepperoni() {
+    public static int caloriesPizzaPepperoni() {
         return Pizza.PEPPERONI.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) *
                 Ingredient.TRADITIONAL_DOUGH.getCalories() +
                 Pizza.PEPPERONI.getIngredientQuantity(Ingredient.SAUCE) *
@@ -53,7 +56,7 @@ public class PizzaCaloriesService {
                         Ingredient.MEAT.getCalories();
     }
 
-    public int caloriesPizzaVegetarian() {
+    public static int caloriesPizzaVegetarian() {
         return Pizza.VEGETARIAN.getIngredientQuantity(Ingredient.TRADITIONAL_DOUGH) *
                 Ingredient.TRADITIONAL_DOUGH.getCalories() +
                 Pizza.VEGETARIAN.getIngredientQuantity(Ingredient.SAUCE) *
