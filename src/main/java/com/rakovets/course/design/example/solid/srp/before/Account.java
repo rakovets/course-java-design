@@ -5,14 +5,6 @@ public class Account {
     private long balance;
     private String iban;
 
-    public long getId() {
-        return id;
-    }
-
-    public String getIban() {
-        return iban;
-    }
-
     public long getCurrentBalance() {
         return balance;
     }
@@ -30,5 +22,13 @@ public class Account {
 
     public TaxTable calculateTaxes(int year) {
         return new TaxTable();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getIban() {
+        return iban;
     }
 }

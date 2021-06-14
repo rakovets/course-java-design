@@ -4,6 +4,10 @@ public class Rectangle {
     private int length;
     private int width;
 
+    public int getArea() {
+        return this.length * this.width;
+    }
+
     public int getLength() {
         return length;
     }
@@ -18,9 +22,5 @@ public class Rectangle {
 
     public void setWidth(int width) {
         this.width = width;
-    }
-
-    public int getArea() {
-        return this.length * this.width;
     }
 }
