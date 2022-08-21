@@ -7,6 +7,7 @@ import com.rakovets.course.design.practice.solid.source.util.IngredientsDataPars
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,7 +30,7 @@ public final class MeatStorageImpl implements IngredientsStorage {
     public <T> Collection<T> showAllStorage() {
         IngredientsDataParser parser = IngredientsDataParser.getINSTANCE();
         Meat meat;
-        try (BufferedReader reader = new BufferedReader(new FileReader(PATH.toFile()))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(PATH.toFile(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 meat = new Meat(parser.getName(line),

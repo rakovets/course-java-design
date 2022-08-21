@@ -6,7 +6,6 @@ import com.rakovets.course.design.practice.solid.model.ingredient.Meat;
 import com.rakovets.course.design.practice.solid.model.ingredient.Sauce;
 import com.rakovets.course.design.practice.solid.model.ingredient.Vegetables;
 import com.rakovets.course.design.practice.solid.service.MakeCollectionsIngredients;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,10 +13,10 @@ import java.util.HashSet;
 public final class MakeCollectionsIngredientsImpl implements MakeCollectionsIngredients {
     @Override
     @SuppressWarnings("unchecked")
-    public @NotNull <T extends Ingredient> Collection<Collection<T>> makeCollections(Collection<Cheese> cheeses,
-                                                                                     Collection<Meat> meats,
-                                                                                     Collection<Sauce> sauces,
-                                                                                     Collection<Vegetables> vegetables) {
+    public <T extends Ingredient> Collection<Collection<T>> makeCollections(Collection<Cheese> cheeses,
+                                                                            Collection<Meat> meats,
+                                                                            Collection<Sauce> sauces,
+                                                                            Collection<Vegetables> vegetables) {
         Collection<Collection<T>> collection = new HashSet<>();
 
         collection.add((Collection<T>) cheeses);
