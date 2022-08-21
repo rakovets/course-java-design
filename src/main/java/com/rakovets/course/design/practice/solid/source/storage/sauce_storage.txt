@@ -1,0 +1,2 @@
+Name: KETCHUP  | Price: 5.48583  | Weight: 5000.00
+Name: MAYONNAISE  | Price: 2.06981  | Weight: 5000.00

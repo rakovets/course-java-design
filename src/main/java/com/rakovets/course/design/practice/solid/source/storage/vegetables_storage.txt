@@ -1,0 +1,4 @@
+Name: CORN | Price: 4.09597 | Weight: 5000.00
+Name: CUCUMBER | Price: 1.17794| Weight: 5000.00
+Name: ONION | Price: 1.00966 | Weight: 5000.00
+Name: TOMATO | Price: 1.34622 | Weight: 5000.00

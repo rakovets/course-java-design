@@ -1,0 +1,4 @@
+Name: CHEDDAR | Price: 16.407 | Weight: 5000.00
+Name: GOUDA | Price: 10.0949 | Weight: 5000.00
+Name: PARMESAN | Price: 12.7794 | Weight: 5000.00
+Name: MOZZARELLA | Price: 4.65084 | Weight: 5000.00
