@@ -1,14 +1,15 @@
 package com.rakovets.course.design.practice.solid.model;
 
 import com.rakovets.course.design.practice.solid.model.ingredient.Ingredient;
-import com.rakovets.course.design.practice.solid.service.PizzaState;
+import com.rakovets.course.design.practice.solid.service.Price;
+import com.rakovets.course.design.practice.solid.service.Weight;
 import lombok.Getter;
 
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Pizza extends PizzaShopItem implements PizzaState {
+public class Pizza extends PizzaShopItem implements Price, Weight {
     @Getter
     private final Collection<Ingredient> ingredients;
 
@@ -18,14 +19,14 @@ public class Pizza extends PizzaShopItem implements PizzaState {
     }
 
     @Override
-    public double calculatePrice() {
+    public double getPrice() {
         return ingredients.stream()
                 .mapToDouble(Ingredient::getPrice)
                 .sum();
     }
 
     @Override
-    public double calculateWeight() {
+    public double getWeight() {
         return ingredients.stream()
                 .mapToDouble(Ingredient::getWeight).sum();
     }
