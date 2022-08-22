@@ -2,10 +2,9 @@ package com.rakovets.course.design.practice.solid.view.impl;
 
 import com.rakovets.course.design.practice.solid.controller.Controller;
 import com.rakovets.course.design.practice.solid.controller.ControllerProvider;
-import com.rakovets.course.design.practice.solid.model.ingredient.Ingredient;
+import com.rakovets.course.design.practice.solid.model.Pizza;
 import com.rakovets.course.design.practice.solid.view.MainViewer;
 
-import java.util.Collection;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -34,11 +33,7 @@ public class MainViewerImpl implements MainViewer {
         }
         String operation = scanner.next();
 
-        Collection<Ingredient> ingredients = controller.doOperations(operation);
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Ingredient ingredient : ingredients) {
-            stringBuilder.append(ingredient);
-        }
-        return stringBuilder.toString();
+        Pizza pizza = controller.doOperations(operation);
+        return pizza.toString();
     }
 }

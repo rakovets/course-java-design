@@ -3,9 +3,7 @@ package com.rakovets.course.design.practice.solid.controller.impl;
 import com.rakovets.course.design.practice.solid.controller.Command;
 import com.rakovets.course.design.practice.solid.controller.CommandProvider;
 import com.rakovets.course.design.practice.solid.controller.Controller;
-import com.rakovets.course.design.practice.solid.model.ingredient.Ingredient;
-
-import java.util.Collection;
+import com.rakovets.course.design.practice.solid.model.Pizza;
 
 public class ControllerImpl implements Controller {
     private final CommandProvider commandProvider;
@@ -15,7 +13,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public <T extends Ingredient> Collection<T> doOperations(String operation) {
+    public Pizza doOperations(String operation) {
         Command command = commandProvider.getCommand(operation);
 
         return command.selectionsIngredients();
