@@ -1,4 +1,4 @@
-package com.rakovets.course.design.practice.solid.service.view;
+package com.rakovets.course.design.practice.solid.view;
 
 public interface MainViewer {
     String showMenu();

@@ -1,7 +1,7 @@
 package com.rakovets.course.design.practice.solid;
 
-import com.rakovets.course.design.practice.solid.service.view.MainViewer;
-import com.rakovets.course.design.practice.solid.service.view.impl.MainViewerImpl;
+import com.rakovets.course.design.practice.solid.view.MainViewer;
+import com.rakovets.course.design.practice.solid.view.impl.MainViewerImpl;
 
 public class Main {
     public static void main(String[] args) {

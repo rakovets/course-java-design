@@ -3,6 +3,7 @@ package com.rakovets.course.design.practice.solid.source.impl;
 import com.rakovets.course.design.practice.solid.model.ingredient.Vegetables;
 import com.rakovets.course.design.practice.solid.source.IngredientsStorage;
 import com.rakovets.course.design.practice.solid.source.util.IngredientsDataParser;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -15,7 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class VegetablesStorageImpl implements IngredientsStorage {
-    private static final Logger LOGGER = Logger.getLogger("CheeseStorage");
+    private static final Logger LOGGER = Logger.getLogger("VegetablesStorageImpl");
+    @Getter
     private static final Path PATH = Path.of("src", "main", "java", "com", "rakovets", "course", "design",
             "practice", "solid", "source", "storage", "vegetables_storage.txt");
 

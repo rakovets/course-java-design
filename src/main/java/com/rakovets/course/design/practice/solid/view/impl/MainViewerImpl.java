@@ -1,9 +1,9 @@
-package com.rakovets.course.design.practice.solid.service.view.impl;
+package com.rakovets.course.design.practice.solid.view.impl;
 
 import com.rakovets.course.design.practice.solid.controller.Controller;
 import com.rakovets.course.design.practice.solid.controller.ControllerProvider;
 import com.rakovets.course.design.practice.solid.model.Pizza;
-import com.rakovets.course.design.practice.solid.service.view.MainViewer;
+import com.rakovets.course.design.practice.solid.view.MainViewer;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
