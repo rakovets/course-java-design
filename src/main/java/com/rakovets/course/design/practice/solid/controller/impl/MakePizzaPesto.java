@@ -51,7 +51,7 @@ public final class MakePizzaPesto<T extends Ingredient> implements Command {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Pizza selectionsIngredients() {
+    public Pizza execute() {
         Collection<Collection<T>> collection =
                 makeCollectionsIngredients.makeCollections(cheeses, meats, sauces, vegetables);
 

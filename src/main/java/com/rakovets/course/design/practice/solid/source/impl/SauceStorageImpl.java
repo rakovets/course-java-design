@@ -29,14 +29,14 @@ public final class SauceStorageImpl implements IngredientsStorage {
     @SuppressWarnings("unchecked")
     public <T> Collection<T> showAllStorage() {
         IngredientsDataParser parser = IngredientsDataParser.getINSTANCE();
-        Sauce sauce;
+        Sauce ingredient;
         try (BufferedReader reader = new BufferedReader(new FileReader(PATH.toFile(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                sauce = new Sauce(parser.getName(line),
+                ingredient = new Sauce(parser.getName(line),
                         parser.getPrice(line),
                         parser.getWeight(line));
-                sauces.add(sauce);
+                sauces.add(ingredient);
             }
         } catch (IOException e) {
             e.printStackTrace();

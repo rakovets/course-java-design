@@ -16,6 +16,6 @@ public final class ControllerImpl implements Controller {
     public Pizza doOperations(String operation) {
         Command command = commandProvider.getCommand(operation);
 
-        return command.selectionsIngredients();
+        return command.execute();
     }
 }

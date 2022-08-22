@@ -29,14 +29,14 @@ public final class MeatStorageImpl implements IngredientsStorage {
     @SuppressWarnings("unchecked")
     public <T> Collection<T> showAllStorage() {
         IngredientsDataParser parser = IngredientsDataParser.getINSTANCE();
-        Meat meat;
+        Meat ingredient;
         try (BufferedReader reader = new BufferedReader(new FileReader(PATH.toFile(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                meat = new Meat(parser.getName(line),
+                ingredient = new Meat(parser.getName(line),
                         parser.getPrice(line),
                         parser.getWeight(line));
-                meats.add(meat);
+                meats.add(ingredient);
             }
         } catch (IOException e) {
             e.printStackTrace();

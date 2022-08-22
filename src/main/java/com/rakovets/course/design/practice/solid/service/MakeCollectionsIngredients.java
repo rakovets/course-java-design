@@ -9,7 +9,8 @@ import com.rakovets.course.design.practice.solid.model.ingredient.Vegetables;
 import java.util.Collection;
 
 public interface MakeCollectionsIngredients {
-    <T extends Ingredient> Collection<Collection<T>> makeCollections(
-            Collection<Cheese> cheeses, Collection<Meat> meats, Collection<Sauce> sauces,
-            Collection<Vegetables> vegetables);
+    <T extends Ingredient> Collection<Collection<T>> makeCollections(Collection<Cheese> cheeses,
+                                                                     Collection<Meat> meats,
+                                                                     Collection<Sauce> sauces,
+                                                                     Collection<Vegetables> vegetables);
 }
