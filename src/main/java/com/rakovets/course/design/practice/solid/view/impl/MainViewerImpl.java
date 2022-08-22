@@ -34,6 +34,15 @@ public class MainViewerImpl implements MainViewer {
         String operation = scanner.next();
 
         Pizza pizza = controller.doOperations(operation);
-        return pizza.toString();
+
+        return "Pizza name: " +
+                pizza.getName() +
+                String.format("%n") +
+                String.format("Price: %.2f$", pizza.getPrice()) +
+                String.format("%n") +
+                String.format("Pizza weight: %.2f", pizza.getWeight()) +
+                String.format("%n") +
+                "\t\t\tPizza Ingredients" +
+                pizza;
     }
 }
