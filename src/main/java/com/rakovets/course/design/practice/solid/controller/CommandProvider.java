@@ -13,11 +13,11 @@ public final class CommandProvider {
     private final Map<String, Command> commands = new HashMap<>();
 
     public CommandProvider() {
-        commands.put("1", new MakePizzaFromTheChef());
-        commands.put("2", new MakePizzaMargaritta());
-        commands.put("3", new MakePizzaPepperoni());
-        commands.put("4", new MakePizzaPesto());
-        commands.put("5", new MakePizzaVegetarian());
+        commands.put("1", new MakePizzaFromTheChef<>());
+        commands.put("2", new MakePizzaMargaritta<>());
+        commands.put("3", new MakePizzaPepperoni<>());
+        commands.put("4", new MakePizzaPesto<>());
+        commands.put("5", new MakePizzaVegetarian<>());
     }
 
     public Command getCommand(String command) {

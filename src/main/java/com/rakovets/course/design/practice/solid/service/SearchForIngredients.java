@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 
 public interface SearchForIngredients {
-    <T extends Ingredient> @Nullable Ingredient getIngredient
-            (String nameIngredient, @NotNull Collection<Collection<T>> collectionCollection, double weight);
+    <T extends Ingredient> @Nullable Ingredient getIngredient(String nameIngredient,
+                                                              @NotNull Collection<Collection<T>> collectionCollection,
+                                                              double weight);
 }

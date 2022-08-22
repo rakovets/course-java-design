@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class MainViewerImpl implements MainViewer {
     private static final String REGEX = "[1-5]";
     private static final Logger LOGGER = Logger.getLogger("MainViewerImpl");
+
     private final Scanner scanner = new Scanner(System.in);
 
     @Override

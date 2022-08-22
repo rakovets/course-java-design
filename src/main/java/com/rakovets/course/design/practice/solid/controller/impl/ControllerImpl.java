@@ -5,7 +5,7 @@ import com.rakovets.course.design.practice.solid.controller.CommandProvider;
 import com.rakovets.course.design.practice.solid.controller.Controller;
 import com.rakovets.course.design.practice.solid.model.Pizza;
 
-public class ControllerImpl implements Controller {
+public final class ControllerImpl implements Controller {
     private final CommandProvider commandProvider;
 
     public ControllerImpl() {
