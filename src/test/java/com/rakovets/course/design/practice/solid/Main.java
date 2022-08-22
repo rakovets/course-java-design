@@ -12,5 +12,8 @@ public class Main {
 
         operation = mainViewer.chooseOperation();
         System.out.println(operation);
+
+        operation = mainViewer.choosePaymentMethod();
+        System.out.println(operation);
     }
 }

@@ -3,7 +3,7 @@ package com.rakovets.course.design.practice.solid.controller;
 import com.rakovets.course.design.practice.solid.controller.impl.ControllerImpl;
 import lombok.Getter;
 
-public class ControllerProvider {
+public final class ControllerProvider {
     @Getter
     public static final ControllerProvider INSTANCE = new ControllerProvider();
     @Getter

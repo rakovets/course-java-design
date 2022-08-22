@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-public class MainViewerImpl implements MainViewer {
+public final class MainViewerImpl implements MainViewer {
     private static final String REGEX = "[1-5]";
     private static final Logger LOGGER = Logger.getLogger("MainViewerImpl");
 
@@ -22,7 +22,7 @@ public class MainViewerImpl implements MainViewer {
 
     @Override
     public String showMenu() {
-        return String.format("Choose a pizza: %n1 - %s%n2 - %s%n3 - %s%n4 - %s%n5 - %s", "Pizza from the chef",
+        return String.format("Choose a pizza: %n1 - %s%n2 - %s%n3 - %s%n4 - %s%n5 - %s%n", "Pizza from the chef",
                 "Pizza Margaritta", "Pizza Pepperoni", "Pizza Pesto", "Pizza Vegetarian");
     }
 
@@ -45,21 +45,17 @@ public class MainViewerImpl implements MainViewer {
 
         return "Pizza name: " +
                 pizza.getName() +
-                String.format("%n") +
-                String.format("Price: %.2f$", pizza.getPrice()) +
-                String.format("%n") +
-                String.format("Pizza weight: %.2f", pizza.getWeight()) +
-                String.format("%n") +
-                "\t\t\tPizza Ingredients" +
+                String.format("%nPrice: %.2f$", pizza.getPrice()) +
+                String.format("%nPizza weight: %.2f", pizza.getWeight()) +
+                String.format("%n\t\t\tPizza Ingredients") +
                 pizza +
-                String.format("%n") +
-                "Order time: " +
+                String.format("%nOrder time: ") +
                 startTime.format(dateTimeFormatter);
     }
 
     @Override
     public String choosePaymentMethod() {
-        return String.format("Select a payment Method: %n1 - %s%n2 - %s%n3 - %s%n", "Payment by card",
+        return String.format("%nSelect a payment Method: %n6 - %s%n7 - %s%n8 - %s%n", "Payment by card",
                 "Online payment", "Cash payment");
     }
 }

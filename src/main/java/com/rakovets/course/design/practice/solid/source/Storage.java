@@ -6,7 +6,7 @@ import com.rakovets.course.design.practice.solid.source.impl.SauceStorageImpl;
 import com.rakovets.course.design.practice.solid.source.impl.VegetablesStorageImpl;
 import lombok.Getter;
 
-public class Storage {
+public final class Storage {
     @Getter
     private static final Storage INSTANCE = new Storage();
 
