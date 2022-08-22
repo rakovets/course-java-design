@@ -5,6 +5,7 @@ import com.rakovets.course.design.practice.solid.controller.ControllerProvider;
 import com.rakovets.course.design.practice.solid.model.Pizza;
 import com.rakovets.course.design.practice.solid.view.MainViewer;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
@@ -13,7 +14,7 @@ public class MainViewerImpl implements MainViewer {
     private static final String REGEX = "[1-5]";
     private static final Logger LOGGER = Logger.getLogger("MainViewerImpl");
 
-    private final Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     @Override
     public String showMenu() {
