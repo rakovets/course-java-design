@@ -1,0 +1,15 @@
+package com.rakovets.course.design.practice.solid.controller;
+
+import com.rakovets.course.design.practice.solid.controller.impl.ControllerImpl;
+import lombok.Getter;
+
+public class ControllerProvider {
+    @Getter
+    public static final ControllerProvider INSTANCE = new ControllerProvider();
+    @Getter
+    private final Controller controller;
+
+    public ControllerProvider() {
+        controller = new ControllerImpl();
+    }
+}
