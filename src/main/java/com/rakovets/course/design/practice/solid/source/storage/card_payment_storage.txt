@@ -1,0 +1,4 @@
+Name: CARD | Amount: 16.40
+Name: CARD | Amount: 18.78
+Name: CARD | Amount: 19.78
+Name: CARD | Amount: 5.48

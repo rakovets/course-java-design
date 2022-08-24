@@ -16,11 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class VegetablesStorageImpl implements IngredientsStorage {
-    private static final Logger LOGGER = Logger.getLogger("VegetablesStorageImpl");
     @Getter
     private static final Path PATH = Path.of("src", "main", "java", "com", "rakovets", "course", "design",
             "practice", "solid", "source", "storage", "vegetables_storage.txt");
 
+    private final Logger logger = Logger.getLogger("VegetablesStorageImpl");
     private final Collection<Vegetables> vegetables;
 
     public VegetablesStorageImpl() {
@@ -42,7 +42,7 @@ public final class VegetablesStorageImpl implements IngredientsStorage {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            LOGGER.log(Level.WARNING, e.getMessage());
+            logger.log(Level.WARNING, e.getMessage());
         }
         return (Collection<T>) vegetables;
     }

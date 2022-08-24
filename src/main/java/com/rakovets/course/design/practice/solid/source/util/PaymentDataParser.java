@@ -6,17 +6,16 @@ import org.jetbrains.annotations.Nullable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class IngredientsDataParser {
+public final class PaymentDataParser {
     @Getter
-    private static final IngredientsDataParser INSTANCE = new IngredientsDataParser();
+    private static final PaymentDataParser INSTANCE = new PaymentDataParser();
 
     private final Pattern pattern;
     private Matcher matcher;
 
-    private IngredientsDataParser() {
-        String regex = ".+?: (\\w+).+?(\\d+\\.\\d+).+?(\\d+\\.\\d+)";
-
-        pattern = Pattern.compile(regex);
+    private PaymentDataParser() {
+        String regx = ".+?: (\\w+).+?(\\d+\\.\\d+)";
+        pattern = Pattern.compile(regx);
     }
 
     public @Nullable String getName(String line) {
@@ -26,17 +25,10 @@ public final class IngredientsDataParser {
                 : null;
     }
 
-    public double getPrice(String line) {
+    public double getAmount(String line) {
         matcher = pattern.matcher(line);
         return matcher.matches()
                 ? Double.parseDouble(matcher.group(2))
-                : 0.0;
-    }
-
-    public double getWeight(String line) {
-        matcher = pattern.matcher(line);
-        return matcher.matches()
-                ? Double.parseDouble(matcher.group(3))
                 : 0.0;
     }
 }

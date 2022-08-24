@@ -4,6 +4,7 @@ import com.rakovets.course.design.practice.solid.controller.Controller;
 import com.rakovets.course.design.practice.solid.controller.ControllerProvider;
 import com.rakovets.course.design.practice.solid.model.Pizza;
 import com.rakovets.course.design.practice.solid.view.MainViewer;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
@@ -13,11 +14,8 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 public final class MainViewerImpl implements MainViewer {
-    private static final String REGEX = "[1-5]";
-    private static final Logger LOGGER = Logger.getLogger("MainViewerImpl");
-
+    private final Logger logger = Logger.getLogger("MainViewerImpl");
     private final LocalDateTime startTime = LocalDateTime.now();
-
     private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
 
     @Override
@@ -27,14 +25,15 @@ public final class MainViewerImpl implements MainViewer {
     }
 
     @Override
-    public String chooseOperation() {
+    public @NotNull String chooseOperation() {
         ControllerProvider controllerProvider = ControllerProvider.getINSTANCE();
         Controller controller = controllerProvider.getController();
 
-        Pattern pattern = Pattern.compile(REGEX);
+        String regex = "[1-5]";
+        Pattern pattern = Pattern.compile(regex);
 
         while (!scanner.hasNext(pattern)) {
-            LOGGER.info("Invalid value! Select from 1 to 5");
+            logger.info("Invalid value! Select from 1 to 5");
             scanner.next();
         }
         String operation = scanner.next();
@@ -42,7 +41,6 @@ public final class MainViewerImpl implements MainViewer {
         Pizza pizza = controller.doOperations(operation);
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
-
         return "Pizza name: " +
                 pizza.getName() +
                 String.format("%nPrice: %.2f$", pizza.getPrice()) +

@@ -9,7 +9,7 @@ public final class ControllerProvider {
     @Getter
     private final Controller controller;
 
-    public ControllerProvider() {
+    private ControllerProvider() {
         controller = new ControllerImpl();
     }
 }

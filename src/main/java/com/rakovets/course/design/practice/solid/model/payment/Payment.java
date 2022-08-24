@@ -17,7 +17,7 @@ public abstract class Payment implements Name {
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     @Override
@@ -35,5 +35,10 @@ public abstract class Payment implements Name {
     @Override
     public int hashCode() {
         return Objects.hash(name, amount);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%nName: %s | " + "Amount: %.2f$", getName(), getAmount());
     }
 }

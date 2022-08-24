@@ -13,16 +13,18 @@ public final class SearchForIngredientsImpl implements SearchForIngredients {
                                                                      @NotNull Collection<Collection<T>> collections,
                                                                      double weight) {
         int oneKilogram = 1000;
+        Ingredient result = null;
 
         for (Collection<T> collection : collections) {
             for (T ingredient : collection) {
                 if (ingredient.getName().equals(nameIngredient) && ingredient.getWeight() >= weight) {
-                    ingredient.setPrice((weight * ingredient.getPrice()) / oneKilogram);
-                    ingredient.setWeight(weight);
-                    return ingredient;
+                    result = ingredient;
+                    result.setPrice((weight * ingredient.getPrice()) / oneKilogram);
+                    result.setWeight(weight);
+                    break;
                 }
             }
         }
-        return null;
+        return result;
     }
 }
